@@ -5,6 +5,7 @@ import searchBtn from "../../../../assets/images/Vector.png";
 import dropdownBtn from "../../../../assets/images/ic_toggle.png";
 import StudyCard from "./StudyCard";
 import { API_ADDRESS } from "../../../../constants/global";
+import Loading from "../../../UI/Loading";
 
 const StudyList = () => {
   const [studyCards, setStudyCards] = useState([]);
@@ -17,6 +18,7 @@ const StudyList = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [order, setOrder] = useState("recent");
   const dropDownRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
@@ -30,22 +32,28 @@ const StudyList = () => {
 
   const fetchStudyCards = async (page, searchKeyword, order) => {
     setIsLoading(true);
-    const response = await axios.get(
-      `${API_ADDRESS}/study?page=${page}&pageSize=${pageSize}&order=${order}&keyWord=${searchKeyword}`
-    );
-    if (response.data.length < pageSize) {
-      setHasMore(false);
-    } else {
-      setHasMore(true);
-    }
-    const newCards = response.data;
-    const uniqueCards = Array.from(
-      new Set([...studyCards, ...newCards].map((card) => card.id))
-    ).map((id) => {
-      return [...studyCards, ...newCards].find((card) => card.id === id);
-    });
-    setStudyCards(uniqueCards);
-    setIsLoading(false);
+    const response = await axios
+      .get(
+        `${API_ADDRESS}/study?page=${page}&pageSize=${pageSize}&order=${order}&keyWord=${searchKeyword}`
+      )
+      .then((res) => {
+        setIsLoading(false);
+        if (res.data.length < pageSize) {
+          setHasMore(false);
+        } else {
+          setHasMore(true);
+        }
+        const newCards = res.data;
+        const uniqueCards = Array.from(
+          new Set([...studyCards, ...newCards].map((card) => card.id))
+        ).map((id) => {
+          return [...studyCards, ...newCards].find((card) => card.id === id);
+        });
+        setStudyCards(uniqueCards);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -123,6 +131,7 @@ const StudyList = () => {
 
   return (
     <div className="study-list__container">
+      {loading ? <Loading /> : undefined}
       <p>스터디 둘러보기</p>
       <div className="study-list__nav">
         <div className="study-list__nav__search-container">

@@ -1,4 +1,4 @@
-emoji {
+.emoji {
   width: 24rem;
   height: 3.1rem;
   background-color: aquamarine;
@@ -8,4 +8,14 @@ emoji {
   width: 6.7rem;
   height: 3.1rem;
   background-image: url("../../../../assets/images/btn_add_emoji.svg");
+}
+
+.emoji__anchor {
+  position: relative;
+}
+
+.emoji__picker {
+  position: absolute;
+  top: 110%;
+  left: 0;
 }

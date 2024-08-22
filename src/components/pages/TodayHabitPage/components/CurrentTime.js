@@ -23,8 +23,8 @@ function CurrentTime() {
 
   return (
     <div>
-      <p>현재 시간</p>
-      <p>{today}</p>
+      <p className="font32">현재 시간</p>
+      <p className="font32">{today}</p>
     </div>
   );
 }

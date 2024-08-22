@@ -4,6 +4,7 @@ import axios from "axios";
 
 import "./Modal.css";
 
+import { Loading } from "../../../UI/Loading";
 import { studyIdContext } from "./StudyBody";
 import { API_ADDRESS } from "../../../../constants/global";
 
@@ -23,6 +24,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   const [toggleVisibleClass, setToggleVisibleClass] = useState(
     "modal__password-input-visible-off"
   );
+  const [loading, setLoading] = useState(false);
+
   const dialogRef = useRef(null);
   const navigate = useNavigate();
 
@@ -81,14 +84,23 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
       return;
     }
 
+    setLoading(true);
+
     const path = `/study/${studyId}/auth`;
-    instance.post(path, { password: inputValue }).then((res) => {
-      if (res.data.result === true) {
-        afterModalPass[modalType]();
-      } else {
-        setIsIncorrectPasswordWarnOpen(true);
-      }
-    });
+    instance
+      .post(path, { password: inputValue })
+      .then((res) => {
+        if (res.data.result === true) {
+          afterModalPass[modalType]();
+        } else {
+          setIsIncorrectPasswordWarnOpen(true);
+        }
+
+        setLoading(false);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const onInputChange = (e) => {
@@ -179,6 +191,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
       </div>
       {incorrectPasswordWarn()}
       {wrongPasswordLengthWarn()}
+      {loading ? <Loading /> : undefined}
     </dialog>
   );
 }

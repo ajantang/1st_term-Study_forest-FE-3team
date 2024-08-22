@@ -6,6 +6,7 @@
   border-color: #dddddd;
   border-radius: 2em;
   margin: 0 auto;
+  margin-top: 3.6rem;
   padding: 2.4rem;
 }
 
@@ -33,6 +34,15 @@
   width: 108.8rem;
   height: 38.4rem;
   overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.habitrecord__empty-message {
+  width: 108.8rem;
+  height: 38.4rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray);
 }
 
 .habitrecord__table-habitname {

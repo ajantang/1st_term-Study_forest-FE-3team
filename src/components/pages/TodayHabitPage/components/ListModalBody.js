@@ -37,8 +37,18 @@ const ListModalBody = forwardRef(({ habit, setReRender, setDeleted }, ref) => {
 
   return (
     <div>
-      {!patchInput && <div onClick={patchClick}>{habit.name}</div>}
-      {patchInput && <input value={value.name} onChange={changValueHandler} />}
+      {!patchInput && (
+        <div className="font32" onClick={patchClick}>
+          {habit.name}
+        </div>
+      )}
+      {patchInput && (
+        <input
+          className="font32"
+          value={value.name}
+          onChange={changValueHandler}
+        />
+      )}
       <img onClick={deleteHabitHandler} src={trashCanImg} alt="쓰레기통" />
     </div>
   );

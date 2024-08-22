@@ -24,15 +24,17 @@ export function Emoji() {
   };
 
   return (
-    <emoji className="flex-row">
+    <div className="flex-row emoji">
       <div className="font20">{showTempEmoji()}</div>
-      <div>
+      <div className="emoji__anchor">
         <svg className="emoji__btn-add" onClick={handleAddEmoji} />
         {isPickerOpen && (
-          <Picker data={data} onEmojiSelect={handleSelectedEmoji} />
+          <div className="emoji__picker">
+            <Picker data={data} onEmojiSelect={handleSelectedEmoji} />
+          </div>
         )}
       </div>
-    </emoji>
+    </div>
   );
 }
 

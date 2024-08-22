@@ -136,7 +136,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     <>
       {modalState && (
         <div>
-          <p>습관 목록</p>
+          <p className="font32">습관 목록</p>
           <ol>
             {list.map((habit, index) => {
               return (
@@ -167,10 +167,16 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
               <img src={trashCanImg} alt="쓰레기통" />
             </div>
           )}
-          <div onClick={postInputHandler}>+</div>
+          <div className="font32" onClick={postInputHandler}>
+            +
+          </div>
           <div>
-            <p onClick={cencelHandler}>취소</p>
-            <p onClick={patchsuccessHandler}>수정 완료</p>
+            <p className="font32" onClick={cencelHandler}>
+              취소
+            </p>
+            <p className="font32" onClick={patchsuccessHandler}>
+              수정 완료
+            </p>
           </div>
         </div>
       )}

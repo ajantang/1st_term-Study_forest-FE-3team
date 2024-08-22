@@ -112,9 +112,10 @@ function HabitWeekRecords({ totalCount, habits }) {
     );
   } else {
     data = (
-      <p>
-        아직 습관이 업어요 <br /> 오늘의 습관에서 습관을 생성해보세요
-      </p>
+      <div className="flex-col font20 medium habitrecord__empty-message">
+        <div>아직 습관이 없어요</div>
+        <div>오늘의 습관에서 습관을 생성해보세요</div>
+      </div>
     );
   }
 

@@ -35,6 +35,11 @@
   font-weight: 800;
 }
 
+.title__gp-btn {
+  width: 34rem;
+  gap: 1.6rem;
+}
+
 .point {
   width: 176px;
   gap: 8px;
@@ -64,7 +69,7 @@
 .pointbox_icon {
   width: 19px;
   height: 19px;
-  background-image: url('../../../assets/images/ic_point.png');
+  background-image: url("../../../assets/images/ic_point.png");
   background-size: cover;
 }
 
@@ -103,7 +108,7 @@
 .targettime__icon {
   width: 19px;
   height: 19px;
-  background-image: url('../../../assets/images/ic_timer.png');
+  background-image: url("../../../assets/images/ic_timer.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -151,7 +156,7 @@
   border: none;
   border-radius: 50px;
   background-color: #99c08e;
-  background-image: url('../../../assets/images/Polygon\ 2.png');
+  background-image: url("../../../assets/images/Polygon\ 2.png");
   background-repeat: no-repeat;
   background-size: 30px;
   background-position: 78px;
@@ -170,7 +175,7 @@
   height: 64px;
   border: none;
   border-radius: 50px;
-  background-image: url('../../../assets/images/btn_pause.png');
+  background-image: url("../../../assets/images/btn_pause.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -180,7 +185,7 @@
   height: 64px;
   border: none;
   border-radius: 50px;
-  background-image: url('../../../assets/images/btn_restart.png');
+  background-image: url("../../../assets/images/btn_restart.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -207,11 +212,11 @@
 .pause {
   background-color: var(--piggy-pink);
   color: var(--vivid-red);
-  background-image: url('../../../assets/images/warninglight.png');
+  background-image: url("../../../assets/images/warninglight.png");
 }
 
 .points {
   color: var(--fern-green);
   background-color: var(--chinese-white);
-  background-image: url('../../../assets/images/getpoint.png');
+  background-image: url("../../../assets/images/getpoint.png");
 }

@@ -42,7 +42,7 @@ const patchHabit = async (habitId, surveyData) => {
 };
 
 // 이율리
-export async function getPoint(id) {
+export async function getStudyInfo(id) {
   try {
     const res = await instance.get(`/study/${id}`);
     return res.data;
