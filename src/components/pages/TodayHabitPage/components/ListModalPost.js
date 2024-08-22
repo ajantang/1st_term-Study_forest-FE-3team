@@ -1,12 +1,12 @@
 import { useState } from "react";
-import trashCanImg from "../../../../assets/imeges/btn_trashCanImg.png";
+import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
 
 function ListModalPost({ habit, idx, postValues, setPostValues }) {
   const [value, setValue] = useState(habit);
   const [patchInput, setPatchInput] = useState(false);
   const [deleted, setDeleted] = useState(false);
 
-  //patch input 생성 함수 
+  //patch input 생성 함수
   const patchClick = () => {
     setPatchInput(true);
   };
@@ -16,7 +16,7 @@ function ListModalPost({ habit, idx, postValues, setPostValues }) {
     setValue(e.target.value);
   };
 
-  // postValues 배열 내 해당하는 습관 이름 수정 함수 
+  // postValues 배열 내 해당하는 습관 이름 수정 함수
   const changePostValuesHandler = () => {
     const postValue = [...postValues];
     postValue[idx] = value;
@@ -28,7 +28,7 @@ function ListModalPost({ habit, idx, postValues, setPostValues }) {
     const postValue = [...postValues];
     postValue[idx] = "";
     setPostValues(postValue);
-    setDeleted(true)
+    setDeleted(true);
   };
 
   return (

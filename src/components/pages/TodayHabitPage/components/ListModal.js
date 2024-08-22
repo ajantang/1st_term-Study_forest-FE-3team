@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { gethabitList, postHabit } from "../../../../api/api";
 import ListModalBody from "./ListModalBody";
-import trashCanImg from "../../../../assets/imeges/btn_trashCanImg.png";
+import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
 import ListModalPost from "./ListModalPost";
 
 function ListModal({ studyId, modalState, patchList, setPageRender }) {

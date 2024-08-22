@@ -1,7 +1,8 @@
 import axios from "axios";
+import { API_ADDRESS } from "../constants/global";
 
 const instance = axios.create({
-  baseURL: "https://test-lm9p.onrender.com/",
+  baseURL: API_ADDRESS,
 });
 
 // 리스트 조회 API
@@ -40,4 +41,30 @@ const patchHabit = async (habitId, surveyData) => {
   return res.data;
 };
 
-export { gethabitList, postSuccess, deleteSuccess, deleteHabit, postHabit, patchHabit };
+// 이율리
+export async function getPoint(id) {
+  try {
+    const res = await instance.get(`/study/${id}`);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function updatePoint(id, data) {
+  try {
+    const res = await instance.patch(`/study/${id}`, data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export {
+  gethabitList,
+  postSuccess,
+  deleteSuccess,
+  deleteHabit,
+  postHabit,
+  patchHabit,
+};

@@ -6,7 +6,7 @@ import "./HabitsListBody.css";
 function HabitsListBody({ habit }) {
   const [successId, setSuccessId] = useState("");
   const [habitClassName, setHabitClassName] = useState(
-    "habitsListBody__list--fals"
+    "habitsListBodylist--fals"
   );
   const [firstLoding, setFirstLoding] = useState(true);
   const habitId = habit.id;
@@ -14,13 +14,13 @@ function HabitsListBody({ habit }) {
   useEffect(() => {
     if (firstLoding && habit.HabitSuccessDates[0]) {
       // 첫 렌더링 시 완료한 것일 경우
-      setHabitClassName("habitsListBody__list--true");
+      setHabitClassName("habitsListBodylist--true");
       setSuccessId(habit.HabitSuccessDates[0].id);
       setFirstLoding(false);
     } else if (successId) {
-      setHabitClassName("habitsListBody__list--true");
+      setHabitClassName("habitsListBodylist--true");
     } else {
-      setHabitClassName("habitsListBody__list--fals");
+      setHabitClassName("habitsListBodylist--fals");
     }
   }, [habit, successId, firstLoding]);
 

@@ -1,6 +1,6 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { deleteHabit, patchHabit } from "../../../../api/api";
-import trashCanImg from "../../../../assets/imeges/btn_trashCanImg.png";
+import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
 
 const ListModalBody = forwardRef(({ habit, setReRender, setDeleted }, ref) => {
   const [value, setValue] = useState({ name: habit.name });

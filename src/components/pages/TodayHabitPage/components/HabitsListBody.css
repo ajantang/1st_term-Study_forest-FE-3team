@@ -1,7 +1,7 @@
-.habitsListBody__list--true{
-    color: blue;
+.habitsListBodylist--true {
+  color: blue;
 }
 
-.habitsListBody__list--false{
-    color: black;
+.habitsListBodylist--false {
+  color: black;
 }
