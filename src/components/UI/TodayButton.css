@@ -1,0 +1,15 @@
+.btn-today {
+  /* width: 14.4rem; */
+  height: 4.8rem;
+  padding-left: 2.4rem;
+  padding-right: 1.6rem;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: var(--gainsboro);
+  border-radius: 0.9375em;
+  color: var(--gray);
+  background-color: white;
+  cursor: pointer;
+}

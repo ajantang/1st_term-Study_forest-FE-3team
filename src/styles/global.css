@@ -1,5 +1,4 @@
 html {
-  background-color: #f6f4ef;
   font-size: 62.5%;
 }
 
@@ -7,8 +6,12 @@ html {
   margin: 0px;
   padding: 0px;
   outline: none;
-  font-family: 'Pretendard';
-  box-sizing: border-box;
+  font-family: "Pretendard";
+}
+
+*::placeholder {
+  font-family: "Pretendard";
+  color: var(--gray);
 }
 
 :root {
@@ -44,8 +47,17 @@ html {
   flex-direction: row;
 }
 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
 main {
   margin: 0 auto;
+}
+
+body {
+  background-color: var(--isabelline);
 }
 
 .font150 {
@@ -109,6 +121,10 @@ main {
 
 .bold {
   font-weight: 700;
+}
+
+.semi-bold {
+  font-weight: 600;
 }
 
 .medium {

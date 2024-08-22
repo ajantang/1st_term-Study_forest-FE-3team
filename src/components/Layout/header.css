@@ -10,6 +10,7 @@
   width: 100%;
   background-color: #f6f4ef;
   padding: 0 220px;
+  box-sizing: border-box;
 }
 
 .header__btn-link {
@@ -17,7 +18,7 @@
 }
 
 .header__content {
-  max-width: 1920px;
+  max-width: 1480px;
   margin: 0 auto;
   height: 100%;
   display: flex;
@@ -38,6 +39,7 @@
   line-height: 27.65px;
   font-family: EF_jejudoldam;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 .header__logo {
