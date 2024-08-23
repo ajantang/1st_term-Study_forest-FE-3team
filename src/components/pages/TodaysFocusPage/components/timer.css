@@ -46,14 +46,6 @@
   text-align: center;
 }
 
-.vividred {
-  color: var(--vivid-red);
-}
-
-.gray {
-  color: var(--gray);
-}
-
 .timer__controls {
   width: 509px;
   height: 64px;
@@ -69,19 +61,11 @@
   color: white;
   border: none;
   border-radius: 50px;
-  background-color: #99c08e;
+  background-color: var(--dark-sea-green);
   background-image: var(--polygon__icon);
   background-repeat: no-repeat;
   background-size: 30px;
   background-position: 78px;
-}
-
-.start {
-  background-color: var(--gray);
-}
-
-.nodisplay {
-  display: none;
 }
 
 .timer__controls__pause {
@@ -116,6 +100,27 @@
   span {
     margin-left: 40px;
   }
+}
+
+/* 상태마다 달라지는 css */
+.vividred {
+  color: var(--vivid-red);
+}
+
+.gray {
+  color: var(--gray);
+}
+
+.start {
+  background-color: var(--gray);
+}
+
+.restart {
+  background-color: var(--dark-sea-green);
+}
+
+.nodisplay {
+  display: none;
 }
 
 .pause {
