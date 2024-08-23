@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { gethabitList } from "../../../../api/api";
 import HabitsListBody from "./HabitsListBody";
+import "./HabitsList.css";
 
 function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
   const [list, setList] = useState([]);
+  const [first, setFirst] = useState(true);
 
   useEffect(() => {
     // API 호출 함수
@@ -12,19 +14,20 @@ function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
       setList(data.habits);
     };
 
-    if (!list[0]) {
+    if (first) {
       // 첫 렌더링 시
       getList();
+      setFirst(false);
     } else if (pageRender) {
       getList();
       setPageRender(false);
     }
-  }, [studyId, list, pageRender, setPageRender]);
+  }, [studyId, list, pageRender, setPageRender, first]);
 
   return (
-    <div>
-      <div>
-        <p>오늘의 습관</p>
+    <div className="habitsList__body flex-col">
+      <div className="habitsList__title-button flex-row">
+        <p className="habitsList__title">오늘의 습관</p>
         <p onClick={patchList}>목록 수정</p>
       </div>
       {!list[0] && (

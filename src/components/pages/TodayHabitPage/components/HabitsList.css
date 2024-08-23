@@ -1,0 +1,21 @@
+.habitsList__body{
+    width: 116.8rem;
+    height: 63.1rem;
+    border-radius: 2rem;
+    border: 1px solid var(--gainsboro);
+    margin-top: 2.4rem;
+    align-items: center;
+}
+
+.habitsList__title-button{
+    width: 112rem;
+    height: 2.9rem;
+    margin: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.habitsList__title{
+    width: 11rem;
+    height: 2.9;
+}

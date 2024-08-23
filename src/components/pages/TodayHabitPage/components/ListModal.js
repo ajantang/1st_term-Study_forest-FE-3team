@@ -62,7 +62,9 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     if (filterValus[0]) {
       patchList(); // 모달창 닫기
 
-      const promises = childRefs.current.map((ref) => ref.sendRequest()); // 이름 수정 있을 시 작동
+      const promises = childRefs.current
+        .filter((ref) => ref !== null)
+        .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 작동
 
       const postPromises = filterValus.map(async (habit) => {
         const surveyData = { name: habit };
@@ -101,7 +103,9 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     } else if (value) {
       // input에만 값이 있을 때
       patchList();
-      const promises = childRefs.current.map((ref) => ref.sendRequest());
+      const promises = childRefs.current
+        .filter((ref) => ref !== null)
+        .map((ref) => ref.sendRequest());
 
       const surveyData = { name: value };
       const postResult = await postHabit(studyId, surveyData);
@@ -127,10 +131,12 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
       setPostInput(false);
 
       // 이름 수정 있을 시 작동
-      const promises = childRefs.current.map((ref) => ref.sendRequest());
+      const promises = childRefs.current
+        .filter((ref) => ref !== null)
+        .map((ref) => ref.sendRequest());
 
       const deletePromis = deletedIdx.map(async (idx) => {
-        if (idx) {
+        if (idx || idx === 0) {
           const habitId = habitIds[idx];
           return await deleteHabit(habitId);
         }
