@@ -24,6 +24,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
   const [totalPoint, setTotalPoint] = useState(initPoint); // 획득한 포인트를 더한 총 포인트
   const [state, setState] = useState(false); // 상태에 따라 css 클래스 변경
   const [btnText, setBtnText] = useState('Start'); // 상태에 따라 css 클래스 변경
+  const [isDisable, setIsDisable] = useState(false);
 
   function changeCss(form, state) {
     const button = {
@@ -32,8 +33,6 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
       over: "nodisplay",
       pause: "restart",
     };
-
-    console.log(state)
 
     const input = {
       false: "",
@@ -55,6 +54,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     setPauseTimer("");
     setAlertCondition("");
     setState(false);
+    setIsDisable(false);
   }
 
   //INPUT값 받아와서 변환
@@ -81,6 +81,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     setState("start");
     setBtnText("Start");
     setAlertCondition("");
+    setIsDisable(true);
 
     setPauseTimer(
       <button
@@ -166,6 +167,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
   const PauseTimer = () => {
     setBtnText("ReStart");
     setState("pause");
+    setIsDisable(false);
     setAlertCondition(
       <div className="condition__alert pause font16">
         {" "}
@@ -227,6 +229,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
           id="startbtn"
           className={`timer__controls__active ${changeCss('button', state)}`}
           onClick={StartTimer}
+          disabled={isDisable}
         >
           {" "}
           &nbsp;&nbsp; {btnText}!{" "}
