@@ -1,16 +1,19 @@
 import { useEffect, useState, useRef } from "react";
-import { gethabitList, postHabit } from "../../../../api/api";
+import { deleteHabit, gethabitList, postHabit } from "../../../../api/api";
 import ListModalBody from "./ListModalBody";
-import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
+import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
+import btn_patchComplit from "../../../../assets/images/btn_patchComplit.svg";
+import btn_cancle from "../../../../assets/images/btn_cancel.svg";
 import ListModalPost from "./ListModalPost";
 
 function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const [list, setList] = useState([]);
-  const [reRender, setReRender] = useState(false);
+  const [habitIds, setHabitIds] = useState([]);
+  const [deletedIdx, setDeletedIdx] = useState([]);
   const [postInput, setPostInput] = useState(false);
   const [value, setValue] = useState("");
   const [postValues, setPostValues] = useState([]);
-  const [deleted, setDeleted] = useState(false);
+  const [reRender, setReRender] = useState(false);
 
   const childRefs = useRef([]);
 
@@ -19,6 +22,12 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     const getList = async () => {
       const data = await gethabitList(studyId);
       setList(data.habits);
+
+      // 습관 아이디 배열로 저장
+      const Ids = data.habits.map((habit) => {
+        return habit.id;
+      });
+      setHabitIds(Ids);
     };
 
     if (!list[0] && modalState) {
@@ -28,7 +37,6 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
       getList();
       setReRender(false);
       setValue("");
-      console.log("modal");
     }
   }, [studyId, modalState, list, reRender]);
 
@@ -48,15 +56,13 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   };
 
   // 수정 완료 함수
-  const patchsuccessHandler = async () => {
+  const patchSuccessHandler = async () => {
     const filterValus = postValues.filter((habit) => habit !== "");
 
     if (filterValus[0]) {
       patchList(); // 모달창 닫기
-      const promises = childRefs.current // 이름 수정 있을 시 작동
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest());
-      await Promise.all(promises);
+
+      const promises = childRefs.current.map((ref) => ref.sendRequest()); // 이름 수정 있을 시 작동
 
       const postPromises = filterValus.map(async (habit) => {
         const surveyData = { name: habit };
@@ -64,33 +70,55 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
         return result;
       });
 
+      const deletePromis = deletedIdx.map(async (idx) => {
+        if (idx) {
+          const habitId = habitIds[idx];
+          return await deleteHabit(habitId);
+        }
+      });
+
       if (value) {
         // input에 값이 존재할 시
         const surveyData = { name: value };
-        const result = await postHabit(studyId, surveyData);
-        await Promise.all([...postPromises, result]);
+        const postResult = await postHabit(studyId, surveyData);
+        await Promise.all([
+          ...promises,
+          ...postPromises,
+          ...deletePromis,
+          postResult,
+        ]);
       } else {
-        await Promise.all(postPromises); // input에 값이 없을 시
+        await Promise.all([...promises, ...postPromises, ...deletePromis]); // input에 값이 없을 시
       }
 
       setValue("");
       setPostValues([]);
+      setHabitIds([]);
+      setDeletedIdx([]);
       setReRender(true);
       setPostInput(false);
       setPageRender(true);
     } else if (value) {
       // input에만 값이 있을 때
       patchList();
-      const promises = childRefs.current
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest());
-      await Promise.all(promises);
+      const promises = childRefs.current.map((ref) => ref.sendRequest());
 
       const surveyData = { name: value };
-      await postHabit(studyId, surveyData);
+      const postResult = await postHabit(studyId, surveyData);
+
+      const deletePromis = deletedIdx.map(async (idx) => {
+        if (idx) {
+          const habitId = habitIds[idx];
+          return await deleteHabit(habitId);
+        }
+      });
+
+      await Promise.all([...promises, ...deletePromis, postResult]);
 
       setValue("");
       setPostValues([]);
+      setHabitIds([]);
+      setDeletedIdx([]);
       setReRender(true);
       setPostInput(false);
       setPageRender(true);
@@ -98,21 +126,24 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
       patchList();
       setPostInput(false);
 
-      const promises = childRefs.current
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest());
+      // 이름 수정 있을 시 작동
+      const promises = childRefs.current.map((ref) => ref.sendRequest());
 
-      const resultArrey = await Promise.all(promises);
+      const deletePromis = deletedIdx.map(async (idx) => {
+        if (idx) {
+          const habitId = habitIds[idx];
+          return await deleteHabit(habitId);
+        }
+      });
+
+      const resultArrey = await Promise.all([...promises, ...deletePromis]);
       const result = resultArrey.filter(
         (arrey) => arrey !== null && arrey !== undefined
       );
 
-      if (deleted) {
-        // 삭제한게 있을 시
-        setPageRender(true);
-        setDeleted(false);
-      } else if (result[0]) {
-        // 수정한 것만 있을 시
+      if (result[0]) {
+        setHabitIds([]);
+        setDeletedIdx([]);
         setReRender(true);
         setPageRender(true);
       }
@@ -125,11 +156,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     setPostInput(false);
     setValue("");
     setPostValues([]);
-
-    if (deleted) {
-      setPageRender(true);
-      setDeleted(false);
-    }
+    setDeletedIdx([]);
   };
 
   return (
@@ -143,8 +170,8 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
                 <li key={habit.id}>
                   <ListModalBody
                     habit={habit}
-                    setReRender={setReRender}
-                    setDeleted={setDeleted}
+                    idx={index}
+                    setDeletedIdx={setDeletedIdx}
                     ref={(el) => (childRefs.current[index] = el)}
                   />
                 </li>
@@ -152,12 +179,14 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
             })}
             {postValues.map((habit, idx) => {
               return (
-                <ListModalPost
-                  habit={habit}
-                  idx={idx}
-                  postValues={postValues}
-                  setPostValues={setPostValues}
-                />
+                <li key={idx}>
+                  <ListModalPost
+                    habit={habit}
+                    idx={idx}
+                    postValues={postValues}
+                    setPostValues={setPostValues}
+                  />
+                </li>
               );
             })}
           </ol>
@@ -169,8 +198,13 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
           )}
           <div onClick={postInputHandler}>+</div>
           <div>
-            <p onClick={cencelHandler}>취소</p>
-            <p onClick={patchsuccessHandler}>수정 완료</p>
+            <img onClick={cencelHandler} src={btn_cancle} alt="취소" />
+            <img
+              onClick={patchSuccessHandler}
+              src={btn_patchComplit}
+              alt="수정 완료"
+            />
+            \
           </div>
         </div>
       )}

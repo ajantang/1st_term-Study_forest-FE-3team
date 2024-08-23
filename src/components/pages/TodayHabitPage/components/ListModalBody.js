@@ -1,17 +1,17 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
-import { deleteHabit, patchHabit } from "../../../../api/api";
-import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
+import { patchHabit } from "../../../../api/api";
+import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 
-const ListModalBody = forwardRef(({ habit, setReRender, setDeleted }, ref) => {
+const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx }, ref) => {
   const [value, setValue] = useState({ name: habit.name });
   const [patchInput, setPatchInput] = useState(false);
+  const [hideDelete, setHideDelete] = useState(false);
   const habitId = habit.id;
 
   // 삭제 함수
-  const deleteHabitHandler = async () => {
-    await deleteHabit(habitId);
-    setReRender(true);
-    setDeleted(true);
+  const deleteHabitHandler = () => {
+    setDeletedIdx((preDeleted) => [...preDeleted, idx]);
+    setHideDelete(true);
   };
 
   //patch input 생성 함수
@@ -32,15 +32,22 @@ const ListModalBody = forwardRef(({ habit, setReRender, setDeleted }, ref) => {
         setPatchInput(false);
         return data;
       }
+      return null;
     },
   }));
 
   return (
-    <div>
-      {!patchInput && <div onClick={patchClick}>{habit.name}</div>}
-      {patchInput && <input value={value.name} onChange={changValueHandler} />}
-      <img onClick={deleteHabitHandler} src={trashCanImg} alt="쓰레기통" />
-    </div>
+    <>
+      {hideDelete || (
+        <div>
+          {!patchInput && <div onClick={patchClick}>{habit.name}</div>}
+          {patchInput && (
+            <input value={value.name} onChange={changValueHandler} />
+          )}
+          <img onClick={deleteHabitHandler} src={trashCanImg} alt="쓰레기통" />
+        </div>
+      )}
+    </>
   );
 });
 

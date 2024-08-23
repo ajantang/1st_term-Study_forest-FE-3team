@@ -1,5 +1,5 @@
 import { useState } from "react";
-import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
+import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 
 function ListModalPost({ habit, idx, postValues, setPostValues }) {
   const [value, setValue] = useState(habit);
@@ -11,7 +11,6 @@ function ListModalPost({ habit, idx, postValues, setPostValues }) {
     setPatchInput(true);
   };
 
-  // value와 input 값 일치 함수
   const changeValueHandler = (e) => {
     setValue(e.target.value);
   };

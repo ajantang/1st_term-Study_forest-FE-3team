@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_ADDRESS } from "../constants/global";
 
 const instance = axios.create({
-  baseURL: API_ADDRESS,
+  baseURL: 'https://test-lm9p.onrender.com',
 });
 
 // 리스트 조회 API
