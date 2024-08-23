@@ -1,8 +1,8 @@
 import axios from "axios";
-import { API_ADDRESS } from "../constants/global";
+import { API_ADDRESS, API_ADDRESS_LYL } from "../constants/global";
 
 const instance = axios.create({
-  baseURL: API_ADDRESS,
+  baseURL: API_ADDRESS_LYL,
 });
 
 // 리스트 조회 API
