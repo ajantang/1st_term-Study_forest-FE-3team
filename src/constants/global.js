@@ -6,7 +6,7 @@ export const API_ADDRESS =
 
 //test용 - 이율리
 export const API_ADDRESS_LYL =
-  "https://onest-term-study-forest-be-3team-kjey.onrender.com";
+  "https://onest-term-study-forest-be-3team-1-y6yl.onrender.com";
 
 export const MODAL_CONFIRM = 0;
 export const MODAL_EDIT_STUDY = 1;
