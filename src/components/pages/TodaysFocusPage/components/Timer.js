@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { updatePoint } from "../../../../api/api.js";
+import { changeDigits, changeTime } from "../utils/changeTime.js"
+import "./timer.css";
 
 const T = 68;
 const M = "01";
@@ -22,6 +24,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
   const [timerState, setTimerState] = useState(true);
   const [cssState, setCssState] = useState(false);
 
+  // 변수 초기화
   function init() {
     setCountTime(T);
     setInitialTime(T);
@@ -34,25 +37,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     setCssState(false);
   }
 
-  function changeDigits(i) {
-    i = String(i);
-    if (i.length === 1) {
-      i = i.padStart(2, "0");
-    } else if (i.length >= 3) {
-      i = i.substring(1, 3);
-    }
-    return i;
-  }
-
-  function changeTime(i) {
-    if (i <= 60) {
-      i = "00:" + changeDigits(String(i));
-    } else {
-      i = changeDigits(Math.floor(i / 60)) + ":" + changeDigits(String(i % 60));
-    }
-    return i;
-  }
-
+  //INPUT값 받아와서 변환
   const timerMinute = (e) => {
     setMinute(changeDigits(e.target.value));
     setCountTime(Number(e.target.value * 60) + Number(second));
@@ -65,9 +50,11 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     setInitialTime(Number(minute * 60) + Number(e.target.value));
   };
 
-  var timer;
-  var obtainPoint = 0;
 
+  var obtainPoint = 0; //획득하는 포인트 저장
+  var timer; //setInterval 저장
+
+  //start버튼 클릭
   const StartTimer = (e) => {
     setAlertGetPoint("");
     setCssState(true);
@@ -78,17 +65,19 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     setPauseTimer(
       <button
         type="button"
-        className="timerbtns__pausebtn"
+        className="timer__controls__pause"
         onClick={PauseTimer}
       ></button>
     );
+
     setClearTimer(
       <button
         type="button"
-        className="timerbtns__resetbtn"
+        className="timer__controls__reset"
         onClick={ClearTimer}
       ></button>
     );
+
     timer = setInterval(() => {
       count--;
       setCountTime(count);
@@ -113,7 +102,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
           <button
             type="button"
             id="stoptbtn"
-            className="timerbtns__controlbtn stop"
+            className="timer__controls__active"
             onClick={StopTimer}
           >
             {" "}
@@ -135,6 +124,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     }, 1000);
   };
 
+  //stop버튼 클릭
   const StopTimer = () => {
     let total = initialPoint + obtainPoint;
     setTotalPoint(total);
@@ -145,7 +135,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     setAlertGetPoint(
       <div className="condition__alert points font16">
         {" "}
-        <span className="condition__alert-text">
+        <span>
           {" "}
           {obtainPoint}포인트를 획득했습니다!
         </span>
@@ -153,21 +143,24 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     );
   };
 
+  //pause버튼 클릭
   const PauseTimer = () => {
     setAlertCondition(
       <div className="condition__alert pause font16">
         {" "}
-        <span className="condition__alert-text">집중이 중단되었습니다.</span>
+        <span>집중이 중단되었습니다.</span>
       </div>
     );
     clearInterval(timer);
   };
 
+  //reset버튼 클릭
   const ClearTimer = () => {
     init();
     clearInterval(timer);
   };
 
+  //획득한 총 포인트가 저장될 때마다 실행(stop버튼)
   useEffect(() => {
     const options = {
       point: totalPoint,
@@ -182,42 +175,39 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
 
   return (
     <>
-      <div className="targettime">
-        <div className="targettime__icon"></div>
+      <div className="timerset__display">
+        <div className="timerset__display__icon"></div>
         {changeTime(initialTime)}
       </div>
       <div
-        className={`timer font150 ${
-          cssState ? (cssState === "over" ? "gray" : "vividred") : ""
-        }`}
+        className={`timer font150 ${cssState ? (cssState === "over" ? "gray" : "vividred") : ""
+          }`}
       >
         <span>{timerState ? "" : "-"}</span>
         <input
           type="text"
-          className={`timer__input font150 ${
-            cssState ? (cssState === "over" ? "gray" : "vividred") : ""
-          }`}
+          className={`timer__input font150 ${cssState ? (cssState === "over" ? "gray" : "vividred") : ""
+            }`}
           value={minute}
           onChange={timerMinute}
         />{" "}
         <span>:</span>
         <input
           type="text"
-          className={`timer__input font150 ${
-            cssState ? (cssState === "over" ? "gray" : "vividred") : ""
-          }`}
+          className={`timer__input font150 ${cssState ? (cssState === "over" ? "gray" : "vividred") : ""
+            }`}
           value={second}
           onChange={timerSecond}
         />
       </div>
 
-      <div className="timerbtns">
+      <div className="timer__controls">
         {pauseTimer}
         {stopTimer}
         <button
           type="button"
           id="startbtn"
-          className={`timerbtns__controlbtn ${timerState ? "" : "nodisplay"}`}
+          className={`timer__controls__active ${timerState ? "" : "nodisplay"}`}
           onClick={StartTimer}
         >
           {" "}
