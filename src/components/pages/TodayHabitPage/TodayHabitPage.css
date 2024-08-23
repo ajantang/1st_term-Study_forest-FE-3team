@@ -1,0 +1,23 @@
+.border-box{
+    box-sizing: border-box;
+}
+
+.main__todayHabitPage{
+    width: 100%;
+    justify-content: center;
+}
+
+.todayHabitpage__contaner {
+    width: 78rem; 
+    height: 53.9375rem;
+    border-radius: 1.25rem;
+    margin-top: 2.4375rem;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+
+.todayHaibtPage__contaner__content{
+    width: 73rem;
+    height: 48.9375rem;
+}
