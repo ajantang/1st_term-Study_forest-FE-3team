@@ -21,7 +21,7 @@ function TodatHabitPage() {
   return (
     <div className="main__todayHabitPage border-box flex-row">
       <div className="todayHabitpage__contaner border-box flex-row">
-        <div className="todayHaibtPage__contaner__content border-box ">
+        <div className="todayHaibtPage__content border-box ">
           <CurrentTime />
           <HabitsList
             studyId={studyId}

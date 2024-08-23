@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './CurrentTime.css'
 
 function CurrentTime() {
   const [time, setTime] = useState(new Date());
@@ -22,9 +23,9 @@ function CurrentTime() {
   const today = `${year}-${month}-${day} ${hour}`;
 
   return (
-    <div>
-      <p>현재 시간</p>
-      <p>{today}</p>
+    <div className="currentTime__contaner border-box">
+      <div className="currentTime__text font18 regular border-box">현재 시간</div>
+      <div className="currenTime__time font16 medium border-box">{today}</div>
     </div>
   );
 }
