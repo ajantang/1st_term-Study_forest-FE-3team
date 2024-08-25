@@ -22,3 +22,11 @@
 .study-card {
   text-decoration: none;
 }
+
+.recently-view__no-list {
+  font-size: 20px;
+  line-height: 23.87px;
+  font-weight: 500;
+  color: #818181;
+  margin: 96px auto 0;
+}
