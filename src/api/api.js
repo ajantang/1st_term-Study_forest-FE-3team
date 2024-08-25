@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_ADDRESS } from "../constants/global";
+import axios from 'axios';
+import { API_ADDRESS } from '../constants/global';
 
 const instance = axios.create({
   baseURL: API_ADDRESS,
@@ -60,11 +60,9 @@ export async function updatePoint(id, data) {
   }
 }
 
-export {
-  gethabitList,
-  postSuccess,
-  deleteSuccess,
-  deleteHabit,
-  postHabit,
-  patchHabit,
+export { gethabitList, postSuccess, deleteSuccess, deleteHabit, postHabit, patchHabit };
+
+// 스터디 생성 API
+export const getStudyData = (id) => {
+  return axios.get(`${API_ADDRESS}/study/${id}`);
 };

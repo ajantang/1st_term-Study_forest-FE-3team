@@ -1,15 +1,14 @@
 import './studyCard.css';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getStudyData } from '../../../../api/api';
 import pointIcon from '../../../../assets/images/ic_point.png';
-import { API_ADDRESS } from '../../../../constants/global';
 
 const StudyCard = ({ id }) => {
   const [studyData, setStudyData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${API_ADDRESS}/study/${id}`).then((response) => {
+    getStudyData(id).then((response) => {
       setStudyData(response.data);
     });
   }, [id]);
@@ -18,7 +17,7 @@ const StudyCard = ({ id }) => {
 
   const handleCardClick = () => {
     const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
-    const updatedRecentlyViewed = [id, ...recentlyViewed.filter((studyId) => studyId !== id)].slice(0, 3);
+    const updatedRecentlyViewed = [id, ...recentlyViewed.filter((studyId) => studyId !== id)].slice(0, 5);
     localStorage.setItem('recentlyViewed', JSON.stringify(updatedRecentlyViewed));
   };
 

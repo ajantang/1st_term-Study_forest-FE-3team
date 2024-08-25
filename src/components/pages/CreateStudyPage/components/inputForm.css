@@ -1,7 +1,7 @@
 .create-study-form {
   width: 696px;
   height: auto;
-  margin: 40px auto 0;
+  margin: 40px auto 107px;
   background-color: white;
   padding: 24px 24px 40px;
   border-radius: 20px;
@@ -67,6 +67,7 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   padding: 0;
+  position: relative;
 }
 
 .green {
@@ -105,12 +106,6 @@
   background-position: 24% 20%;
 }
 
-.background:focus {
-  outline: none;
-  filter: brightness(0.8);
-  position: relative;
-}
-
 .selectedBtn {
   width: 32px;
   height: 32px;
@@ -132,6 +127,10 @@
   font-weight: 400;
   line-height: 27.65px;
   font-family: EF_jejudoldam;
+}
+
+.input.description::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 .create-btn:enabled {

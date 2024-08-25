@@ -1,75 +1,69 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import useValidation from "../../../hooks/useValidation.js";
-import "./inputForm.css";
-import invisiblePassword from "../../../../assets/images/btn_visibility_off.png";
-import visiblePassword from "../../../../assets/images/btn_visibility_on.png";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import useValidation from '../../../hooks/useValidation.js';
+import './inputForm.css';
+import invisiblePassword from '../../../../assets/images/btn_visibility_off.png';
+import visiblePassword from '../../../../assets/images/btn_visibility_on.png';
 
-import { API_ADDRESS } from "../../../../constants/global.js";
+import { API_ADDRESS } from '../../../../constants/global.js';
 
 const CreateStudy = () => {
   const {
-    state: {
-      nickname,
-      studyName,
-      description,
-      password,
-      confirmPassword,
-      isFormValid,
-    },
-    setters: {
-      setNickname,
-      setStudyName,
-      setDescription,
-      setPassword,
-      setConfirmPassword,
-    },
-    validators: {
-      validateNickname,
-      validateStudyName,
-      validateDescription,
-      validatePassword,
-      validateConfirmPassword,
-    },
+    state: { nickname, studyName, description, password, confirmPassword, isFormValid },
+    setters: { setNickname, setStudyName, setDescription, setPassword, setConfirmPassword },
+    validators: { validateNickname, validateStudyName, validateDescription, validatePassword, validateConfirmPassword },
   } = useValidation();
 
-  const [focusedBackground, setFocusedBackground] = useState(
-    "https://ifh.cc/g/zaNc6p.jpg"
-  );
+  const [passwordType, setPasswordType] = useState('password');
+  const [confirmPasswordType, setConfirmPasswordType] = useState('password');
+  const [toggleBtn, setToggleBtn] = useState(invisiblePassword);
+  const [confirmToggleBtn, setConfirmToggleBtn] = useState(invisiblePassword);
 
-  useEffect(() => {
-    const defaultElement = document.querySelector(".background.green");
-    if (defaultElement) {
-      defaultElement.style.filter = "brightness(0.8)";
-      defaultElement.classList.add("focused");
-
-      const selectedBtn = document.createElement("div");
-      selectedBtn.className = "selectedBtn";
-      defaultElement.appendChild(selectedBtn);
+  const togglePasswordVisibility = () => {
+    if (passwordType === 'password') {
+      setPasswordType('text');
+      setToggleBtn(visiblePassword);
+    } else {
+      setPasswordType('password');
+      setToggleBtn(invisiblePassword);
     }
-    document.querySelectorAll(".background").forEach((item) => {
-      item.addEventListener("click", (event) => {
-        document.querySelectorAll(".background").forEach((el) => {
-          el.style.filter = "brightness(1)";
-          el.classList.remove("focused");
-        });
-        event.target.style.filter = "brightness(0.8)";
-        event.target.classList.add("focused");
+  };
 
-        const existingBtn = document.querySelector(".selectedBtn");
-        if (existingBtn) {
-          existingBtn.remove();
-        }
+  const toggleConfirmPasswordVisibility = () => {
+    if (confirmPasswordType === 'password') {
+      setConfirmPasswordType('text');
+      setConfirmToggleBtn(visiblePassword);
+    } else {
+      setConfirmPasswordType('password');
+      setConfirmToggleBtn(invisiblePassword);
+    }
+  };
 
-        const selectedBtn = document.createElement("div");
-        selectedBtn.className = "selectedBtn";
-        event.target.appendChild(selectedBtn);
+  const [focusedBackground, setFocusedBackground] = useState('https://ifh.cc/g/zaNc6p.jpg');
+  useEffect(() => {
+    const selectedBtn = document.createElement('div');
+    const backgrounds = document.querySelectorAll('.background');
+    const defaultBackground = document.querySelector('.background.green');
 
-        const backgroundUrl = window
-          .getComputedStyle(event.target)
-          .backgroundImage.slice(5, -2);
-        setFocusedBackground(backgroundUrl);
-      });
+    selectedBtn.className = 'selectedBtn';
+    defaultBackground.appendChild(selectedBtn);
+    selectedBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+
+    const handleBackgroundClick = (event) => {
+      const currentSelectedBtn = document.querySelector('.selectedBtn');
+      if (currentSelectedBtn) {
+        currentSelectedBtn.remove();
+      }
+      event.target.appendChild(selectedBtn);
+
+      const backgroundUrl = window.getComputedStyle(event.target).backgroundImage.slice(5, -2);
+      setFocusedBackground(backgroundUrl);
+    };
+
+    backgrounds.forEach((background) => {
+      background.addEventListener('click', handleBackgroundClick);
     });
   }, []);
 
@@ -84,32 +78,7 @@ const CreateStudy = () => {
       });
       console.log(response.data);
     } catch (error) {
-      console.error("Error creating study:", error);
-    }
-  };
-
-  const [passwordType, setPasswordType] = useState("password");
-  const [confirmPasswordType, setConfirmPasswordType] = useState("password");
-  const [toggleBtn, setToggleBtn] = useState(invisiblePassword);
-  const [confirmToggleBtn, setConfirmToggleBtn] = useState(invisiblePassword);
-
-  const togglePasswordVisibility = () => {
-    if (passwordType === "password") {
-      setPasswordType("text");
-      setToggleBtn(visiblePassword);
-    } else {
-      setPasswordType("password");
-      setToggleBtn(invisiblePassword);
-    }
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    if (confirmPasswordType === "password") {
-      setConfirmPasswordType("text");
-      setConfirmToggleBtn(visiblePassword);
-    } else {
-      setConfirmPasswordType("password");
-      setConfirmToggleBtn(invisiblePassword);
+      console.error('Error creating study:', error);
     }
   };
 
@@ -121,13 +90,7 @@ const CreateStudy = () => {
         <br />
         <input
           type="text"
-          className={`input nickname ${
-            validateNickname() === null
-              ? ""
-              : validateNickname()
-              ? "invalid"
-              : "valid"
-          }`}
+          className={`input nickname ${validateNickname() === null ? '' : validateNickname() ? 'invalid' : 'valid'}`}
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
           required
@@ -140,13 +103,7 @@ const CreateStudy = () => {
         <br />
         <input
           type="text"
-          className={`input studyName ${
-            validateStudyName() === null
-              ? ""
-              : validateStudyName()
-              ? "invalid"
-              : "valid"
-          }`}
+          className={`input studyName ${validateStudyName() === null ? '' : validateStudyName() ? 'invalid' : 'valid'}`}
           value={studyName}
           onChange={(e) => setStudyName(e.target.value)}
           required
@@ -158,13 +115,7 @@ const CreateStudy = () => {
         <label className="font18 semi-bold label description">소개</label>
         <br />
         <textarea
-          className={`input description ${
-            validateDescription() === null
-              ? ""
-              : validateDescription()
-              ? "invalid"
-              : "valid"
-          }`}
+          className={`input description ${validateDescription() === null ? '' : validateDescription() ? 'invalid' : 'valid'}`}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
@@ -173,9 +124,7 @@ const CreateStudy = () => {
         <span className="error">{validateDescription()}</span>
       </div>
       <div className="form">
-        <label className="font18 semi-bold label card-background">
-          배경을 선택해주세요
-        </label>
+        <label className="font18 semi-bold label card-background">배경을 선택해주세요</label>
         <br />
         <div className="grid-container">
           <div className="background green"></div>
@@ -194,63 +143,36 @@ const CreateStudy = () => {
           <div className="password-container">
             <input
               type={passwordType}
-              className={`input password ${
-                validatePassword() === null
-                  ? ""
-                  : validatePassword()
-                  ? "invalid"
-                  : "valid"
-              }`}
+              className={`input password ${validatePassword() === null ? '' : validatePassword() ? 'invalid' : 'valid'}`}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="비밀번호를 입력해주세요"
             />
-            <img
-              src={toggleBtn}
-              alt="togglePassword"
-              className="password-toggle-btn"
-              onClick={togglePasswordVisibility}
-            />
+            <img src={toggleBtn} alt="togglePassword" className="password-toggle-btn" onClick={togglePasswordVisibility} />
           </div>
           <span className="error">{validatePassword()}</span>
         </div>
         <div className="form">
-          <label className="font18 semi-bold label confirmPassword">
-            비밀번호 확인
-          </label>
+          <label className="font18 semi-bold label confirmPassword">비밀번호 확인</label>
           <div className="confirmPassword-container">
             <input
               type={confirmPasswordType}
               className={`input confirmPassword ${
-                validateConfirmPassword() === null
-                  ? ""
-                  : validateConfirmPassword()
-                  ? "invalid"
-                  : "valid"
+                validateConfirmPassword() === null ? '' : validateConfirmPassword() ? 'invalid' : 'valid'
               }`}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
               placeholder="비밀번호를 다시 한 번 입력해주세요"
             />
-            <img
-              src={confirmToggleBtn}
-              alt="togglePassword"
-              className="password-toggle-btn"
-              onClick={toggleConfirmPasswordVisibility}
-            />
+            <img src={confirmToggleBtn} alt="togglePassword" className="password-toggle-btn" onClick={toggleConfirmPasswordVisibility} />
           </div>
-          <span className="error">{validateConfirmPassword() || ""}</span>
+          <span className="error">{validateConfirmPassword() || ''}</span>
         </div>
       </div>
       <div className="create-study__btn-create-frame">
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={!isFormValid}
-          className="create-btn"
-        >
+        <button type="button" onClick={handleSubmit} disabled={!isFormValid} className="create-btn">
           만들기
         </button>
       </div>

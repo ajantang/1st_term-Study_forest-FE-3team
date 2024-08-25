@@ -31,7 +31,7 @@
   width: 335px;
   height: 42px;
   padding-left: 48px;
-
+  box-sizing: border-box;
   color: #818181;
   line-height: 19.09px;
   font-weight: 400;
@@ -136,4 +136,5 @@ input:focus {
   justify-content: center;
   align-items: center;
   font-size: 16px;
+  box-sizing: border-box;
 }
