@@ -8,6 +8,19 @@ const useValidation = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
 
+  useEffect(() => {
+    const isValid =
+      nickname !== '' &&
+      studyName !== '' &&
+      password !== '' &&
+      confirmPassword !== '' &&
+      !validateNickname() &&
+      !validateStudyName() &&
+      !validatePassword() &&
+      !validateConfirmPassword();
+    setIsFormValid(isValid);
+  }, [nickname, studyName, description, password, confirmPassword]);
+
   const validateNickname = () => {
     if (nickname === '') return null;
     if (nickname.length < 2) return '2자 이상 입력해주세요';
@@ -39,44 +52,6 @@ const useValidation = () => {
     if (confirmPassword === '') return null;
     if (password !== confirmPassword || confirmPassword.length < 8) return '비밀번호가 일치하지 않습니다';
     return '';
-  };
-
-  useEffect(() => {
-    const isValid =
-      nickname !== '' &&
-      studyName !== '' &&
-      password !== '' &&
-      confirmPassword !== '' &&
-      !validateNickname() &&
-      !validateStudyName() &&
-      !validatePassword() &&
-      !validateConfirmPassword();
-    setIsFormValid(isValid);
-  }, [nickname, studyName, description, password, confirmPassword]);
-
-  return {
-    state: {
-      nickname,
-      studyName,
-      description,
-      password,
-      confirmPassword,
-      isFormValid,
-    },
-    setters: {
-      setNickname,
-      setStudyName,
-      setDescription,
-      setPassword,
-      setConfirmPassword,
-    },
-    validators: {
-      validateNickname,
-      validateStudyName,
-      validateDescription,
-      validatePassword,
-      validateConfirmPassword,
-    },
   };
 };
 
