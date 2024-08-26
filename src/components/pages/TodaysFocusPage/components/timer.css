@@ -116,6 +116,7 @@
 .start {
   background-color: var(--gray);
   background-image: var(--polygon__icon);
+  pointer-events : none;
 }
 
 .restart {
