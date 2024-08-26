@@ -1,8 +1,14 @@
-@scope (.content){
-  :scope{
-    --points__icon: url('../../../assets/images/ic_point.png');
-    --warninglight__icon: url('../../../assets/images/warninglight.png');
-    --partypopper__icon: url('../../../assets/images/getpoint.png');
+@scope (.content) {
+  :scope {
+    --points__icon: url("../../../assets/images/ic_point.svg");
+    --warninglight__icon: url("../../../assets/images/warninglight.svg");
+    --partypopper__icon: url("../../../assets/images/sparkler.svg");
+  }
+  * {
+    user-select: none;
+  }
+  button {
+    cursor: pointer;
   }
 }
 
