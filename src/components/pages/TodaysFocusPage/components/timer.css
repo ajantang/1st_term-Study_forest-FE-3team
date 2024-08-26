@@ -1,9 +1,10 @@
-@scope (.content__container__main__top){
-  :scope{
-    --timer__icon: url('../../../../assets/images/ic_timer.png');
-    --polygon__icon: url('../../../../assets/images/Polygon\ 2.png');
-    --pause__icon: url('../../../../assets/images/btn_pause.png');
-    --reset__icon: url('../../../../assets/images/btn_restart.png');
+@scope (.content__container__main__top) {
+  :scope {
+    --timer__icon: url("../../../../assets/images/ic_timer.svg");
+    --polygon__icon: url("../../../../assets/images/polygon.svg");
+    --stop__icon: url("../../../../assets/images/ic_stop.svg");
+    --pause__icon: url("../../../../assets/images/btn_pause.svg");
+    --reset__icon: url("../../../../assets/images/btn_restart.svg");
   }
 }
 
@@ -32,9 +33,7 @@
   font-weight: 800;
   display: flex;
   justify-content: center;
-  span {
-    line-height: 100%;
-  }
+  line-height: 100%;
 }
 
 .timer__input {
@@ -62,10 +61,9 @@
   border: none;
   border-radius: 50px;
   background-color: var(--dark-sea-green);
-  background-image: var(--polygon__icon);
   background-repeat: no-repeat;
   background-size: 30px;
-  background-position: 78px;
+  background-position: 88px;
 }
 
 .timer__controls__pause {
@@ -111,12 +109,22 @@
   color: var(--gray);
 }
 
+.init {
+  background-image: var(--polygon__icon);
+}
+
 .start {
   background-color: var(--gray);
+  background-image: var(--polygon__icon);
 }
 
 .restart {
   background-color: var(--dark-sea-green);
+  background-image: var(--polygon__icon);
+}
+
+.stop {
+  background-image: var(--stop__icon);
 }
 
 .nodisplay {
@@ -134,3 +142,4 @@
   background-color: var(--chinese-white);
   background-image: var(--partypopper__icon);
 }
+
