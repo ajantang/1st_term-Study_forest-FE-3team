@@ -24,7 +24,8 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
   const [totalPoint, setTotalPoint] = useState(initPoint); // 획득한 포인트를 더한 총 포인트
   const [state, setState] = useState(false); // 상태에 따라 css 클래스 변경
   const [btnText, setBtnText] = useState('Start'); // 상태에 따라 css 클래스 변경
-  const [isDisable, setIsDisable] = useState(false);
+  const [isDisableBtn, setIsDisableBtn] = useState(false);
+  const [isDisableInput, setIsDisableInput] = useState(false);
 
   function changeCss(form, state) {
     const button = {
@@ -55,7 +56,8 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     setPauseTimer("");
     setAlertCondition("");
     setState(false);
-    setIsDisable(false);
+    setIsDisableBtn(false);
+    setIsDisableInput(false);
     setBtnText("Start");
   }
 
@@ -86,7 +88,8 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
     setState("start");
     setBtnText("Start");
     setAlertCondition("");
-    setIsDisable(true);
+    setIsDisableBtn(true);
+    setIsDisableInput(true);
 
     setPauseTimer(
       <button
@@ -172,7 +175,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
   const PauseTimer = () => {
     setBtnText("ReStart");
     setState("pause");
-    setIsDisable(false);
+    setIsDisableBtn(false);
     setAlertCondition(
       <div className="condition__alert pause font16">
         <span>집중이 중단되었습니다.</span>
@@ -215,6 +218,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
           className={`timer__input font150 ${changeCss('input', state)}`}
           value={minute}
           onChange={timerMinute}
+          disabled={isDisableInput}
         />
         :
         <input
@@ -222,6 +226,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
           className={`timer__input font150 ${changeCss('input', state)}`}
           value={second}
           onChange={timerSecond}
+          disabled={isDisableInput}
         />
       </div>
 
@@ -233,7 +238,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint, id }) => {
           id="startbtn"
           className={`timer__controls__active ${changeCss('button', state)}`}
           onClick={StartTimer}
-          disabled={isDisable}
+          disabled={isDisableBtn}
         >
           &nbsp;&nbsp; {btnText}!
         </button>
