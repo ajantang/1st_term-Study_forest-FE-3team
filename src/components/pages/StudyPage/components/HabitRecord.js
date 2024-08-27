@@ -1,10 +1,7 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { gethabitData } from '../../../../api/api';
+import './HabitRecord.css';
 
-import './habitrecord.css';
-
-import { API_ADDRESS } from '../../../../constants/global';
-import { TIME_GAP_OF_DB } from '../../../../constants/global';
 import { ReactComponent as StickerEmpty } from '../../../../assets/images/sticker_empty.svg';
 import { ReactComponent as Sticker01 } from '../../../../assets/images/sticker_light_green_100_01.svg';
 import { ReactComponent as Sticker02 } from '../../../../assets/images/sticker_light_green_100_02.svg';
@@ -24,13 +21,6 @@ import { ReactComponent as Sticker15 } from '../../../../assets/images/sticker_y
 import { ReactComponent as Sticker16 } from '../../../../assets/images/sticker_pink_100_16.svg';
 import { ReactComponent as Sticker17 } from '../../../../assets/images/sticker_pink_200_17.svg';
 import { ReactComponent as Sticker18 } from '../../../../assets/images/sticker_pink_300_18.svg';
-
-const instance = axios.create({
-  baseURL: API_ADDRESS,
-  header: {
-    'Content-Type': 'application/json',
-  },
-});
 
 const stickers = [
   <StickerEmpty />,
@@ -74,8 +64,9 @@ function HabitWeekRecord({ habitName = '습관 이름', stickerType = 0, success
     <HabitMark key="5" type="0" />,
     <HabitMark key="6" type="0" />,
   ];
-  successIndices.map((item) => {
-    weekRecord[item] = <HabitMark key={item} type={stickerType} />;
+
+  successIndices.forEach((indexInfo) => {
+    weekRecord[indexInfo] = <HabitMark key={indexInfo} type={stickerType} />;
   });
 
   return (
@@ -99,9 +90,10 @@ function HabitWeekRecords({ totalCount, habits }) {
     );
   } else {
     data = (
-      <p>
-        아직 습관이 업어요 <br /> 오늘의 습관에서 습관을 생성해보세요
-      </p>
+      <div className="flex-col font20 medium habitrecord__empty-message">
+        <div>아직 습관이 없어요</div>
+        <div>오늘의 습관에서 습관을 생성해보세요</div>
+      </div>
     );
   }
 
@@ -109,9 +101,6 @@ function HabitWeekRecords({ totalCount, habits }) {
 }
 
 function Dates() {
-  const now = new Date();
-  //   now.setHours(now.getHours() + TIME_GAP_OF_DB);
-  //   const dbNow = new Date(now);
   const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
   const recentOneWeek = [];
 
@@ -140,15 +129,16 @@ function Dates() {
 export function HabitRecord({ studyId }) {
   const [habits, setHabits] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
-  const tempSuccess = [1, 4];
-
-  const path = `/study/${studyId}/HabitData`;
 
   useEffect(() => {
-    instance.get(path).then((res) => {
-      setTotalCount(res.data.totalHabit);
-      setHabits(res.data.habits);
-    });
+    gethabitData(studyId)
+      .then((data) => {
+        setTotalCount(data.totalHabit);
+        setHabits(data.habits);
+      })
+      .catch((err) => {
+        /* 에러 처리 : 기획 필요필요 */
+      });
   }, []);
 
   return (
