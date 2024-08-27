@@ -105,9 +105,11 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
 
     const extraEmojiBtn = (
       <div className="emojis__anchor">
-        <div className={extraBtnClass} onClick={handleExtraEmojiBtn}>
-          <Plus /> {emojis.length - 3}..
-        </div>
+        {emojis.length > 3 ? (
+          <div className={extraBtnClass} onClick={handleExtraEmojiBtn}>
+            <Plus /> {emojis.length - 3}..
+          </div>
+        ) : undefined}
         {isExtraOpne ? (
           <div className="flex-row font16 emojis__extra">{extraEmojis}</div>
         ) : undefined}
