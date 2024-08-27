@@ -4,6 +4,7 @@ import CurrentTime from "./components/CurrentTime";
 import HabitsList from "./components/HabitsList";
 import ListModal from "./components/ListModal";
 import "./TodayHabitPage.css";
+import StudyTitle from "./components/StudyTitle";
 
 function TodatHabitPage() {
   const [modalOn, setModalOn] = useState(false);
@@ -20,7 +21,8 @@ function TodatHabitPage() {
 
   return (
     <div className="main__todayHabitPage flex-row border-box">
-      <div className="todayHabitpage__body flex-row border-box">
+      <div className="todayHabitpage__body flex-col border-box">
+        <StudyTitle studyId={studyId}/>
         <div className="todayHaibtPage__content border-box ">
           <CurrentTime />
           <HabitsList

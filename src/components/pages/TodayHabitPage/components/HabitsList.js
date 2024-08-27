@@ -37,16 +37,16 @@ function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
           </p>
         </div>
       </div>
-      <div className="habitsList_iist-text flex-row border-box">
+      <div className="habitsList__iist-text flex-row border-box">
         {!list[0] && (
-          <div className="habitsList_noList-text font20 medium border-box">
+          <div className="habitsList__noList-text font20 medium border-box">
             아직 습관이 없어요
             <br />
             목록 수정을 눌러 습관을 생성해보세요
           </div>
         )}
         {list[0] && (
-          <ol className="habitsList_list-ol flex-col border-box">
+          <ol className="habitsList__list-ol flex-col border-box">
             {list.map((habit) => {
               return (
                 <li key={habit.id}>

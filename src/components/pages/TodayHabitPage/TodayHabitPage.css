@@ -1,6 +1,7 @@
 .main__todayHabitPage{
     width: 100%;
     justify-content: center;
+    margin-bottom: 10rem;
 }
 
 .todayHabitpage__body {

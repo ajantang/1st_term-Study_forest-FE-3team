@@ -32,21 +32,21 @@
     cursor: pointer;
 }
 
-.habitsList_iist-text{
+.habitsList__iist-text{
     width: 112rem;
     height: 49.8rem;
     justify-content: center;
     align-items: center;
 }
 
-.habitsList_noList-text{
+.habitsList__noList-text{
     width: 35rem;
     height: 4.6rem;
     color: var(--gray);
     text-align: center;
 }
 
-.habitsList_list-ol {
+.habitsList__list-ol {
     width: 40rem;
     height: 52rem;
     gap: 2rem;
@@ -54,6 +54,6 @@
     overflow: scroll;
 }
 
-.habitsList_list-ol::-webkit-scrollbar {
+.habitsList__list-ol::-webkit-scrollbar {
     display: none;
   }
