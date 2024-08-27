@@ -1,0 +1,217 @@
+.frame {
+  padding: 40px;
+  gap: 10px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 1248px;
+  margin: 0 auto;
+}
+
+.contentframe {
+  gap: 24px;
+  height: 694px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topframe {
+  height: 124px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  width: 1168px;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.point {
+  width: 176px;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  white-space: nowrap;
+  span {
+    font-weight: 400;
+    text-align: left;
+    color: var(--gray);
+  }
+}
+
+.pointbox {
+  width: 116px;
+  height: 35px;
+  gap: 4px;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  justify-content: center;
+}
+
+.pointbox_icon {
+  width: 19px;
+  height: 19px;
+  background-image: url("../../../assets/images/ic_point.png");
+  background-size: cover;
+}
+
+.mainframe {
+  padding: 40px 24px;
+  gap: 10px;
+  border-radius: 20px;
+  border: 1px solid var(--gainsboro);
+  display: flex;
+}
+
+.todaysfocus {
+  width: 1120px;
+  height: 465px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    font-weight: 800;
+  }
+}
+
+.targettime {
+  width: 83px;
+  height: 31px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.3);
+  line-height: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.targettime__icon {
+  width: 19px;
+  height: 19px;
+  background-image: url("../../../assets/images/ic_timer.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.timer {
+  width: 1120px;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  span {
+    line-height: 100%;
+  }
+}
+
+.timer__input {
+  border: none;
+  height: 179px;
+  width: 200px;
+  font-weight: 800;
+  color: var(--arsenic);
+  text-align: center;
+}
+
+.vividred {
+  color: var(--vivid-red);
+}
+
+.gray {
+  color: var(--gray);
+}
+
+.timerbtns {
+  width: 509px;
+  height: 64px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.timerbtns__controlbtn {
+  width: 333px;
+  height: 60px;
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  background-color: #99c08e;
+  background-image: url("../../../assets/images/Polygon\ 2.png");
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-position: 78px;
+}
+
+.start {
+  background-color: var(--gray);
+}
+
+.nodisplay {
+  display: none;
+}
+
+.timerbtns__pausebtn {
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50px;
+  background-image: url("../../../assets/images/btn_pause.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.timerbtns__resetbtn {
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50px;
+  background-image: url("../../../assets/images/btn_restart.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.condition {
+  position: absolute;
+  top: 993px;
+}
+
+.condition__alert {
+  width: 232px;
+  height: 47px;
+  border-radius: 12px;
+  line-height: 47px;
+  font-weight: 500;
+  background-repeat: no-repeat;
+  background-size: 19px;
+  background-position: 14px;
+  span {
+    margin-left: 40px;
+  }
+}
+
+.pause {
+  background-color: var(--piggy-pink);
+  color: var(--vivid-red);
+  background-image: url("../../../assets/images/warninglight.png");
+}
+
+.points {
+  color: var(--fern-green);
+  background-color: var(--chinese-white);
+  background-image: url("../../../assets/images/getpoint.png");
+}
