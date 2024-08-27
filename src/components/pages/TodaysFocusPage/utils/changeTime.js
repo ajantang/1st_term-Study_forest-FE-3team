@@ -11,6 +11,10 @@ export function changeDigits(i) {
 
 // 화면에 시간 타입으로 표시
 export function changeTime(i) {
+  if(i >= 6000){
+    i = 5999;
+  }
+
   if (i < 60) {
     i = "00:" + changeDigits(String(i));
   } else {

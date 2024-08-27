@@ -70,9 +70,16 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
     let sec = changeDigits(e.target.value);
     //60이상의 값 입력 시 분으로 자동 넘김
     if(sec >= 60){
-      let min = Number(minute) + Math.floor(sec/60);
-      setSecond(changeDigits(sec-60));
-      setMinute(changeDigits(min));
+      if(minute >= 99){
+        sec = 59
+        setSecond(sec);
+        alert('100분 이하로 설정해주세요');
+      } else {
+        let min = Number(minute) + Math.floor(sec/60);
+        sec = sec-60;
+        setSecond(changeDigits(sec));
+        setMinute(changeDigits(min));
+      }
     } else {
       setSecond(sec);
     }
@@ -84,7 +91,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   var timer; // setInterval 저장
 
   //start버튼 클릭
-  const StartTimer = (e) => {
+  const StartTimer = () => {
     var count = countTime; // 타이머 변수 , 1초마다 -1이 됨
     setAlertGetPoint(""); // 획득 포인트 알림 화면 초기화(TodaysFocusPage)
     setState("start");
