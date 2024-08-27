@@ -9,23 +9,29 @@ const RecentlyView = () => {
   const [studyData, setStudyData] = useState([]);
 
   useEffect(() => {
-    const studyRecentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
-    setRecentlyViewed(studyRecentlyViewed);
-  }, []);
+    const recentlyViewedStudy = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+    setRecentlyViewed(recentlyViewedStudy);
 
-  useEffect(() => {
-    const fetchStudyData = async () => {
-      const studyDetails = await Promise.all(
-        recentlyViewed.map(async (id) => {
+    const handleStudyData = async () => {
+      const studyData = [];
+      for (let i = 0; studyData.length < 3; i++) {
+        const id = recentlyViewedStudy[i];
+        try {
           const response = await axios.get(`${API_ADDRESS}/study/${id}`);
-          return response.data;
-        })
-      );
-      setStudyData(studyDetails);
+          console.log('getStudyData');
+          studyData.push(response.data); // 유효한 데이터를 배열에 추가합니다.
+        } catch (error) {
+          console.log(`Not exist: ${id}`);
+          recentlyViewedStudy.splice(i, 1); // 삭제된 id를 배열에서 제거합니다.
+          localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedStudy)); // 로컬 스토리지 업데이트
+          i--; // 배열에서 요소를 제거했으므로 인덱스를 조정합니다.
+        }
+      }
+      setStudyData(studyData);
     };
-    fetchStudyData();
-  }, [recentlyViewed]);
 
+    handleStudyData();
+  }, []);
   return (
     <div className="recently-view__container">
       <p>최근 조회한 스터디</p>

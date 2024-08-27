@@ -93,6 +93,7 @@ const StudyCard = ({ id, studyName, description, nickname, point, background, cr
       <p className="study-card__description" style={{ color: anotherColor }}>
         {description}
       </p>
+      <div className="study-card__emoji-container"></div>
     </Link>
   );
 };

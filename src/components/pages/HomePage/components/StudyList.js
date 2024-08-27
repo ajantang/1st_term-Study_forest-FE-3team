@@ -8,7 +8,6 @@ import { API_ADDRESS } from '../../../../constants/global';
 
 const StudyList = () => {
   const [studyCards, setStudyCards] = useState([]);
-  const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(6);
   const [hasMore, setHasMore] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -34,11 +33,12 @@ const StudyList = () => {
     }
   };
 
-  const totalCounts = 12;
+  const totalCounts = 15;
 
   useEffect(() => {
     const fetchStudyCards = async () => {
-      const response = await axios.get(`${API_ADDRESS}/study?order=${order}&pageSize=${pageSize}&keyWord=${searchKeyword}&page=${page}`);
+      const response = await axios.get(`${API_ADDRESS}/study?order=${order}&pageSize=${pageSize}&keyWord=${searchKeyword}`);
+      console.log('fetchStudyCards');
       setStudyCards(response.data);
       if (totalCounts === response.data.length || response.data.length % 6 !== 0 || response.data.length === 0) {
         setHasMore(false);
@@ -47,7 +47,7 @@ const StudyList = () => {
       }
     };
     fetchStudyCards();
-  }, [order, pageSize, searchKeyword, page]);
+  }, [order, pageSize, searchKeyword]);
 
   const handleViewMore = () => {
     setPageSize(pageSize + 6);
