@@ -1,6 +1,7 @@
 .study-list__container {
   width: 1200px;
   height: auto;
+  min-height: 822px;
   background-color: white;
   margin: 0 auto;
   border-radius: 12px;
@@ -96,12 +97,13 @@
   position: absolute;
   top: 50px;
   left: 0;
-  text-align: center;
 }
 
 .study-list__nav__dropdown-box__order {
   height: 42px;
-  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   cursor: pointer;
 }
@@ -137,4 +139,14 @@ input:focus {
   align-items: center;
   font-size: 16px;
   box-sizing: border-box;
+  cursor: pointer;
+}
+
+.study-list__no-list {
+  font-size: 20px;
+  line-height: 23.87px;
+  font-weight: 500;
+  color: #818181;
+  margin: 331px auto 0;
+  width: max-content;
 }

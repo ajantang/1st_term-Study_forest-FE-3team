@@ -88,23 +88,27 @@
 }
 
 .background.one {
-  background-image: url('https://ifh.cc/g/m4hJV4.jpg');
+  background-image: url('https://ifh.cc/g/2FTkFV.jpg');
   background-position: 72% 50%;
+  filter: brightness(180%);
 }
 
 .background.two {
-  background-image: url('https://ifh.cc/g/73YYHS.jpg');
+  background-image: url('https://ifh.cc/g/lGtvVW.jpg');
   background-position: 72% 50%;
+  filter: brightness(180%);
 }
 
 .background.three {
-  background-image: url('https://ifh.cc/g/44BxpL.jpg');
+  background-image: url('https://ifh.cc/g/QpynPa.jpg');
   background-position: 72% 50%;
+  filter: brightness(180%);
 }
 
 .background.four {
-  background-image: url('https://ifh.cc/g/k9Gd8J.jpg');
+  background-image: url('https://ifh.cc/g/SZ6vAB.jpg');
   background-position: 24% 20%;
+  filter: brightness(180%);
 }
 
 .selectedBtn {

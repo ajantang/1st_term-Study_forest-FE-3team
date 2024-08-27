@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import useValidation from '../../../hooks/useValidation.js';
 import './inputForm.css';
 import invisiblePassword from '../../../../assets/images/btn_visibility_off.png';
 import visiblePassword from '../../../../assets/images/btn_visibility_on.png';
-
 import { API_ADDRESS } from '../../../../constants/global.js';
+
+const BASE_BACKGROUND = 'https://ifh.cc/g/zaNc6p.jpg';
 
 const CreateStudy = () => {
   const [passwordType, setPasswordType] = useState('password');
   const [confirmPasswordType, setConfirmPasswordType] = useState('password');
   const [toggleBtn, setToggleBtn] = useState(invisiblePassword);
   const [confirmToggleBtn, setConfirmToggleBtn] = useState(invisiblePassword);
-  const [focusedBackground, setFocusedBackground] = useState('https://ifh.cc/g/zaNc6p.jpg');
+  const [focusedBackground, setFocusedBackground] = useState(BASE_BACKGROUND);
   const {
     state: { nickname, studyName, description, password, confirmPassword, isFormValid },
     setters: { setNickname, setStudyName, setDescription, setPassword, setConfirmPassword },
@@ -75,11 +77,14 @@ const CreateStudy = () => {
         background: focusedBackground,
         password,
       });
-      console.log(response.data);
+      const { id } = response.data;
+      navigate(`/study/${id}`);
     } catch (error) {
       console.error('Error creating study:', error);
     }
   };
+
+  const navigate = useNavigate();
 
   return (
     <form className="create-study">

@@ -61,8 +61,3 @@ export async function updatePoint(id, data) {
 }
 
 export { gethabitList, postSuccess, deleteSuccess, deleteHabit, postHabit, patchHabit };
-
-// 스터디 조회 API
-export const getStudyData = (id) => {
-  return axios.get(`${API_ADDRESS}/study/${id}`);
-};
