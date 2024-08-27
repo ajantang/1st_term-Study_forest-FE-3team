@@ -9,7 +9,8 @@ import { ReactComponent as Plus } from "../../../../assets/images/ic_plus.svg";
 import "./Emojis.css";
 
 export function Emoji({ emojiCode, emojiCount }) {
-  const emoji = parseInt(emojiCode, 16);
+  const parsedEmojiCode = parseInt(emojiCode, 16);
+  const emoji = String.fromCodePoint(parsedEmojiCode);
 
   if (emojiCount > 99) {
     emojiCount = "99+";
@@ -17,7 +18,7 @@ export function Emoji({ emojiCode, emojiCount }) {
 
   return (
     <div className="flex-row font16 regular emoji">
-      <div className="emoji__emoji">{String.fromCodePoint(emoji)}</div>
+      <div className="emoji__emoji">{emoji}</div>
       {emojiCount}
     </div>
   );
@@ -38,7 +39,6 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
   };
 
   const handleSelectedEmoji = (emoji) => {
-    console.log(emoji);
     setIsPickerOpen(false);
     addEmojiInfo(studyId, emoji.unified).then((data) => {
       const updatedEmojiIndex = emojis.findIndex(
@@ -131,8 +131,6 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
   };
 
   useEffect(() => {
-    let totalCount = 0;
-
     getEmojiInfo(studyId)
       .then((data) => {
         totalCount = data.totalCount;
