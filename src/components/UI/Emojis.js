@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from "react";
-import { studyIdContext } from "./StudyBody";
+import { studyIdContext } from "../pages/StudyPage/components/StudyBody";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import { getEmojiInfo, addEmojiInfo } from "../../../../api/api";
+import { getEmojiInfo, addEmojiInfo } from "../../api/api";
 
-import { ReactComponent as Plus } from "../../../../assets/images/ic_plus.svg";
+import { ReactComponent as Plus } from "../../assets/images/ic_plus.svg";
 
 import "./Emojis.css";
 
