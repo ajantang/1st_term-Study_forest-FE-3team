@@ -1,6 +1,6 @@
 import "./todaysFocusPage.css";
 import Timer from "./components/Timer";
-import { getStudyInfo } from "../../../api/api";
+import { getStudyDetailInfo } from "../../../api/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../Layout/Header";
@@ -42,7 +42,10 @@ const TodaysFocusPage = () => {
 
   useEffect(() => {
     const getInfo = async (studyId) => {
-      const { studyName, point } = await getStudyInfo(studyId);
+      const res = await getStudyDetailInfo(studyId);
+      console.log(res);
+      const { studyName, point } = res;
+
       setStudyName(studyName);
       setPoint(point);
     };

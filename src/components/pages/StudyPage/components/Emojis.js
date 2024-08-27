@@ -133,7 +133,6 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
   useEffect(() => {
     getEmojiInfo(studyId)
       .then((data) => {
-        totalCount = data.totalCount;
         setEmojis([...data.Emojis]);
       })
       .catch((err) => {});

@@ -5,6 +5,7 @@ import searchBtn from "../../../../assets/images/Vector.png";
 import dropdownBtn from "../../../../assets/images/ic_toggle.png";
 import StudyCard from "./StudyCard";
 import { API_ADDRESS } from "../../../../constants/global";
+import { createStudy, getStudyInfo } from "../../../../api/api";
 
 const StudyList = () => {
   const [studyCards, setStudyCards] = useState([]);
@@ -39,7 +40,7 @@ const StudyList = () => {
         } else {
           setHasMore(true);
         }
-        const newCards = res.data;
+        const newCards = res.data.studys;
         const uniqueCards = Array.from(
           new Set([...studyCards, ...newCards].map((card) => card.id))
         ).map((id) => {

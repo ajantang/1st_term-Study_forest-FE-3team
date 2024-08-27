@@ -8,10 +8,16 @@ const instance = axios.create({
   },
 });
 
-// 수정 필요 data를 객체로 보내지 말고, api.js 안에서 data 객체를 만들 수 있도록 param 변경 필요
 /** /study POST - 스터디 생성 */
-export const createStudy = async (data) => {
+export const createStudy = async (
+  nickname,
+  studyName,
+  description,
+  background,
+  password
+) => {
   const path = `/study`;
+  const data = { nickname, studyName, description, background, password };
 
   try {
     const res = await instance.post(path, data);
@@ -23,18 +29,23 @@ export const createStudy = async (data) => {
 };
 
 /** /study GET - 스터디 목록 조회 */
-export const getStudyInfo = async (studyId) => {
-  const path = `/study/${studyId}/habitList`;
+export const getStudyInfo = async (page, pageSize, order, keyWord) => {
+  const path = `/study`;
 
-  await instance
-    .get(path)
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-      return err.name;
-    });
+  const params = {
+    ...(page && { page }),
+    ...(pageSize && { pageSize }),
+    ...(order && { order }),
+    ...(keyWord && { keyWord }),
+  };
+
+  try {
+    const res = await instance.get(path, { params });
+    return res.data;
+  } catch (err) {
+    console.log(err);
+    return err.name;
+  }
 };
 
 /** /study/:id GET - 상세 스터디 조회 */
@@ -91,13 +102,13 @@ export const authStudyPassword = async (studyId, password) => {
   }
 };
 
-// 수정 필요 data를 객체로 보내지 말고, api.js 안에서 data 객체를 만들 수 있도록 param 변경 필요
 /** /study/:id/habit POST - 습관 생성 */
-export const createHabit = async (studyId, surveyData) => {
+export const createHabit = async (studyId, habitName) => {
   const path = `/study/${studyId}/habit`;
+  const data = { name: habitName };
 
   try {
-    const res = await instance.post(path, surveyData);
+    const res = await instance.post(path, data);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -137,13 +148,13 @@ export const gethabitList = async (studyId) => {
   }
 };
 
-// 수정 필요 data를 객체로 보내지 말고, api.js 안에서 data 객체를 만들 수 있도록 param 변경 필요
 /** /habit/:habitId PATCH” - 습관 이름 수정 */
-export const setHabitName = async (habitId, nameData) => {
+export const setHabitName = async (habitId, newHabitName) => {
   const path = `/habit/${habitId}`;
+  const data = { name: newHabitName };
 
   try {
-    const res = await instance.patch(path, nameData);
+    const res = await instance.patch(path, data);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -218,59 +229,4 @@ export const addEmojiInfo = async (studyId, emojiCode) => {
     console.log(err);
     throw err;
   }
-};
-
-// postSuccess >
-const postSuccess = async (habitId) => {
-  const path = `/habit/${habitId}/success`;
-  const res = await instance.post(path);
-  return res.data;
-};
-
-export async function updatePoint(id, data) {
-  try {
-    const res = await instance.patch(`/study/${id}`, data);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export const postHabit = async (studyId, surveyData) => {
-  const path = `/study/${studyId}/habit`;
-
-  try {
-    const res = await instance.post(path, surveyData);
-    return res.data;
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-};
-
-// 습관 이름 변경 API
-const patchHabit = async (habitId, surveyData) => {
-  const res = await instance.patch(`/habit/${habitId}`, surveyData);
-  return res.data;
-};
-
-// 습관 삭제(PATCH) API
-const deleteHabit = async (habitId) => {
-  const res = await instance.patch(`/habit/${habitId}/delete`);
-  return res.data;
-};
-
-// 완료한 습관 삭제 API
-const deleteSuccess = async (habitSuccessId) => {
-  const res = await instance.delete(`/success/${habitSuccessId}`);
-  return res.data;
-};
-
-export {
-  // gethabitList,
-  postSuccess,
-  deleteSuccess,
-  deleteHabit,
-  // postHabit,
-  patchHabit,
 };
