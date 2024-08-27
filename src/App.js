@@ -20,12 +20,10 @@ function App() {
             path="study/:studyId/todayHabit"
             element={<TodatHabitPage />}
           />
-          <Route element={<PrivateRoute /> }>
             <Route
               path="study/:studyId/todaysFocus"
               element={<TodaysFocusPage />}
             />
-          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
