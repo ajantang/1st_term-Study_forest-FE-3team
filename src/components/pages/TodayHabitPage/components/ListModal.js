@@ -4,7 +4,9 @@ import ListModalBody from "./ListModalBody";
 import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 import btn_patchComplit from "../../../../assets/images/btn_patchComplit.svg";
 import btn_cancle from "../../../../assets/images/btn_cancel.svg";
+import byn_plusButton from "../../../../assets/images/btn_plusButton.svg";
 import ListModalPost from "./ListModalPost";
+import "./ListModal.css";
 
 function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const [list, setList] = useState([]);
@@ -14,6 +16,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const [value, setValue] = useState("");
   const [postValues, setPostValues] = useState([]);
   const [reRender, setReRender] = useState(false);
+  const [ listClass, setlistClass]
 
   const childRefs = useRef([]);
 
@@ -62,15 +65,20 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     if (filterValus[0]) {
       patchList(); // 모달창 닫기
 
+      // const postPromises = filterValus.map(async (habit) => {
+      //   const surveyData = { name: habit };
+      //   const result = await postHabit(studyId, surveyData);
+      //   return result;
+      // });
+
       const promises = childRefs.current
         .filter((ref) => ref !== null)
         .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 작동
 
-      const postPromises = filterValus.map(async (habit) => {
+      for (const habit of filterValus) {
         const surveyData = { name: habit };
-        const result = await postHabit(studyId, surveyData);
-        return result;
-      });
+        await postHabit(studyId, surveyData);
+      }
 
       const deletePromis = deletedIdx.map(async (idx) => {
         if (idx) {
@@ -85,12 +93,16 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
         const postResult = await postHabit(studyId, surveyData);
         await Promise.all([
           ...promises,
-          ...postPromises,
+          // ...postPromises,
           ...deletePromis,
           postResult,
         ]);
       } else {
-        await Promise.all([...promises, ...postPromises, ...deletePromis]); // input에 값이 없을 시
+        await Promise.all([
+          ...promises,
+          // ...postPromises,
+          ...deletePromis,
+        ]); // input에 값이 없을 시
       }
 
       setValue("");
@@ -168,51 +180,74 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   return (
     <>
       {modalState && (
-        <div>
-          <p>습관 목록</p>
-          <ol>
-            {list.map((habit, index) => {
-              return (
-                <li key={habit.id}>
-                  <ListModalBody
-                    habit={habit}
-                    idx={index}
-                    setDeletedIdx={setDeletedIdx}
-                    ref={(el) => (childRefs.current[index] = el)}
-                  />
-                </li>
-              );
-            })}
-            {postValues.map((habit, idx) => {
-              return (
-                <li key={idx}>
-                  <ListModalPost
-                    habit={habit}
-                    idx={idx}
-                    postValues={postValues}
-                    setPostValues={setPostValues}
-                  />
-                </li>
-              );
-            })}
-          </ol>
-          {postInput && (
-            <div>
-              <input value={value} onChange={changeValueHandler} />
-              <img src={trashCanImg} alt="쓰레기통" />
-            </div>
-          )}
-          <div onClick={postInputHandler}>+</div>
-          <div>
-            <img onClick={cencelHandler} src={btn_cancle} alt="취소" />
+        <>
+          <div className="ListModal-overlay" />
+          <div className="ListModal__body flex-col border-box">
+            <p className="ListModal__title font24 extra-bold border-box">
+              습관 목록
+            </p>
+            <ol className="ListModal__list-ol flex-col border-box">
+              {list.map((habit, index) => {
+                return (
+                  <li key={habit.id}>
+                    <ListModalBody
+                      habit={habit}
+                      idx={index}
+                      setDeletedIdx={setDeletedIdx}
+                      ref={(el) => (childRefs.current[index] = el)}
+                    />
+                  </li>
+                );
+              })}
+              {postValues.map((habit, idx) => {
+                return (
+                  <li key={idx}>
+                    <ListModalPost
+                      habit={habit}
+                      idx={idx}
+                      postValues={postValues}
+                      setPostValues={setPostValues}
+                    />
+                  </li>
+                );
+              })}
+            </ol>
+            {postInput && (
+              <div className="ListModal__plusInut flex-row border-box">
+                <input
+                  className="ListModal__input font16 bold border-box"
+                  value={value}
+                  onChange={changeValueHandler}
+                />
+                <img
+                  className="ListModal__img-trashCan border-box"
+                  src={trashCanImg}
+                  alt="쓰레기통"
+                />
+              </div>
+            )}
             <img
-              onClick={patchSuccessHandler}
-              src={btn_patchComplit}
-              alt="수정 완료"
+              className="ListModal__img-plus border-box"
+              onClick={postInputHandler}
+              src={byn_plusButton}
+              alt="추가 버튼"
             />
-            \
+            <div className="ListModal__button flex-row border-box">
+              <img
+                classNam="ListModal__img-button"
+                onClick={cencelHandler}
+                src={btn_cancle}
+                alt="취소"
+              />
+              <img
+                classNam="ListModal__img-button"
+                onClick={patchSuccessHandler}
+                src={btn_patchComplit}
+                alt="수정 완료"
+              />
+            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );

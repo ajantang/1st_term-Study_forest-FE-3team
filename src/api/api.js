@@ -2,10 +2,10 @@ import axios from "axios";
 import { API_ADDRESS } from "../constants/global";
 
 const instance = axios.create({
-  baseURL: 'https://test-lm9p.onrender.com',
+  baseURL: 'https://test-9n4j.onrender.com',
 });
 
-// 리스트 조회 API
+// 리스트 조회 API ?timeZone=Asia%2FSeoul
 const gethabitList = async (studyId) => {
   const res = await instance.get(`/study/${studyId}/habitList`);
   return res.data;

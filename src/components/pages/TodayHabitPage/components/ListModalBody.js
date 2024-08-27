@@ -1,8 +1,9 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { patchHabit } from "../../../../api/api";
 import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
+import './ListModalBody.css'
 
-const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx }, ref) => {
+const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx}, ref) => {
   const [value, setValue] = useState({ name: habit.name });
   const [patchInput, setPatchInput] = useState(false);
   const [hideDelete, setHideDelete] = useState(false);
@@ -39,12 +40,12 @@ const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx }, ref) => {
   return (
     <>
       {hideDelete || (
-        <div>
-          {!patchInput && <div onClick={patchClick}>{habit.name}</div>}
+        <div className="ListModalBody__list-body flex-row border-box">
+          {!patchInput && <div className="ListModalBody__text ListModalBody__flex-align flex-row font16 bold border-box" onClick={patchClick}>{habit.name}</div>}
           {patchInput && (
-            <input value={value.name} onChange={changValueHandler} />
+            <input className="ListModalBody__text ListModalBody__text-align font16 bold border-box" value={value.name} onChange={changValueHandler} />
           )}
-          <img onClick={deleteHabitHandler} src={trashCanImg} alt="쓰레기통" />
+          <img className="ListModalBody__img-trashCan" onClick={deleteHabitHandler} src={trashCanImg} alt="쓰레기통" />
         </div>
       )}
     </>
