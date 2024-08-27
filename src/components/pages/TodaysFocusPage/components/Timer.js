@@ -10,6 +10,10 @@ const M = "25";
 const S = "00";
 
 const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
+  var initPoint;
+  if(initialPoint){
+    initPoint = initialPoint;
+  }
   const [countTime, setCountTime] = useState(T);  // 입력한 시간이 카운트다운되는 숫자
   const [initialTime, setInitialTime] = useState(T); // 입력한 시간이 저장되는 숫자
   const [minute, setMinute] = useState(M);
@@ -18,7 +22,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   const [clearTimer, setClearTimer] = useState(""); // 초기화 버튼 동적 할당
   const [controlTimer, setControltimer] = useState(""); // 시작, 재시작, 종료 버튼 동적 할당
   const [alertCondition, setAlertCondition] = useState(""); // 상태 메세지 동적 할당
-  const [totalPoint, setTotalPoint] = useState(initialPoint); // 획득한 포인트를 더한 총 포인트
+  const [totalPoint, setTotalPoint] = useState(initPoint); // 획득한 포인트를 더한 총 포인트
   const [state, setState] = useState(false); // 상태에 따라 css 클래스 변경
   const [btnText, setBtnText] = useState('Start'); // 상태에 따라 css 클래스 변경
   const [isDisableBtn, setIsDisableBtn] = useState(false); // 버튼 비활성화 상태 변경
@@ -149,7 +153,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
           <button
             type="button"
             id="stoptbtn"
-            className={`timer__controls__active stop`}
+            className={`timer__controls__active extra-bold stop`}
             onClick={StopTimer}
           >
             &nbsp;&nbsp; Stop!
@@ -173,17 +177,15 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
 
   //stop버튼 클릭
   const StopTimer = () => {
-    let total = initialPoint + obtainPoint; // 기존 포인트에 얻은 포인트를 합한 총 포인트
+    let total = initPoint + obtainPoint; // 기존 포인트에 얻은 포인트를 합한 총 포인트
     setTotalPoint(total); // db에 저장할 포인트
     init(); // 초기화
     clearInterval(timer);
     setControltimer("");
     setPoint(total); // 획득한 포인트에 변화 줘서 렌더링
     setAlertGetPoint(
-      <div className="condition__alert points font16">
-        <span>
-          {obtainPoint}포인트를 획득했습니다!
-        </span>
+      <div className="condition__alert points font16 medium">
+        🎉 {obtainPoint}포인트를 획득했습니다!
       </div>
     );
   };
@@ -194,8 +196,8 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
     setState("pause");
     setIsDisableBtn(false);
     setAlertCondition(
-      <div className="condition__alert pause font16">
-        <span>집중이 중단되었습니다.</span>
+      <div className="condition__alert pause font16 medium">
+        🚨 집중이 중단되었습니다.
       </div>
     );
     clearInterval(timer);
@@ -223,17 +225,17 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
 
   return (
     <>
-      <div className="timerset__display">
+      <div className="timerset__display font16 medium">
         <div className="timerset__display__icon"></div>
         {changeTime(initialTime)}
       </div>
       <div
-        className={`timer font150 ${changeCss('input', state)}`}
+        className={`timer extra-bold font150 ${changeCss('input', state)}`}
       >
         {state === "over" ? "-" : ""}
         <input
           type="text"
-          className={`timer__input font150 ${changeCss('input', state)}`}
+          className={`timer__input extra-bold font150 ${changeCss('input', state)}`}
           value={minute}
           onChange={timerMinute}
           disabled={isDisableInput}
@@ -241,7 +243,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
         :
         <input
           type="text"
-          className={`timer__input font150 ${changeCss('input', state)}`}
+          className={`timer__input extra-bold font150 ${changeCss('input', state)}`}
           value={second}
           onChange={timerSecond}
           disabled={isDisableInput}
@@ -254,7 +256,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
         <button
           type="button"
           id="startbtn"
-          className={`timer__controls__active ${changeCss('button', state)}`}
+          className={`timer__controls__active extra-bold ${changeCss('button', state)}`}
           onClick={StartTimer}
           disabled={isDisableBtn}
         >

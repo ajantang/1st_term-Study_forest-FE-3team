@@ -9,28 +9,27 @@
 }
 
 .timerset__display {
-  width: 83px;
-  height: 31px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50px;
+  width: 8.3rem;
+  height: 3.1rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 5.0rem;
   background-color: rgba(255, 255, 255, 0.3);
-  line-height: 31px;
+  line-height: 3.1rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 
 .timerset__display__icon {
-  width: 19px;
-  height: 19px;
+  width: 1.9rem;
+  height: 1.9rem;
   background-image: var(--timer__icon);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .timer {
-  width: 1120px;
-  font-weight: 800;
+  width: 112.0rem;
   display: flex;
   justify-content: center;
   line-height: 100%;
@@ -38,66 +37,58 @@
 
 .timer__input {
   border: none;
-  height: 179px;
-  width: 200px;
-  font-weight: 800;
+  height: 17.9rem;
+  width: 20.0rem;
   color: var(--arsenic);
   text-align: center;
 }
 
 .timer__controls {
-  width: 509px;
-  height: 64px;
+  width: 50.9rem;
+  height: 6.4rem;
   display: flex;
   justify-content: space-around;
 }
 
 .timer__controls__active {
-  width: 333px;
-  height: 60px;
-  font-size: 28px;
-  font-weight: 800;
+  width: 33.3rem;
+  height: 6.0rem;
+  font-size: 2.8rem;
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: 5.0rem;
   background-color: var(--dark-sea-green);
   background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: 88px;
+  background-size: 3.0rem;
+  background-position: 8.8rem;
 }
 
 .timer__controls__pause {
-  width: 64px;
-  height: 64px;
+  width: 6.4rem;
+  height: 6.4rem;
   border: none;
-  border-radius: 50px;
+  border-radius: 5.0rem;
   background-image: var(--pause__icon);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .timer__controls__reset {
-  width: 64px;
-  height: 64px;
+  width: 6.4rem;
+  height: 6.4rem;
   border: none;
-  border-radius: 50px;
+  border-radius: 5.0rem;
   background-image: var(--reset__icon);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .condition__alert {
-  width: 232px;
-  height: 47px;
-  border-radius: 12px;
-  line-height: 47px;
-  font-weight: 500;
-  background-repeat: no-repeat;
-  background-size: 19px;
-  background-position: 14px;
-  span {
-    margin-left: 40px;
-  }
+  width: 22.3rem;
+  height: 4.7rem;
+  border-radius: 1.2rem;
+  line-height: 4.7rem;
+  text-align: center;
 }
 
 /* 상태마다 달라지는 css */
@@ -135,12 +126,68 @@
 .pause {
   background-color: var(--piggy-pink);
   color: var(--vivid-red);
-  background-image: var(--warninglight__icon);
 }
 
 .points {
   color: var(--fern-green);
   background-color: var(--chinese-white);
-  background-image: var(--partypopper__icon);
 }
 
+/* Tablet */
+@media (min-width: 744px) and (max-width:1023px){ 
+  .timer {
+    width: 59.3rem;
+    font-size: 12rem;
+  }
+  
+  .timer__input {
+    width: 20.0rem;
+    height: 15rem;
+    font-size: 12rem;
+  }
+} 
+
+/* mobile */ 
+@media all and (max-width:479px) {
+  .timer {
+    width: 28rem;
+    font-size: 8rem;
+    line-height: 80%;
+  }
+  
+  .timer__input {
+    height: 8rem;
+    width: 10.0rem;
+    font-size: 8rem;
+  }
+  
+  .timer__controls {
+    width: 28rem;
+    height: 4.8rem;
+  }
+  
+  .timer__controls__active {
+    width: 14rem;
+    height: 4.5rem;
+    font-size: 1.8rem;
+    border-radius: 3.048rem;
+    background-size: 2.4rem;
+    background-position: 2rem;
+  }
+  
+  .timer__controls__pause {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+  
+  .timer__controls__reset {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+  
+  .condition__alert {
+    width: 20.2rem;
+    height: 4.5rem;
+    font-size: 1.4rem;
+  }
+}

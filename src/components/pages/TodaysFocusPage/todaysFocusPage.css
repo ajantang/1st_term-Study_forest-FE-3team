@@ -1,8 +1,8 @@
 @scope (.content) {
   :scope {
     --points__icon: url("../../../assets/images/ic_point.svg");
-    --warninglight__icon: url("../../../assets/images/warninglight.svg");
-    --partypopper__icon: url("../../../assets/images/sparkler.svg");
+    /* --warninglight__icon: url("../../../assets/images/warninglight.svg");
+    --partypopper__icon: url("../../../assets/images/sparkler.svg"); */
   }
   * {
     user-select: none;
@@ -13,96 +13,177 @@
 }
 
 .content {
-  padding: 40px;
-  gap: 10px;
+  padding: 4.0rem;
+  gap: 1.0rem;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 2.0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1248px;
+  width: 124.8rem;
   margin: 0 auto;
 }
 
 .content__container {
-  gap: 24px;
-  height: 694px;
+  gap: 2.4rem;
+  height: 69.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .content__container__top {
-  height: 124px;
+  height: 12.4rem;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 2.4rem;
 }
 
 .content__container__top__title {
-  width: 1168px;
-  height: 48px;
+  width: 116.8rem;
+  height: 4.8rem;
   display: flex;
   justify-content: space-between;
-  font-size: 32px;
-  font-weight: 800;
 }
 
 .content__container__top__middle {
-  width: 176px;
-  gap: 8px;
+  width: 17.6rem;
+  gap: 0.8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   white-space: nowrap;
   span {
-    font-weight: 400;
     text-align: left;
     color: var(--gray);
   }
 }
 
 .content__container__top__middle__points {
-  width: 116px;
-  height: 35px;
-  gap: 4px;
-  border-radius: 50px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 11.6rem;
+  height: 3.5rem;
+  gap: 0.4rem;
+  border-radius: 5.0rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  font-weight: 500;
   justify-content: center;
+  color: var(--arsenic);
 }
 
 .content__container__top__middle__points__icon {
-  width: 19px;
-  height: 19px;
+  width: 1.9rem;
+  height: 1.9rem;
   background-image: var(--points__icon);
   background-size: cover;
 }
 
 .content__container__main {
-  padding: 40px 24px;
-  gap: 10px;
-  border-radius: 20px;
-  border: 1px solid var(--gainsboro);
+  padding: 4.0rem 2.4rem;
+  gap: 1.0rem;
+  border-radius: 2.0rem;
+  border: 0.1rem solid var(--gainsboro);
   display: flex;
 }
 
 .content__container__main__top {
-  width: 1120px;
-  height: 465px;
+  width: 112.0rem;
+  height: 46.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  span {
-    font-weight: 800;
-  }
 }
 
 .content__alert {
   position: absolute;
-  top: 993px;
+  top: 99.3rem;
+}
+
+/* Tablet */
+@media (min-width: 744px) and (max-width:1023px){ 
+  .content {
+    padding: 2.4rem;
+    width: 64.8rem;
+  }
+  
+  .content__container {
+    height: 67.8rem;
+  }
+  
+  .content__container__top {
+    height: 12.8rem;
+  }
+  
+  .content__container__top__title {
+    width: 64.8rem;
+  }
+  
+  .content__container__top__middle {
+    width: 16.5rem;
+  }
+  
+  .content__container__top__middle__points {
+    gap: 0.8rem;
+  }
+
+  .content__container__main {
+    padding: 4.0rem 2.4rem;
+    gap: 1.0rem;
+  }
+  
+  .content__container__main__top {
+    width: 60.0rem;
+    height: 43rem;
+  }
+  
+  .content__alert {
+    top: 95.5rem;
+  }
+} 
+
+/* mobile */ 
+@media all and (max-width:479px) {
+  .content {
+    width: 31.2rem;
+    padding: 1.6rem;
+  }
+  
+  .content__container {
+    height: 52.4rem;
+  }
+  
+  .content__container__top {
+    height: 15.8rem;
+  }
+  
+  .content__container__top__title {
+    width: 31.2rem;
+    height: 8.6rem;
+    font-size: 2.4rem;
+  }
+  
+  .content__container__top__middle{
+    span{
+      font-size: 1.6rem;
+    }
+  }
+
+  .content__container__top__middle__points {
+    gap: 0.8rem;
+  }
+  
+  .content__container__main {
+    padding: 2.3rem 1.5rem;
+  }
+  
+  .content__container__main__top {
+    width: 28rem;
+    height: 29.4rem;
+  }
+  
+  .content__alert {
+    top: 95.7rem;
+  }
 }
