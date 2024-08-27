@@ -1,38 +1,15 @@
 import "./todaysFocusPage.css";
 import Timer from "./components/Timer";
-import { getStudyDetailInfo } from "../../../api/api";
+import { getPoint } from "../../../api/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../Layout/Header";
-import {
-  MODAL_GOTO_HABIT,
-  MODAL_GOTO_CONCENTRATION,
-} from "../../../constants/global";
-import Modal from "../StudyPage/components/Modal";
-import TodayButton from "../../UI/TodayButton";
-import { useNavigate } from "react-router-dom";
 
 const TodaysFocusPage = () => {
-  const [point, setPoint] = useState(0);
+  const [point, setPoint] = useState("");
   const [alertGetPoint, setAlertGetPoint] = useState("");
-  const [studyName, setStudyName] = useState("스터디 이름");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState(-1);
 
   const { studyId } = useParams();
-  const navigate = useNavigate();
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const handleGotoHabit = () => {
-    setModalType(MODAL_GOTO_HABIT);
-    openModal();
-  };
-
-  const handleGotoHome = () => {
-    navigate("/");
-  };
 
   //const id = "826d746c-bbba-4d4d-a0ed-33f2e8d1f5fb"
   //const id = "8523e4cc-0985-4c20-b8b2-2d86e4fe56d5"
@@ -42,12 +19,8 @@ const TodaysFocusPage = () => {
 
   useEffect(() => {
     const getInfo = async (studyId) => {
-      const res = await getStudyDetailInfo(studyId);
-      console.log(res);
-      const { studyName, point } = res;
-
-      setStudyName(studyName);
-      setPoint(point);
+      const pointField = await getPoint(studyId);
+      setPoint(pointField.point);
     };
 
     getInfo(studyId);
@@ -59,13 +32,7 @@ const TodaysFocusPage = () => {
       <div className="frame">
         <div className="contentframe">
           <div className="topframe">
-            <div className="title">
-              {studyName}
-              <div className="flex-row title__gp-btn">
-                <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
-                <TodayButton onClick={handleGotoHome}>홈</TodayButton>
-              </div>
-            </div>
+            <div className="title">연우의 개발공장</div>
             <div className="point">
               <span className="font18">현재까지 획득한 포인트</span>
               <div className="pointbox font16">
@@ -87,12 +54,6 @@ const TodaysFocusPage = () => {
           </div>
         </div>
         <div className="condition">{alertGetPoint}</div>
-        <Modal
-          studyName={studyName}
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          modalType={modalType}
-        />
       </div>
     </>
   );

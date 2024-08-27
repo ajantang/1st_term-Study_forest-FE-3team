@@ -2,7 +2,7 @@ import logo from "../../assets/images/img_logo.png";
 import { NavLink } from "react-router-dom";
 import "./header.css";
 
-const Header = ({ hideCreateButton = true }) => {
+const Header = ({ hideCreateButton }) => {
   return (
     <header className="header__container">
       <div className="header__content">

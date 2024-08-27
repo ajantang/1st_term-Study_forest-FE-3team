@@ -24,21 +24,17 @@ function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
   return (
     <div>
       <div>
-        <p className="font32">오늘의 습관</p>
-        <p className="font32" onClick={patchList}>
-          목록 수정
-        </p>
+        <p>오늘의 습관</p>
+        <p onClick={patchList}>목록 수정</p>
       </div>
       {!list[0] && (
-        <div className="font32">
-          아직 습관이 없어요 목록 수정을 눌러 습관을 생성해보세요
-        </div>
+        <div>아직 습관이 없어요 목록 수정을 눌러 습관을 생성해보세요</div>
       )}
       {list[0] && (
         <ol>
           {list.map((habit) => {
             return (
-              <li className="font32" key={habit.id}>
+              <li key={habit.id}>
                 <HabitsListBody habit={habit} />
               </li>
             );

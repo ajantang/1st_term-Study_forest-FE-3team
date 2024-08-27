@@ -13,7 +13,6 @@
 }
 
 .study-list__nav {
-  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   margin-top: 24px;

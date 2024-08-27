@@ -5,8 +5,6 @@ import "./inputForm.css";
 import invisiblePassword from "../../../../assets/images/btn_visibility_off.png";
 import visiblePassword from "../../../../assets/images/btn_visibility_on.png";
 
-import { useNavigate } from "react-router-dom";
-import Loading from "../../../UI/Loading.js";
 import { API_ADDRESS } from "../../../../constants/global.js";
 
 const CreateStudy = () => {
@@ -38,9 +36,6 @@ const CreateStudy = () => {
   const [focusedBackground, setFocusedBackground] = useState(
     "https://ifh.cc/g/zaNc6p.jpg"
   );
-
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const defaultElement = document.querySelector(".background.green");
@@ -80,23 +75,15 @@ const CreateStudy = () => {
 
   const handleSubmit = async () => {
     try {
-      setLoading(true);
-      const response = await axios
-        .post(`${API_ADDRESS}/study`, {
-          nickname,
-          studyName,
-          description,
-          background: focusedBackground,
-          password,
-        })
-        .then((res) => {
-          const studyId = res.data.id;
-          setLoading(false);
-          navigate(`/study/${studyId}`);
-        });
+      const response = await axios.post(`${API_ADDRESS}/study`, {
+        nickname,
+        studyName,
+        description,
+        background: focusedBackground,
+        password,
+      });
       console.log(response.data);
     } catch (error) {
-      setLoading(false);
       console.error("Error creating study:", error);
     }
   };
@@ -128,7 +115,6 @@ const CreateStudy = () => {
 
   return (
     <form className="create-study-form">
-      {loading ? <Loading /> : undefined}
       <div className="font18 semi-bold label title">스터디 만들기</div>
       <div className="form">
         <label className="font18 semi-bold label nickname">닉네임</label>

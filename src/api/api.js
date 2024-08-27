@@ -220,8 +220,6 @@ export const addEmojiInfo = async (studyId, emojiCode) => {
   const path = `/study/${studyId}/emoji`;
   const data = { emojiCode: emojiCode };
 
-  console.log(data);
-
   try {
     const res = await instance.put(path, data);
     return res.data;

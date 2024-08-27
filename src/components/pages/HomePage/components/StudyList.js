@@ -5,7 +5,6 @@ import searchBtn from "../../../../assets/images/Vector.png";
 import dropdownBtn from "../../../../assets/images/ic_toggle.png";
 import StudyCard from "./StudyCard";
 import { API_ADDRESS } from "../../../../constants/global";
-import { createStudy, getStudyInfo } from "../../../../api/api";
 
 const StudyList = () => {
   const [studyCards, setStudyCards] = useState([]);
@@ -30,25 +29,23 @@ const StudyList = () => {
   };
 
   const fetchStudyCards = async (page, searchKeyword, order) => {
-    const response = await axios
-      .get(
-        `${API_ADDRESS}/study?page=${page}&pageSize=${pageSize}&order=${order}&keyWord=${searchKeyword}`
-      )
-      .then((res) => {
-        if (res.data.length < pageSize) {
-          setHasMore(false);
-        } else {
-          setHasMore(true);
-        }
-        const newCards = res.data.studys;
-        const uniqueCards = Array.from(
-          new Set([...studyCards, ...newCards].map((card) => card.id))
-        ).map((id) => {
-          return [...studyCards, ...newCards].find((card) => card.id === id);
-        });
-        setStudyCards(uniqueCards);
-      })
-      .finally(() => {});
+    setIsLoading(true);
+    const response = await axios.get(
+      `${API_ADDRESS}/study?page=${page}&pageSize=${pageSize}&order=${order}&keyWord=${searchKeyword}`
+    );
+    if (response.data.length < pageSize) {
+      setHasMore(false);
+    } else {
+      setHasMore(true);
+    }
+    const newCards = response.data;
+    const uniqueCards = Array.from(
+      new Set([...studyCards, ...newCards].map((card) => card.id))
+    ).map((id) => {
+      return [...studyCards, ...newCards].find((card) => card.id === id);
+    });
+    setStudyCards(uniqueCards);
+    setIsLoading(false);
   };
 
   useEffect(() => {

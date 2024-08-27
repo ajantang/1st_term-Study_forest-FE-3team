@@ -35,14 +35,9 @@ function ListModalPost({ habit, idx, postValues, setPostValues }) {
     <>
       {deleted || (
         <div>
-          {!patchInput && (
-            <div className="font32" onClick={patchClick}>
-              {habit}
-            </div>
-          )}
+          {!patchInput && <div onClick={patchClick}>{habit}</div>}
           {patchInput && (
             <input
-              className="font32"
               value={value}
               onChange={changeValueHandler}
               onKeyUp={changePostValuesHandler}
