@@ -4,7 +4,7 @@ import Header from "./components/Layout/Header";
 function Main() {
   return (
     <>
-      <Header />
+      <Header hideCreateButton={true} />
       <main>
         <Outlet />
       </main>
