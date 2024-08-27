@@ -48,15 +48,12 @@
 
 .habitsList_list-ol {
     width: 40rem;
-    height: 49.8rem;
+    height: 52rem;
     gap: 2rem;
     list-style-type: none;
+    overflow: scroll;
 }
 
-.habitsList_list-li {
-    width: 40rem;
-    height: 5.4rem;
-    border-radius: 2rem;
-    justify-content: center;
-    align-items: center;
-}
+.habitsList_list-ol::-webkit-scrollbar {
+    display: none;
+  }

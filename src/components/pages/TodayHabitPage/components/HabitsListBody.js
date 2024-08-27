@@ -13,9 +13,9 @@ function HabitsListBody({ habit }) {
   
   useEffect(() => {
     if (successId) {
-      setHabitClassName("habitsListBodylist--true");
+      setHabitClassName("habitsList_list-li flex-row font16 bold habitsListBody--true border-box");
     } else {
-      setHabitClassName("habitsListBodylist--fals");
+      setHabitClassName("habitsList_list-li flex-row font16 bold habitsListBody--false border-box");
     }
   }, [habit, successId]);
 

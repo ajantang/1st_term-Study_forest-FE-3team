@@ -1,7 +1,18 @@
-.habitsListBodylist--true {
-  color: blue;
+.habitsList_list-li {
+  width: 40rem;
+  height: 5.4rem;
+  border-radius: 2rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-.habitsListBodylist--false {
-  color: black;
+.habitsListBody--true {
+  background-color: var(--dark-sea-green);
+  color: #FFFFFF;
+}
+
+.habitsListBody--false {
+  background-color: var(--bright-gray);
+  color: #818181;
 }
