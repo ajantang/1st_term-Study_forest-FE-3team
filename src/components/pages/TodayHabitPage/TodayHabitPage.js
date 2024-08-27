@@ -19,8 +19,8 @@ function TodatHabitPage() {
   };
 
   return (
-    <div className="main__todayHabitPage border-box flex-row">
-      <div className="todayHabitpage__body border-box flex-row">
+    <div className="main__todayHabitPage flex-row border-box">
+      <div className="todayHabitpage__body flex-row border-box">
         <div className="todayHaibtPage__content border-box ">
           <CurrentTime />
           <HabitsList

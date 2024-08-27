@@ -4,7 +4,7 @@
     margin-top: 1.6rem;
 }
 
-.currentTime__text{
+.currentTime__text-color{
     color: var(--gray);
 }
 
@@ -13,7 +13,8 @@
     height: 3.5rem;
     border-radius: 5.0rem;
     border: 1px solid rgb(0, 0, 0, 0.5);
-    padding: 0.8rem 1.2rem;
     margin-top: 0.8rem;
     color: var(--arsenic);
+    justify-content: center;
+    align-items: center;
 }

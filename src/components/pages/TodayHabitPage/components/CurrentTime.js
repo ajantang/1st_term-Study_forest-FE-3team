@@ -24,8 +24,8 @@ function CurrentTime() {
 
   return (
     <div className="currentTime__body border-box">
-      <div className="currentTime__text font18 regular border-box">현재 시간</div>
-      <div className="currenTime__time font16 medium border-box">{today}</div>
+      <div className="currentTime__text-color font18 regular border-box">현재 시간</div>
+      <div className="currenTime__time flex-row font16 medium border-box">{today}</div>
     </div>
   );
 }
