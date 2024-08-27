@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Main />}> */}
+        <Route element={<Main />}>
           <Route path="/" element={<HomePage />} />
           <Route path="create" element={<CreateStudyPage />} />
           <Route path="study/:studyId" element={<StudyPage />} />
@@ -24,7 +24,7 @@ function App() {
             path="study/:studyId/todaysFocus"
             element={<TodaysFocusPage />}
           />
-        {/* </Route> */}
+        </Route>
       </Routes>
     </BrowserRouter>
   );

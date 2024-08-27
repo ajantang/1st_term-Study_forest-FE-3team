@@ -1,4 +1,4 @@
-import "./StudyPoint.css";
+import "./studypoint.css";
 import { ReactComponent as PointMark } from "../../../../assets/images/ic_point.svg";
 
 export function StudyPoint({ point }) {

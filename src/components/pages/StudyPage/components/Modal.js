@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import "./Modal.css";
+import "./modal.css";
 
 import { studyIdContext } from "./StudyBody";
 import { API_ADDRESS } from "../../../../constants/global";
