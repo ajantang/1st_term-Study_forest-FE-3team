@@ -71,7 +71,7 @@
   margin-left: 0.4rem;
   width: 6.7rem;
   height: 100%;
-  background-image: url("../../../../assets/images/btn_add_emoji.svg");
+  background-image: url("../../assets/images/btn_add_emoji.svg");
 }
 
 .emojis__anchor {

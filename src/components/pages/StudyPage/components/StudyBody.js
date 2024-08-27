@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 
 import Emojis from "../../../UI/Emojis";
-import StudyPoint from "./StudyPoint";
+import StudyPoint from "../../../UI/StudyPoint";
 import HabitRecord from "./HabitRecord";
 import Modal from "./Modal";
 
