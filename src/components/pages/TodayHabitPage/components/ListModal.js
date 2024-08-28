@@ -19,7 +19,6 @@ function ListModal({ modalState, patchList, setPageRender }) {
   const [reRender, setReRender] = useState(false); // 모달창 리스트 리랜더링 여부(수정 사항있을 시 마지막에 작동)
   const [rockButtonBody, setRockButtonBody] = useState([]); // ListModalBody.js 습관 수정 시 에러 방지
   const [rockButtonPost, setRockButtonPost] = useState([]); // ListModalPost.js 습관 수정 시 에러 방지
-  const [checkLength0, setCheckLength0] = useState(false); // 문자 길이가 0일때 에러 메세지 공개 여부
   const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
   const [rockButton, setRockButton] = useState(false); // 습관 생성 시 에러 방지
   const [olListHeight, setOlListHeight] = useState(
@@ -31,7 +30,7 @@ function ListModal({ modalState, patchList, setPageRender }) {
   let studyId = useContext(studyIdContext);
   const childRefs = useRef([]); // ListModalBody.js에서 patchAPI를 가져오기 위한 ref
   const containerRef = useRef(null); // 습관 추가시 맨 아래 스크롤로 이동을 위한 ref
-  const focusInputRef = useRef(null);
+  const focusInputRef = useRef(null); // posy input 활성화 시 focus를 위한 ref
 
   useEffect(() => {
     // API 호출 함수
@@ -81,25 +80,18 @@ function ListModal({ modalState, patchList, setPageRender }) {
       setRockButton(true);
     } else {
       // 문자 길이가 문제 없을때
-      setCheckLength0(false);
       setCheckLength30(false);
     }
   };
 
   // value값 검사 함수
   const checkValueHandler = () => {
-    if (value.trim().length === 0) {
-      // 문자 길이가 0일 때
-      setCheckLength0(true);
-      setCheckLength30(false);
-      setRockButton(true);
-    } else if (value.trim().length > 30) {
+    if (value.trim().length > 30) {
       // 문자 길이가 30을 넘을 때
       setCheckLength30(true);
       setRockButton(true);
     } else {
       // 문자 길이가 문제 없을때
-      setCheckLength0(false);
       setCheckLength30(false);
       setRockButton(false);
     }
@@ -130,14 +122,13 @@ function ListModal({ modalState, patchList, setPageRender }) {
       setTimeout(() => {
         focusInputRef.current.focus(); // input 요소로 포커스 이동
       }, 50);
-    };
+    }
   };
 
   // post input 삭제 함수
   const postInputDeleteHandler = () => {
     setValue("");
     setPostInput(false);
-    setCheckLength0(false);
     setCheckLength30(false);
     setRockButton(false);
     setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
@@ -148,11 +139,11 @@ function ListModal({ modalState, patchList, setPageRender }) {
     const filterValus = postValues.filter((habit) => habit !== ""); // ListModalPost에서 삭제 예정인 값 필터
     const filterockButtonBody = rockButtonBody.filter(
       // ListModalBody에서 문자 길이 검사 시 문제 없는 값 제거
-      (boolin) => boolin !== false
+      (boolin) => boolin === true && boolin !== undefined && boolin !== null
     );
     const filterockButtonPost = rockButtonPost.filter(
       // ListModalPost에서 문자 길이 검사 시 문제 없는 값 제거
-      (boolin) => boolin !== false
+      (boolin) => boolin === true && boolin !== undefined && boolin !== null
     );
 
     if (!filterockButtonBody[0] && !filterockButtonPost[0] && !rockButton) {
@@ -262,6 +253,7 @@ function ListModal({ modalState, patchList, setPageRender }) {
             setDeletedIdx([]);
             setReRender(true);
             setPageRender(true);
+            setListClass([]);
           }
         } catch (e) {
           alert(e);
@@ -269,7 +261,6 @@ function ListModal({ modalState, patchList, setPageRender }) {
         setPostInput(false);
         setRockButtonBody([]);
         setRockButtonPost([]);
-        setListClass([]);
         setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
         patchList();
       }
@@ -281,11 +272,9 @@ function ListModal({ modalState, patchList, setPageRender }) {
     setValue("");
     setPostInput(false);
     setPostValues([]);
-    setCheckLength0(false);
     setCheckLength30(false);
     setRockButton(false);
     setDeletedIdx([]);
-    setListClass([]);
     setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
     setRockButtonBody([]);
     setRockButtonPost([]);
@@ -345,11 +334,6 @@ function ListModal({ modalState, patchList, setPageRender }) {
                   onKeyUp={checkValueHandler}
                   ref={focusInputRef}
                 />
-                {checkLength0 && (
-                  <p className="ListModalBody__text-check font12 semi-bold">
-                    값을 입력해주세요
-                  </p>
-                )}
                 {checkLength30 && (
                   <p className="ListModalBody__text-check font12 semi-bold">
                     30자 이내로 입력해주세요
