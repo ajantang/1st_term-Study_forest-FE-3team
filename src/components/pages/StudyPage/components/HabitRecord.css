@@ -6,7 +6,7 @@
   border-color: #dddddd;
   border-radius: 2em;
   margin: 0 auto;
-  margin-top: 3.6rem;
+  /* margin-top: 4rem; */
   padding: 2.4rem;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .habitrecord__empty-message {
-  width: 108.8rem;
+  width: 107.2rem;
   height: 38.4rem;
   justify-content: center;
   align-items: center;
@@ -51,10 +51,10 @@
   height: 6.4rem;
   padding-left: 2.4rem;
   padding-right: 2.4rem;
+  text-align: end;
   justify-content: end;
   align-items: center;
   font-size: 1.8rem;
-  font-weight: 700;
   color: var(--raisin-black);
 }
 
@@ -68,4 +68,104 @@
 
 .habitrecord__table-habitsuccesses {
   justify-content: end;
+}
+
+/* ===== Tablet - width : 744px ~ 1199px ===== */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .habitrecord {
+    width: 64.8rem;
+    height: 51.1rem;
+    padding: 2.4rem;
+    /* 임시 히든 처리 */
+    overflow: hidden;
+  }
+
+  .habitrecord__table {
+    width: 60rem;
+    height: 41rem;
+    margin-top: 2.4rem;
+  }
+
+  .habitrecord__title-day {
+    width: 6.4rem;
+    text-align: center;
+  }
+
+  .habitrecord__title-days {
+    width: 60rem;
+    justify-content: end;
+  }
+
+  .habitrecord__table-value-frame {
+    width: 61.6rem;
+  }
+
+  .habitrecord__empty-message {
+    width: 60rem;
+    height: 41rem;
+  }
+
+  .habitrecord__table-habitname {
+    display: flex;
+    width: 15.2rem;
+    height: 6.4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .habitrecord__table-habitsuccess {
+    width: 6.4rem;
+    height: 6.4rem;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .habitrecord {
+    width: 31.2rem;
+    height: 45rem;
+    padding: 1.6rem;
+    /* 임시 히든 처리 */
+    overflow: hidden;
+  }
+
+  .habitrecord__table {
+    width: 56rem;
+    height: 41rem;
+    margin-top: 2.4rem;
+  }
+
+  .habitrecord__title-day {
+    width: 6.4rem;
+    text-align: center;
+  }
+
+  .habitrecord__title-days {
+    width: 56rem;
+    justify-content: end;
+    font-size: 1.4rem;
+  }
+
+  .habitrecord__table-value-frame {
+    width: 57.6rem;
+  }
+
+  .habitrecord__empty-message {
+    width: 56rem;
+    height: 41rem;
+  }
+
+  .habitrecord__table-habitname {
+    display: flex;
+    width: 12.2rem;
+    height: 6.4rem;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+    font-size: 1.4rem;
+  }
+
+  .habitrecord__table-habitsuccess {
+    width: 6.4rem;
+    height: 6.4rem;
+  }
 }

@@ -104,7 +104,7 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
     };
 
     const extraEmojiBtn = (
-      <div className="emojis__anchor">
+      <div className="emojis__btn-extra-anchor">
         {emojis.length > 3 ? (
           <div className={extraBtnClass} onClick={handleExtraEmojiBtn}>
             <Plus /> {emojis.length - 3}..
@@ -115,12 +115,13 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
         ) : undefined}
       </div>
     );
+
     return extraEmojiBtn;
   };
 
   const addEmojiBtn = () => {
     const addEmojiBtn = (
-      <div className="emojis__anchor">
+      <div className="emojis__btn-add-anchor">
         <svg className="emojis__btn-add" onClick={handleAddEmoji} />
         {isPickerOpen && (
           <div className="emojis__picker">
@@ -143,8 +144,10 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
   return (
     <div className="flex-row emojis">
       <div className="flex-row font20 emojis__boxes">{emojiBoxes()}</div>
-      {showExtraEmojisBtn ? extraEmojiBtn() : undefined}
-      {showAddEmojiBtn ? addEmojiBtn() : undefined}
+      <div className="flex-row font20 emojis__gp-btn">
+        {showExtraEmojisBtn ? extraEmojiBtn() : undefined}
+        {showAddEmojiBtn ? addEmojiBtn() : undefined}
+      </div>
     </div>
   );
 }

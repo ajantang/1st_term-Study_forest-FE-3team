@@ -1,5 +1,4 @@
 .btn-today {
-  /* width: 14.4rem; */
   height: 4.8rem;
   padding-left: 2.4rem;
   padding-right: 1.6rem;
@@ -12,4 +11,15 @@
   color: var(--gray);
   background-color: white;
   cursor: pointer;
+  gap: 0.4rem;
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .btn-today {
+    height: 4rem;
+    padding-left: 1rem;
+    padding-right: 0.6rem;
+    text-wrap: nowrap;
+  }
 }

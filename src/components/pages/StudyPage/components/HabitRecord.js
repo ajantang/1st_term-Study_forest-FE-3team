@@ -75,7 +75,7 @@ function HabitWeekRecord({
 
   return (
     <div className="flex-row">
-      <div className="habitrecord__table-habitname">{habitName}</div>
+      <div className="bold habitrecord__table-habitname">{habitName}</div>
       <div className="flex-row habitrecord__table-habitsuccesses">
         {weekRecord}
       </div>
