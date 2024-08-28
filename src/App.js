@@ -7,6 +7,7 @@ import CreateStudyPage from "./components/pages/CreateStudyPage/CreateStudyPage"
 import StudyPage from "./components/pages/StudyPage/StudyPage";
 import TodatHabitPage from "./components/pages/TodayHabitPage/TodayHabitPage";
 import TodaysFocusPage from "./components/pages/TodaysFocusPage/TodaysFocusPage";
+import PrivateRoute from "../src/utils/PrivateRoute";
 
 function App() {
   return (
@@ -16,14 +17,16 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="create" element={<CreateStudyPage />} />
           <Route path="study/:studyId" element={<StudyPage />} />
-          <Route
-            path="study/:studyId/todayHabit"
-            element={<TodatHabitPage />}
-          />
+          <Route element={<PrivateRoute />}>
+            <Route
+              path="study/:studyId/todayHabit"
+              element={<TodatHabitPage />}
+            />
             <Route
               path="study/:studyId/todaysFocus"
               element={<TodaysFocusPage />}
             />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
