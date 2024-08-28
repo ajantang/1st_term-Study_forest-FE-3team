@@ -1,5 +1,5 @@
 import "./StudyPoint.css";
-import { ReactComponent as PointMark } from "../../../../assets/images/ic_point.svg";
+import { ReactComponent as PointMark } from "../../assets/images/ic_point.svg";
 
 export function StudyPoint({ point }) {
   const icSize = "1.9rem";
