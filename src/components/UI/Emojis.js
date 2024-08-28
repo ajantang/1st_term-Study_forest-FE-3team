@@ -90,7 +90,6 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
     let extraEmojis = undefined;
 
     if (emojis.length > 3) {
-      console.log("extraEmojis");
       extraEmojis = emojis.slice(3).map((emoji, index) => {
         return (
           <Emoji
