@@ -113,6 +113,7 @@
 .restart {
   background-color: var(--dark-sea-green);
   background-image: var(--polygon__icon);
+  background-position: 7.5rem;
 }
 
 .stop {
@@ -134,7 +135,7 @@
 }
 
 /* Tablet */
-@media (min-width: 744px) and (max-width:1023px){ 
+@media (min-width: 744px) and (max-width:1199px){ 
   .timer {
     width: 59.3rem;
     font-size: 12rem;
@@ -148,7 +149,7 @@
 } 
 
 /* mobile */ 
-@media all and (max-width:479px) {
+@media  (min-width: 375px) and (max-width: 743px) {
   .timer {
     width: 28rem;
     font-size: 8rem;
@@ -157,7 +158,7 @@
   
   .timer__input {
     height: 8rem;
-    width: 10.0rem;
+    width: 11.0rem;
     font-size: 8rem;
   }
   
@@ -189,5 +190,9 @@
     width: 20.2rem;
     height: 4.5rem;
     font-size: 1.4rem;
+  }
+
+  .restart {
+    background-position: 1.5rem;
   }
 }
