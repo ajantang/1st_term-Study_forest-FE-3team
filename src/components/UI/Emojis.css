@@ -21,8 +21,14 @@
 }
 
 .emojis {
+  display: flex;
+  flex-direction: row;
   /* width: 24rem; */
   height: 3.1rem;
+}
+
+.emojis__btn-extra-anchor {
+  position: relative;
 }
 
 .emojis__btn-extra {
@@ -74,12 +80,41 @@
   background-image: url("../../assets/images/btn_add_emoji.svg");
 }
 
-.emojis__anchor {
+.emojis__btn-add-anchor {
   position: relative;
 }
 
 .emojis__picker {
   position: absolute;
   top: 110%;
-  left: 0;
+}
+
+/* ===== PC / Tablet-width : 744px ~ ====== */
+@media (min-width: 744px) {
+  .emojis__picker {
+    left: 0;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .emojis__btn-add {
+    margin-left: 0.4rem;
+    width: 3.1rem;
+    height: 100%;
+    background-image: url("../../assets/images/btn_add_emoji_s.svg");
+  }
+
+  .emojis__btn-add-anchor {
+    position: relative;
+  }
+
+  .emojis__picker {
+    right: -55%;
+  }
+
+  .emojis__gp-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
