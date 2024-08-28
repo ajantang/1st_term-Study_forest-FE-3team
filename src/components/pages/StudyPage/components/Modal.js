@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./Modal.css";
 
@@ -28,7 +28,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     afterGotoConcentrationModalPass,
   ];
 
-  let studyId = useContext(studyIdContext);
+  // let studyId = useContext(studyIdContext);
+  const { studyId } = useParams();
 
   const buttonClass = [
     "modal__btn-confirm",
@@ -55,14 +56,14 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     alert("수정 페이지로 이동 로직 추가 예정");
   }
 
-  function afterGotoHabitModalPass() {
+   function afterGotoHabitModalPass() {
     const path = `/study/${studyId}/todayHabit`;
-    navigate(path);
+    navigate(path,{ state: 'habit' });
   }
 
   function afterGotoConcentrationModalPass() {
     const path = `/study/${studyId}/todaysFocus`;
-    navigate(path);
+    navigate(path, { state: 'focus' });
   }
 
   const initModal = () => {

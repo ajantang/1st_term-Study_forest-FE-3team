@@ -218,8 +218,6 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
       await setStudyInfo(studyId, point);
     };
 
-    console.log(totalPoint)
-
     updateinfo(studyId, totalPoint);
   }, [totalPoint]);
 
