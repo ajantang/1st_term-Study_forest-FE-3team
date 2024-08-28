@@ -13,7 +13,7 @@ export function Emoji({ emojiCode, emojiCount }) {
   const parsedEmojiCode = castedEmojiCode
     .split("-")
     .map((hex) => parseInt(hex, 16));
-  const emoji = String.fromCodePoint(parsedEmojiCode);
+  const emoji = String.fromCodePoint(...parsedEmojiCode);
 
   if (emojiCount > 99) {
     emojiCount = "99+";
