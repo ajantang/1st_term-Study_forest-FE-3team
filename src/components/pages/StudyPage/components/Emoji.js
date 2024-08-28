@@ -1,7 +1,6 @@
 import { useState } from "react";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-
 import "./emoji.css";
 
 export function Emoji() {

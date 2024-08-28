@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
 import { gethabitList } from "../../../../api/api";
 import HabitsListBody from "./HabitsListBody";
-<<<<<<< HEAD
 import "./HabitsList.css";
 
 function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
   const [list, setList] = useState([]);     // 서버에서 받아온 리스트 저장
   const [first, setFirst] = useState(true); // 습관이 없을 시 무한 랜더 방지
-=======
-
-function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
-  const [list, setList] = useState([]);
->>>>>>> develop
 
   useEffect(() => {
     // API 호출 함수
@@ -20,7 +14,6 @@ function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
       setList(data.habits);
     };
 
-<<<<<<< HEAD
     if (first) {
       // 첫 렌더링 시
       getList();
@@ -65,37 +58,6 @@ function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
           </ol>
         )}
       </div>
-=======
-    if (!list[0]) {
-      // 첫 렌더링 시
-      getList();
-    } else if (pageRender) {
-      getList();
-      setPageRender(false);
-    }
-  }, [studyId, list, pageRender, setPageRender]);
-
-  return (
-    <div>
-      <div>
-        <p>오늘의 습관</p>
-        <p onClick={patchList}>목록 수정</p>
-      </div>
-      {!list[0] && (
-        <div>아직 습관이 없어요 목록 수정을 눌러 습관을 생성해보세요</div>
-      )}
-      {list[0] && (
-        <ol>
-          {list.map((habit) => {
-            return (
-              <li key={habit.id}>
-                <HabitsListBody habit={habit} />
-              </li>
-            );
-          })}
-        </ol>
-      )}
->>>>>>> develop
     </div>
   );
 }

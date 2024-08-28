@@ -1,27 +1,9 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-import axios from "axios";
-
-import "./modal.css";
-
-import { studyIdContext } from "./StudyBody";
-import { API_ADDRESS } from "../../../../constants/global";
-
-const instance = axios.create({
-  baseURL: API_ADDRESS,
-  header: {
-    "Content-Type": "application/json",
-  },
-});
-=======
-
 import "./Modal.css";
-
 import { Loading } from "../../../UI/Loading";
 import { studyIdContext } from "./StudyBody";
 import { authStudyPassword, deleteStudyInfo } from "../../../../api/api";
->>>>>>> develop
 
 export function Modal({ studyName, isOpen, onClose, modalType }) {
   const [inputValue, setInputValue] = useState("");
@@ -32,11 +14,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   const [toggleVisibleClass, setToggleVisibleClass] = useState(
     "modal__password-input-visible-off"
   );
-<<<<<<< HEAD
-=======
-  const [loading, setLoading] = useState(false);
 
->>>>>>> develop
+  const [loading, setLoading] = useState(false);
   const dialogRef = useRef(null);
   const navigate = useNavigate();
 
@@ -58,18 +37,6 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
 
   /** 스터디 삭제 modal 창 통과 후 로직 : DELETE API 사용 & 홈페이지로 이동 */
   function afterDeleteStudyModalPass() {
-<<<<<<< HEAD
-    const path = "/study";
-
-    instance
-      .delete(path)
-      .then((res) => {
-        if (res.status === 204) {
-          navigate("/");
-        }
-      })
-      .catch((err) => alert(err.name));
-=======
     deleteStudyInfo(studyId)
       .then((status) => {
         if (status === 204) {
@@ -80,7 +47,6 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
         /* 에러 처리 : 기획 필요 */
       })
       .finally(/* 실패 후 처리 : 기획 필요 */);
->>>>>>> develop
   }
 
   function afterEditStudyModalPass() {
@@ -88,12 +54,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   }
 
   function afterGotoHabitModalPass() {
-<<<<<<< HEAD
-    navigate(`/study/${studyId}/todayHabit`);
-=======
     const path = `/study/${studyId}/todayHabit`;
     navigate(path);
->>>>>>> develop
   }
 
   function afterGotoConcentrationModalPass() {
@@ -112,17 +74,6 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
       setIsPasswordLengWWarnOpen(true);
       return;
     }
-
-<<<<<<< HEAD
-    const path = `/study/${studyId}/auth`;
-    instance.post(path, { password: inputValue }).then((res) => {
-      if (res.data.result === true) {
-        afterModalPass[modalType]();
-      } else {
-        setIsIncorrectPasswordWarnOpen(true);
-      }
-    });
-=======
     setLoading(true);
 
     authStudyPassword(studyId, inputValue)
@@ -144,7 +95,6 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
       .finally(() => {
         setLoading(false);
       });
->>>>>>> develop
   };
 
   const onInputChange = (e) => {
@@ -235,10 +185,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
       </div>
       {incorrectPasswordWarn()}
       {wrongPasswordLengthWarn()}
-<<<<<<< HEAD
-=======
       {loading ? <Loading /> : undefined}
->>>>>>> develop
     </dialog>
   );
 }

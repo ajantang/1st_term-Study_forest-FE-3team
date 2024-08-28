@@ -9,7 +9,3 @@ export function Button({ onClick, children, className }) {
 }
 
 export default Button;
-<<<<<<< HEAD
-=======
-
->>>>>>> develop

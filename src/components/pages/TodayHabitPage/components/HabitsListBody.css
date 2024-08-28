@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .habitsList__list-li {
   width: 40rem;
   height: 5.4rem;
@@ -16,12 +15,4 @@
 .habitsListBody--false {
   background-color: var(--bright-gray);
   color: #818181;
-=======
-.habitsListBodylist--true {
-  color: blue;
-}
-
-.habitsListBodylist--false {
-  color: black;
->>>>>>> develop
 }
