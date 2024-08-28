@@ -1,0 +1,71 @@
+.habitrecord {
+  width: 112rem;
+  height: 51.1rem;
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: #dddddd;
+  border-radius: 2em;
+  margin: 0 auto;
+  margin-top: 3.6rem;
+  padding: 2.4rem;
+}
+
+.habitrecord__table {
+  width: 107.2rem;
+  height: 41rem;
+  margin-top: 2.4rem;
+}
+
+.habitrecord__title-day {
+  width: 11.8rem;
+  text-align: center;
+}
+
+.habitrecord__title-days {
+  width: 107.2rem;
+  justify-content: end;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--gray);
+  line-height: 1.44444em;
+}
+
+.habitrecord__table-value-frame {
+  width: 108.8rem;
+  height: 38.4rem;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.habitrecord__empty-message {
+  width: 108.8rem;
+  height: 38.4rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray);
+}
+
+.habitrecord__table-habitname {
+  display: flex;
+  width: 24.6rem;
+  height: 6.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  justify-content: end;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--raisin-black);
+}
+
+.habitrecord__table-habitsuccess {
+  width: 11.8rem;
+  height: 6.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.habitrecord__table-habitsuccesses {
+  justify-content: end;
+}

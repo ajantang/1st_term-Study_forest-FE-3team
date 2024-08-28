@@ -1,22 +1,36 @@
+<<<<<<< HEAD
 import axios from "axios";
 import { useState, useEffect, createContext } from "react";
 
 import Emoji from "./Emoji";
 import StudyPoint from "./StudyPoint";
+=======
+import { useState, useEffect, createContext } from "react";
+
+import Emojis from "../../../UI/Emojis";
+import StudyPoint from "../../../UI/StudyPoint";
+>>>>>>> develop
 import HabitRecord from "./HabitRecord";
 import Modal from "./Modal";
 
 import TodayButton from "../../../UI/TodayButton";
 
+<<<<<<< HEAD
 import "./studybody.css";
 
 import {
   API_ADDRESS,
+=======
+import "./StudyBody.css";
+
+import {
+>>>>>>> develop
   MODAL_CONFIRM,
   MODAL_EDIT_STUDY,
   MODAL_GOTO_HABIT,
   MODAL_GOTO_CONCENTRATION,
 } from "../../../../constants/global";
+<<<<<<< HEAD
 
 const instance = axios.create({
   baseURL: API_ADDRESS,
@@ -26,6 +40,9 @@ const instance = axios.create({
 });
 
 const PATH = "/study";
+=======
+import { getStudyDetailInfo } from "../../../../api/api";
+>>>>>>> develop
 
 export const studyIdContext = createContext();
 
@@ -38,8 +55,11 @@ export function StudyBody({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState(-1);
 
+<<<<<<< HEAD
   const path = `${PATH}/${studyId}`;
 
+=======
+>>>>>>> develop
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
@@ -69,11 +89,23 @@ export function StudyBody({
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     instance.get(path).then((res) => {
       setStudyName(res.data.studyName);
       setDescription(res.data.description);
       setStudyPoint(res.data.point);
     });
+=======
+    getStudyDetailInfo(studyId)
+      .then((data) => {
+        setStudyName(data.studyName);
+        setDescription(data.description);
+        setStudyPoint(data.point);
+      })
+      .catch((err) => {
+        /* 에러 처리 : 기획 필요필요 */
+      });
+>>>>>>> develop
   });
 
   return (
@@ -82,7 +114,11 @@ export function StudyBody({
         <section className="study__section">
           <div className="study__content">
             <div className="flex-row study__topbar">
+<<<<<<< HEAD
               <Emoji />
+=======
+              <Emojis />
+>>>>>>> develop
               <div className="flex-row study__topbar-gp-btn">
                 <p
                   className="font16 medium study__topbar-btn"
@@ -111,6 +147,7 @@ export function StudyBody({
                 {studyName}
               </p>
               <div className="flex-row study__middlebar-gp-btn">
+<<<<<<< HEAD
                 {/* <button
                   className="font16 medium study__middlebar-btn"
                   onClick={handleGotoHabit}
@@ -124,6 +161,9 @@ export function StudyBody({
                 >
                   오늘의 집중
                 </button> */}
+=======
+                <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
+>>>>>>> develop
                 <TodayButton onClick={handleGotoConcentration}>
                   오늘의 집중
                 </TodayButton>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+<<<<<<< HEAD
 import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 import "./ListModalBody.css";
 
@@ -17,6 +18,14 @@ function ListModalPost({
   const [deleted, setDeleted] = useState(false); // 삭제 예정 시 프론트에서 지우기 위한 값
   const [checkLength0, setCheckLength0] = useState(false); // 문자 길이가 0일때 에러 메세지 공개 여부
   const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
+=======
+import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
+
+function ListModalPost({ habit, idx, postValues, setPostValues }) {
+  const [value, setValue] = useState(habit);
+  const [patchInput, setPatchInput] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+>>>>>>> develop
 
   //patch input 생성 함수
   const patchClick = () => {
@@ -26,6 +35,7 @@ function ListModalPost({
   // value와 input 값 일치 함수
   const changeValueHandler = (e) => {
     setValue(e.target.value);
+<<<<<<< HEAD
 
     // 키보드를 꾹 눌렀을 때를 위한 로직
     if (value.trim().length > 30) { // 문자 길이가 30을 넘을 때
@@ -42,10 +52,16 @@ function ListModalPost({
   };
 
   // postValues 배열 내 해당하는 습관 이름 수정 및 value값 검사 함수
+=======
+  };
+
+  // postValues 배열 내 해당하는 습관 이름 수정 함수
+>>>>>>> develop
   const changePostValuesHandler = () => {
     const postValue = [...postValues];
     postValue[idx] = value;
     setPostValues(postValue);
+<<<<<<< HEAD
 
     if (value.trim().length === 0) { // 문자 길이가 0일 때
       setCheckLength0(true);
@@ -70,6 +86,8 @@ function ListModalPost({
       rockButtonPosts[idx] = false;
       setRockButtonPost(rockButtonPosts);
     }
+=======
+>>>>>>> develop
   };
 
   // 삭제 함수
@@ -77,6 +95,7 @@ function ListModalPost({
     const postValue = [...postValues];
     postValue[idx] = "";
     setPostValues(postValue);
+<<<<<<< HEAD
 
     setDeleted(true);
 
@@ -87,11 +106,15 @@ function ListModalPost({
     const rockButtonPosts = [...rockButtonPost];
     rockButtonPosts[idx] = false;
     setRockButtonPost(rockButtonPosts);
+=======
+    setDeleted(true);
+>>>>>>> develop
   };
 
   return (
     <>
       {deleted || (
+<<<<<<< HEAD
         <div className="ListModalBody__list-body flex-row border-box">
           {!patchInput && (
             <div
@@ -104,11 +127,18 @@ function ListModalPost({
           {patchInput && (
             <input
               className="ListModalBody__text ListModalBody__text-align font16 bold border-box"
+=======
+        <div>
+          {!patchInput && <div onClick={patchClick}>{habit}</div>}
+          {patchInput && (
+            <input
+>>>>>>> develop
               value={value}
               onChange={changeValueHandler}
               onKeyUp={changePostValuesHandler}
             />
           )}
+<<<<<<< HEAD
           {checkLength0 && (
             <p className="ListModalBody__text-check font12 semi-bold">
               값을 입력해주세요
@@ -125,6 +155,9 @@ function ListModalPost({
             src={trashCanImg}
             alt="쓰레기통"
           />
+=======
+          <img onClick={deleteHandler} src={trashCanImg} alt="쓰레기통" />
+>>>>>>> develop
         </div>
       )}
     </>
