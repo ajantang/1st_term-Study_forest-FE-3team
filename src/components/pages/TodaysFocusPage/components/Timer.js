@@ -10,7 +10,7 @@ const S = "00";
 
 const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   var initPoint;
-  if(initialPoint){
+  if(initialPoint || initialPoint === 0){
     initPoint = initialPoint;
   }
   const [countTime, setCountTime] = useState(T);  // 입력한 시간이 카운트다운되는 숫자
@@ -214,6 +214,8 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
     const updateinfo = async (studyId, point) => {
       await setStudyInfo(studyId, point);
     };
+
+    console.log(totalPoint)
 
     updateinfo(studyId, totalPoint);
   }, [totalPoint]);
