@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
+import { MODAL_GOTO_HABIT, MODAL_GOTO_CONCENTRATION } from "./constants/global";
 import "./styles/global.css";
 import Main from "./main";
 // import HomePage from "./components/pages/HomePage/HomePage";
@@ -21,7 +22,7 @@ function App() {
           <Route
             path="/study/:studyId/todayHabit"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute modalType={MODAL_GOTO_HABIT}>
                 <p>study/:studyId/todayHabit</p>
               </ProtectedRoute>
             }
@@ -29,7 +30,7 @@ function App() {
           <Route
             path="/study/:studyId/todaysFocus"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute modalType={MODAL_GOTO_CONCENTRATION}>
                 <p>study/:studyId/todaysFocus</p>
               </ProtectedRoute>
             }
