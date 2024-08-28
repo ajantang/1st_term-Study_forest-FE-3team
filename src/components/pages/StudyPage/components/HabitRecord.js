@@ -156,7 +156,7 @@ export function HabitRecord({ studyId }) {
 
   return (
     <div className="study__habits habitrecord">
-      <div className="font24 extra-bold">습관 기록표</div>
+      <div className="extra-bold habitrecord__title">습관 기록표</div>
       <div className="habitrecord__table">
         <Dates />
         <HabitWeekRecords totalCount={totalCount} habits={habits} />

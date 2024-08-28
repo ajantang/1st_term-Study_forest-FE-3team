@@ -49,6 +49,8 @@
 }
 
 .study__middlebar-studyname {
+  font-size: 3.2rem;
+  line-height: 1.19343em;
   color: var(--arsenic);
 }
 
@@ -141,12 +143,14 @@
   .study__topbar {
     width: 31.2rem;
     height: 7rem;
-    margin-top: 2.4rem;
+    margin-top: 1.6rem;
     flex-wrap: wrap;
+    align-content: space-between;
   }
 
   .study__topbar-emoji-frame {
     width: 31.2rem;
+    height: 3.1rem;
     order: 2;
   }
 
@@ -160,13 +164,17 @@
 
   .study__topbar-btn {
     font-size: 1.2rem;
+    line-height: 1.19333em;
   }
 
   .study__topbar-btn-delete {
     font-size: 1.2rem;
+    line-height: 1.19333em;
   }
 
   .study__topbar-gp-btn {
+    height: 2.5rem;
+    align-items: center;
     gap: 0.8rem;
   }
 
@@ -175,6 +183,11 @@
     height: 8.5rem;
     flex-wrap: wrap;
     align-content: space-between;
+  }
+
+  .study__middlebar-studyname {
+    font-size: 2.4rem;
+    line-height: 1.19333em;
   }
 
   .study__middlebar-gp-btn {

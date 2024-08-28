@@ -70,6 +70,11 @@
   justify-content: end;
 }
 
+.habitrecord__title {
+  font-size: 2.4rem;
+  line-height: 1.19333em;
+}
+
 /* ===== Tablet - width : 744px ~ 1199px ===== */
 @media (min-width: 744px) and (max-width: 1199px) {
   .habitrecord {
@@ -132,7 +137,7 @@
   .habitrecord__table {
     width: 56rem;
     height: 41rem;
-    margin-top: 2.4rem;
+    margin-top: 0.3rem;
   }
 
   .habitrecord__title-day {
@@ -144,6 +149,7 @@
     width: 56rem;
     justify-content: end;
     font-size: 1.4rem;
+    line-height: 1.19357em;
   }
 
   .habitrecord__table-value-frame {
@@ -156,16 +162,23 @@
   }
 
   .habitrecord__table-habitname {
+    box-sizing: content-box;
     display: flex;
     width: 12.2rem;
     height: 6.4rem;
     padding-left: 1.6rem;
     padding-right: 1.6rem;
     font-size: 1.4rem;
+    line-height: 1.19357em;
   }
 
   .habitrecord__table-habitsuccess {
     width: 6.4rem;
     height: 6.4rem;
+  }
+
+  .habitrecord__title {
+    font-size: 1.8rem;
+    line-height: 1.19333em;
   }
 }

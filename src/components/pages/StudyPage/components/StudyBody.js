@@ -103,7 +103,7 @@ export function StudyBody({
               </div>
             </div>
             <div className="flex-row study__middlebar">
-              <p className="font32 extra-bold study__middlebar-studyname">
+              <p className="extra-bold study__middlebar-studyname">
                 {studyName}
               </p>
               <div className="flex-row study__middlebar-gp-btn">
