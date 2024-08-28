@@ -16,7 +16,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const [value, setValue] = useState("");
   const [postValues, setPostValues] = useState([]);
   const [reRender, setReRender] = useState(false);
-  const [rockButton, setRockButton] = useState(false);
+  const [rockButton, setRockButton] = useState([]);
 
   const [olListHeight, setOlListHeight] = useState(
     "ListModal__list-ol list__ol-572 flex-col border-box"
@@ -93,8 +93,9 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   // 수정 완료 함수
   const patchSuccessHandler = async () => {
     const filterValus = postValues.filter((habit) => habit !== "");
+    const filteRockButton = rockButton.filter((boolin) => boolin !== false)
 
-    if (!rockButton) {
+    if (!filteRockButton[0]) {
       if (filterValus[0]) {
         patchList(); // 모달창 닫기
 
@@ -231,6 +232,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
                       habit={habit}
                       idx={index}
                       setDeletedIdx={setDeletedIdx}
+                      rockButton={rockButton}
                       setRockButton={setRockButton}
                       listClass={listClass}
                       setListClass={setListClass}
@@ -247,6 +249,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
                       idx={idx}
                       postValues={postValues}
                       setPostValues={setPostValues}
+                      rockButton={rockButton}
                       setRockButton={setRockButton}
                       postClass={postClass}
                       setPostClass={setPostClass}

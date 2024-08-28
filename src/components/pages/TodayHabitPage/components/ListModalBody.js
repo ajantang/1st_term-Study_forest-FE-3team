@@ -4,12 +4,23 @@ import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 import "./ListModalBody.css";
 
 const ListModalBody = forwardRef(
-  ({ habit, idx, setDeletedIdx, listClass, setListClass, setRockButton }, ref) => {
+  (
+    {
+      habit,
+      idx,
+      setDeletedIdx,
+      listClass,
+      setListClass,
+      rockButton,
+      setRockButton,
+    },
+    ref
+  ) => {
     const [value, setValue] = useState({ name: habit.name });
     const [patchInput, setPatchInput] = useState(false);
     const [hideDelete, setHideDelete] = useState(false);
-    const [checkLength0, setCheckLength0] = useState(false)
-    const [checkLength30, setCheckLength30] = useState(false)
+    const [checkLength0, setCheckLength0] = useState(false);
+    const [checkLength30, setCheckLength30] = useState(false);
     const habitId = habit.id;
 
     // 삭제 함수
@@ -19,6 +30,9 @@ const ListModalBody = forwardRef(
       const ListClasses = [...listClass];
       ListClasses[idx] = "li-delete";
       setListClass(ListClasses);
+      const rockButtons = [...rockButton];
+      rockButtons[idx] = false;
+      setRockButton(rockButtons);
     };
 
     //patch input 생성 함수
@@ -30,33 +44,41 @@ const ListModalBody = forwardRef(
     const changValueHandler = (e) => {
       setValue({ name: e.target.value });
 
-      if(value.name.trim().length === 0) {
-        setCheckLength0(true)
-        setCheckLength30(false)
+      if (value.name.trim().length === 0) {
+        setCheckLength0(true);
+        setCheckLength30(false);
       } else if (value.name.trim().length > 30) {
-        setCheckLength30(true)
-        setRockButton(true)
+        setCheckLength30(true);
+        const rockButtons = [...rockButton];
+        rockButtons[idx] = true;
+        setRockButton(rockButtons);
       } else {
-        setCheckLength0(false)
-        setCheckLength30(false)
+        setCheckLength0(false);
+        setCheckLength30(false);
       }
     };
 
     // value값 검사 함수
     const checkValueHandler = () => {
-      if(value.name.trim().length === 0) {
-        setCheckLength0(true)
-        setCheckLength30(false)
-        setRockButton(true)
+      if (value.name.trim().length === 0) {
+        setCheckLength0(true);
+        setCheckLength30(false);
+        const rockButtons = [...rockButton];
+        rockButtons[idx] = true;
+        setRockButton(rockButtons);
       } else if (value.name.trim().length > 30) {
-        setCheckLength30(true)
-        setRockButton(true)
+        setCheckLength30(true);
+        const rockButtons = [...rockButton];
+        rockButtons[idx] = true;
+        setRockButton(rockButtons);
       } else {
-        setCheckLength0(false)
-        setCheckLength30(false)
-        setRockButton(false)
+        setCheckLength0(false);
+        setCheckLength30(false);
+        const rockButtons = [...rockButton];
+        rockButtons[idx] = false;
+        setRockButton(rockButtons);
       }
-    }
+    };
 
     // 상위 컴포에서 쓸 함수(PATCH API)
     useImperativeHandle(ref, () => ({
@@ -90,8 +112,16 @@ const ListModalBody = forwardRef(
                 onKeyUp={checkValueHandler}
               />
             )}
-            {checkLength0 && (<p className="ListModalBody__text-check font12 semi-bold">값을 입력해주세요</p>)}
-            {checkLength30 && (<p className="ListModalBody__text-check font12 semi-bold">30자 이내로 입력해주세요</p>)}
+            {checkLength0 && (
+              <p className="ListModalBody__text-check font12 semi-bold">
+                값을 입력해주세요
+              </p>
+            )}
+            {checkLength30 && (
+              <p className="ListModalBody__text-check font12 semi-bold">
+                30자 이내로 입력해주세요
+              </p>
+            )}
             <img
               className="ListModalBody__img-trashCan"
               onClick={deleteHabitHandler}
