@@ -57,8 +57,6 @@ function HabitWeekRecord({
 }) {
   stickerType = (stickerType % 18) + 1;
 
-  console.log(successIndices);
-
   const weekRecord = [
     <HabitMark key="0" type="0" />,
     <HabitMark key="1" type="0" />,

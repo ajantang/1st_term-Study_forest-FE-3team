@@ -9,7 +9,10 @@ import { ReactComponent as Plus } from "../../assets/images/ic_plus.svg";
 import "./Emojis.css";
 
 export function Emoji({ emojiCode, emojiCount }) {
-  const parsedEmojiCode = parseInt(emojiCode, 16);
+  const castedEmojiCode = emojiCode.toString();
+  const parsedEmojiCode = castedEmojiCode
+    .split("-")
+    .map((hex) => parseInt(hex, 16));
   const emoji = String.fromCodePoint(parsedEmojiCode);
 
   if (emojiCount > 99) {
@@ -59,7 +62,7 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
   const emojiBoxes = () => {
     if (emojis.length > 3) {
       const topThreeEmojis = emojis.slice(0, 3);
-      const emojiBoxes = topThreeEmojis.map((emoji, index) => {
+      const emojiBoxesTagInfo = topThreeEmojis.map((emoji, index) => {
         return (
           <Emoji
             key={index}
@@ -68,10 +71,10 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
           />
         );
       });
-      return emojiBoxes;
+      return emojiBoxesTagInfo;
     }
 
-    const emojiBoxes = emojis.map((emoji, index) => {
+    const emojiBoxesTagInfo = emojis.map((emoji, index) => {
       return (
         <Emoji
           key={index}
@@ -80,19 +83,24 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
         />
       );
     });
-    return emojiBoxes;
+    return emojiBoxesTagInfo;
   };
 
   const extraEmojiBtn = () => {
-    const extraEmojis = emojis.slice(3).map((emoji, index) => {
-      return (
-        <Emoji
-          key={index}
-          emojiCode={emoji.emojiCode}
-          emojiCount={emoji.count}
-        />
-      );
-    });
+    let extraEmojis = undefined;
+
+    if (emojis.length > 3) {
+      console.log("extraEmojis");
+      extraEmojis = emojis.slice(3).map((emoji, index) => {
+        return (
+          <Emoji
+            key={index}
+            emojiCode={emoji.emojiCode}
+            emojiCount={emoji.count}
+          />
+        );
+      });
+    }
 
     const handleExtraEmojiBtn = () => {
       setIsExtraOpen(!isExtraOpne);
@@ -139,7 +147,7 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true }) {
         setEmojis([...data.Emojis]);
       })
       .catch((err) => {});
-  }, [studyId]);
+  }, []);
 
   return (
     <div className="flex-row emojis">
