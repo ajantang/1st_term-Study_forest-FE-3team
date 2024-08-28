@@ -8,7 +8,7 @@ import Modal from "./Modal";
 
 import TodayButton from "../../../UI/TodayButton";
 
-import "./studybody.css";
+import "./StudyBody.css";
 
 import {
   API_ADDRESS,

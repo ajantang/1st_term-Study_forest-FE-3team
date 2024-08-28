@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-import "./habitrecord.css";
+import "./HabitRecord.css";
 
 import { API_ADDRESS } from "../../../../constants/global";
 import { TIME_GAP_OF_DB } from "../../../../constants/global";
