@@ -9,32 +9,33 @@ function ListModalPost({
   setPostValues,
   postClass,
   setPostClass,
-  rockButton,
-  setRockButton,
+  rockButtonPost,
+  setRockButtonPost,
 }) {
-  const [value, setValue] = useState(habit);
-  const [patchInput, setPatchInput] = useState(false);
-  const [deleted, setDeleted] = useState(false);
-  const [checkLength0, setCheckLength0] = useState(false);
-  const [checkLength30, setCheckLength30] = useState(false);
+  const [value, setValue] = useState(habit); // 생성할 습관 이름 저장
+  const [patchInput, setPatchInput] = useState(false); // 습관 수정 input 공개 여부
+  const [deleted, setDeleted] = useState(false); // 삭제 예정 시 프론트에서 지우기 위한 값
+  const [checkLength0, setCheckLength0] = useState(false); // 문자 길이가 0일때 에러 메세지 공개 여부
+  const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
 
   //patch input 생성 함수
   const patchClick = () => {
     setPatchInput(true);
   };
 
+  // value와 input 값 일치 함수
   const changeValueHandler = (e) => {
     setValue(e.target.value);
 
-    if (value.trim().length === 0) {
-      setCheckLength0(true);
-      setCheckLength30(false);
-    } else if (value.trim().length > 30) {
+    // 키보드를 꾹 눌렀을 때를 위한 로직
+    if (value.trim().length > 30) { // 문자 길이가 30을 넘을 때
       setCheckLength30(true);
-      const rockButtons = [...rockButton];
-      rockButtons[idx] = true;
-      setRockButton(rockButtons);
-    } else {
+
+      const rockButtonPosts = [...rockButtonPost];
+      rockButtonPosts[idx] = true;
+      setRockButtonPost(rockButtonPosts);
+
+    } else { // 문자 길이가 문제 없을때
       setCheckLength0(false);
       setCheckLength30(false);
     }
@@ -46,23 +47,28 @@ function ListModalPost({
     postValue[idx] = value;
     setPostValues(postValue);
 
-    if (value.trim().length === 0) {
+    if (value.trim().length === 0) { // 문자 길이가 0일 때
       setCheckLength0(true);
       setCheckLength30(false);
-      const rockButtons = [...rockButton];
-      rockButtons[idx] = true;
-      setRockButton(rockButtons);
-    } else if (value.trim().length > 30) {
+
+      const rockButtonPosts = [...rockButtonPost];
+      rockButtonPosts[idx] = true;
+      setRockButtonPost(rockButtonPosts);
+
+    } else if (value.trim().length > 30) { // 문자 길이가 30을 넘을 때
       setCheckLength30(true);
-      const rockButtons = [...rockButton];
-      rockButtons[idx] = true;
-      setRockButton(rockButtons);
-    } else {
+
+      const rockButtonPosts = [...rockButtonPost];
+      rockButtonPosts[idx] = true;
+      setRockButtonPost(rockButtonPosts);
+
+    } else { // 문자 길이가 문제 없을때
       setCheckLength0(false);
       setCheckLength30(false);
-      const rockButtons = [...rockButton];
-      rockButtons[idx] = false;
-      setRockButton(rockButtons);
+
+      const rockButtonPosts = [...rockButtonPost];
+      rockButtonPosts[idx] = false;
+      setRockButtonPost(rockButtonPosts);
     }
   };
 
@@ -71,13 +77,16 @@ function ListModalPost({
     const postValue = [...postValues];
     postValue[idx] = "";
     setPostValues(postValue);
+
     setDeleted(true);
+
     const PostClasses = [...postClass];
     PostClasses[idx] = "li-delete";
     setPostClass(PostClasses);
-    const rockButtons = [...rockButton];
-    rockButtons[idx] = false;
-    setRockButton(rockButtons);
+
+    const rockButtonPosts = [...rockButtonPost];
+    rockButtonPosts[idx] = false;
+    setRockButtonPost(rockButtonPosts);
   };
 
   return (

@@ -98,6 +98,7 @@
 
 .li-use{
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 
 .li-delete{

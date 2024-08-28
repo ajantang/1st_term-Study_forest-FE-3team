@@ -4,8 +4,8 @@ import HabitsListBody from "./HabitsListBody";
 import "./HabitsList.css";
 
 function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
-  const [list, setList] = useState([]);
-  const [first, setFirst] = useState(true);
+  const [list, setList] = useState([]);     // 서버에서 받아온 리스트 저장
+  const [first, setFirst] = useState(true); // 습관이 없을 시 무한 랜더 방지
 
   useEffect(() => {
     // API 호출 함수
@@ -19,6 +19,7 @@ function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
       getList();
       setFirst(false);
     } else if (pageRender) {
+      // 모달창에서 변경사항이 있을때
       getList();
       setPageRender(false);
     }
