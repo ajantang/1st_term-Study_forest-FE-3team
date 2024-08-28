@@ -17,8 +17,7 @@ export const createStudy = async (nickname, studyName, description, background, 
     const res = await instance.post(path, data);
     return res.data;
   } catch (err) {
-    console.log(err);
-    return err.name;
+    alert('이미 사용중인 닉네임입니다');
   }
 };
 
@@ -56,11 +55,18 @@ export const getStudyDetailInfo = async (studyId) => {
 };
 
 /** /study/:id PATCH - 상세 스터디 수정 */
-export const setStudyInfo = async (studyId) => {
+export const setStudyInfo = async (studyId, nickname, studyName, description, background, point) => {
   const path = `/study/${studyId}`;
+  const data = {
+    ...(nickname && { nickname }),
+    ...(studyName && { studyName }),
+    ...(description && { description }),
+    ...(background && { background }),
+    ...(point && { point }),
+  };
 
   try {
-    const res = await instance.patch(path);
+    const res = await instance.patch(path, data);
     return res.data;
   } catch (err) {
     console.log(err);

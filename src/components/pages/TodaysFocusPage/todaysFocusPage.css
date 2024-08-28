@@ -1,217 +1,189 @@
-.frame {
-  padding: 40px;
-  gap: 10px;
+@scope (.content) {
+  :scope {
+    --points__icon: url('../../../assets/images/ic_point.svg');
+    /* --warninglight__icon: url("../../../assets/images/warninglight.svg");
+    --partypopper__icon: url("../../../assets/images/sparkler.svg"); */
+  }
+  * {
+    user-select: none;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+.content {
+  padding: 4rem;
+  gap: 1rem;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1248px;
+  width: 124.8rem;
   margin: 0 auto;
 }
 
-.contentframe {
-  gap: 24px;
-  height: 694px;
+.content__container {
+  gap: 2.4rem;
+  height: 69.4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.topframe {
-  height: 124px;
+.content__container__top {
+  height: 12.4rem;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 2.4rem;
 }
 
-.title {
-  width: 1168px;
-  height: 48px;
+.content__container__top__title {
+  width: 116.8rem;
+  height: 4.8rem;
   display: flex;
   justify-content: space-between;
-  font-size: 32px;
-  font-weight: 800;
 }
 
-.point {
-  width: 176px;
-  gap: 8px;
+.content__container__top__middle {
+  width: 17.6rem;
+  gap: 0.8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   white-space: nowrap;
   span {
-    font-weight: 400;
     text-align: left;
     color: var(--gray);
   }
 }
 
-.pointbox {
-  width: 116px;
-  height: 35px;
-  gap: 4px;
-  border-radius: 50px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+.content__container__top__middle__points {
+  width: 11.6rem;
+  height: 3.5rem;
+  gap: 0.4rem;
+  border-radius: 5rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  font-weight: 500;
   justify-content: center;
+  color: var(--arsenic);
 }
 
-.pointbox_icon {
-  width: 19px;
-  height: 19px;
-  background-image: url('../../../assets/images/ic_point.png');
+.content__container__top__middle__points__icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  background-image: var(--points__icon);
   background-size: cover;
 }
 
-.mainframe {
-  padding: 40px 24px;
-  gap: 10px;
-  border-radius: 20px;
-  border: 1px solid var(--gainsboro);
+.content__container__main {
+  padding: 4rem 2.4rem;
+  gap: 1rem;
+  border-radius: 2rem;
+  border: 0.1rem solid var(--gainsboro);
   display: flex;
 }
 
-.todaysfocus {
-  width: 1120px;
-  height: 465px;
+.content__container__main__top {
+  width: 112rem;
+  height: 46.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  span {
-    font-weight: 800;
-  }
 }
 
-.targettime {
-  width: 83px;
-  height: 31px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0.3);
-  line-height: 31px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.targettime__icon {
-  width: 19px;
-  height: 19px;
-  background-image: url('../../../assets/images/ic_timer.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.timer {
-  width: 1120px;
-  font-weight: 800;
-  display: flex;
-  justify-content: center;
-  span {
-    line-height: 100%;
-  }
-}
-
-.timer__input {
-  border: none;
-  height: 179px;
-  width: 200px;
-  font-weight: 800;
-  color: var(--arsenic);
-  text-align: center;
-}
-
-.vividred {
-  color: var(--vivid-red);
-}
-
-.gray {
-  color: var(--gray);
-}
-
-.timerbtns {
-  width: 509px;
-  height: 64px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.timerbtns__controlbtn {
-  width: 333px;
-  height: 60px;
-  font-size: 28px;
-  font-weight: 800;
-  color: white;
-  border: none;
-  border-radius: 50px;
-  background-color: #99c08e;
-  background-image: url('../../../assets/images/Polygon\ 2.png');
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: 78px;
-}
-
-.start {
-  background-color: var(--gray);
-}
-
-.nodisplay {
-  display: none;
-}
-
-.timerbtns__pausebtn {
-  width: 64px;
-  height: 64px;
-  border: none;
-  border-radius: 50px;
-  background-image: url('../../../assets/images/btn_pause.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.timerbtns__resetbtn {
-  width: 64px;
-  height: 64px;
-  border: none;
-  border-radius: 50px;
-  background-image: url('../../../assets/images/btn_restart.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.condition {
+.content__alert {
   position: absolute;
-  top: 993px;
+  top: 99.3rem;
 }
 
-.condition__alert {
-  width: 232px;
-  height: 47px;
-  border-radius: 12px;
-  line-height: 47px;
-  font-weight: 500;
-  background-repeat: no-repeat;
-  background-size: 19px;
-  background-position: 14px;
-  span {
-    margin-left: 40px;
+/* Tablet */
+@media (min-width: 744px) and (max-width: 1023px) {
+  .content {
+    padding: 2.4rem;
+    width: 64.8rem;
+  }
+
+  .content__container {
+    height: 67.8rem;
+  }
+
+  .content__container__top {
+    height: 12.8rem;
+  }
+
+  .content__container__top__title {
+    width: 64.8rem;
+  }
+
+  .content__container__top__middle {
+    width: 16.5rem;
+  }
+
+  .content__container__top__middle__points {
+    gap: 0.8rem;
+  }
+
+  .content__container__main {
+    padding: 4rem 2.4rem;
+    gap: 1rem;
+  }
+
+  .content__container__main__top {
+    width: 60rem;
+    height: 43rem;
+  }
+
+  .content__alert {
+    top: 95.5rem;
   }
 }
 
-.pause {
-  background-color: var(--piggy-pink);
-  color: var(--vivid-red);
-  background-image: url('../../../assets/images/warninglight.png');
-}
+/* mobile */
+@media all and (max-width: 479px) {
+  .content {
+    width: 31.2rem;
+    padding: 1.6rem;
+  }
 
-.points {
-  color: var(--fern-green);
-  background-color: var(--chinese-white);
-  background-image: url('../../../assets/images/getpoint.png');
+  .content__container {
+    height: 52.4rem;
+  }
+
+  .content__container__top {
+    height: 15.8rem;
+  }
+
+  .content__container__top__title {
+    width: 31.2rem;
+    height: 8.6rem;
+    font-size: 2.4rem;
+  }
+
+  .content__container__top__middle {
+    span {
+      font-size: 1.6rem;
+    }
+  }
+
+  .content__container__top__middle__points {
+    gap: 0.8rem;
+  }
+
+  .content__container__main {
+    padding: 2.3rem 1.5rem;
+  }
+
+  .content__container__main__top {
+    width: 28rem;
+    height: 29.4rem;
+  }
+
+  .content__alert {
+    top: 95.7rem;
+  }
 }

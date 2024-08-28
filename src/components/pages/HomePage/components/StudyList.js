@@ -1,10 +1,9 @@
 import './studyList.css';
-import axios from 'axios';
 import { useState, useRef, useEffect } from 'react';
 import searchBtn from '../../../../assets/images/Vector.png';
 import dropdownBtn from '../../../../assets/images/ic_toggle.png';
 import StudyCard from './StudyCard';
-import { API_ADDRESS } from '../../../../constants/global';
+import { getStudyInfo } from '../../../../api/api';
 
 const StudyList = () => {
   const [studyCards, setStudyCards] = useState([]);
@@ -33,17 +32,20 @@ const StudyList = () => {
     }
   };
 
-  const totalCounts = 15;
-
   useEffect(() => {
     const fetchStudyCards = async () => {
-      const response = await axios.get(`${API_ADDRESS}/study?order=${order}&pageSize=${pageSize}&keyWord=${searchKeyword}`);
-      console.log('fetchStudyCards');
-      setStudyCards(response.data);
-      if (totalCounts === response.data.length || response.data.length % 6 !== 0 || response.data.length === 0) {
-        setHasMore(false);
-      } else {
-        setHasMore(true);
+      try {
+        const response = await getStudyInfo(1, pageSize, order, searchKeyword);
+        console.log('fetchStudyCards');
+        setStudyCards(response.studies);
+        if (response.totalCount <= pageSize || response.totalCount === 0) {
+          setHasMore(false);
+        } else {
+          setHasMore(true);
+          console.log(pageSize);
+        }
+      } catch (error) {
+        console.error('Error fetching study cards:', error);
       }
     };
     fetchStudyCards();

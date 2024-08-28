@@ -16,7 +16,7 @@ export const studyIdContext = createContext();
 
 export function StudyBody({ studyId = '8523e4cc-0985-4c20-b8b2-2d86e4fe56d5' }) {
   const [studyName, setStudyName] = useState('스터디 이름');
-  const [description, setDescription] = useState('스터이 설명');
+  const [description, setDescription] = useState('스터디 설명');
   const [studyPoint, setStudyPoint] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState(-1);
@@ -67,23 +67,27 @@ export function StudyBody({ studyId = '8523e4cc-0985-4c20-b8b2-2d86e4fe56d5' }) 
         <section className="study__section">
           <div className="study__content">
             <div className="flex-row study__topbar">
-              <Emojis />
-              <div className="flex-row study__topbar-gp-btn">
-                <p className="font16 medium study__topbar-btn" onClick={handleShareStudy}>
-                  공유하기
-                </p>
-                <p>|</p>
-                <p className="font16 medium study__topbar-btn" onClick={handleEditStudy}>
-                  수정하기
-                </p>
-                <p>|</p>
-                <p className="font16 medium study__topbar-btn-delete" onClick={handleDeleteStudy}>
-                  스터디 삭제하기
-                </p>
+              <div className="study__topbar-emoji-frame">
+                <Emojis studyId={studyId} />
+              </div>
+              <div className="study__topbar-gp-btn-frame">
+                <div className="flex-row study__topbar-gp-btn">
+                  <p className="font16 medium study__topbar-btn" onClick={handleShareStudy}>
+                    공유하기
+                  </p>
+                  <p>|</p>
+                  <p className="font16 medium study__topbar-btn" onClick={handleEditStudy}>
+                    수정하기
+                  </p>
+                  <p>|</p>
+                  <p className="font16 medium study__topbar-btn-delete" onClick={handleDeleteStudy}>
+                    스터디 삭제하기
+                  </p>
+                </div>
               </div>
             </div>
             <div className="flex-row study__middlebar">
-              <p className="font32 extra-bold study__middlebar-studyname">{studyName}</p>
+              <p className="extra-bold study__middlebar-studyname">{studyName}</p>
               <div className="flex-row study__middlebar-gp-btn">
                 <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
                 <TodayButton onClick={handleGotoConcentration}>오늘의 집중</TodayButton>

@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+{3팀}
+==========
+(팀 협업 문서 링크 게시)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+팀원 구성
 
-## Available Scripts
+이진우 ([개인 Github 링크](https://github.com/ajantang))
 
-In the project directory, you can run:
+박성현 ([개인 Github 링크](https://github.com/wxy0415))
 
-### `npm start`
+송영섭 ([개인 Github 링크](https://github.com/songyoungsub))
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+이율리 ([개인 Github 링크](https://github.com/yoorli))
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 프로젝트 소개
 
-### `npm test`
+성취감을 통해 공부의 습관을 정착시킬 수 있는 개인 공부 관리 및 커뮤니티 서비스 사이트 제작
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+프로젝트 기간: 2024.08.13 ~ 2024.09.03
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 기술 스택
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Frontend: JavaScript, React.js, scss
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Backend: Express.js, PrismaORM
 
-### `npm run eject`
+Database: PostgreSQL
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+공통 Tool: Git & Github, Discord
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 팀원별 구현 기능 상세
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 이진우
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+(자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
 
-## Learn More
+소셜 로그인 기능
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+구글 소셜 로그인 API 사용으로 소셜 로그인 기능 구현
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+사이트 이용을 위한 추가 정보 입력 기능 구현
 
-### Code Splitting
+소셜 로그인 후 회원 추가 정보 입력 기능
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+user 타입(관리자, 학생)에 대한 조건부 추가 입력 모달창 기능 및 페이지 이동 기능 구현
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 박성현
 
-### Making a Progressive Web App
+(자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Nav
 
-### Advanced Configuration
+회원별 버튼 조건부 렌더링(학생: 커리어, 스킬, 수강후기, 커뮤니티, 관리자: 회원 관리 관리자 페이지)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+반응형 레이아웃 구현
 
-### Deployment
+메인페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+fetch(POST, GET)을 사용하여 무료 수강 종료 시간 기능 구현
 
-### `npm run build` fails to minify
+공용 Modal 컴포넌트
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+공용으로 사용할 Modal 컴포넌트 구현
+
+
+### 송영섭
+
+(자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
+
+마이 페이지
+
+fetch(GET)를 사용하여 수강생 개인별 시간 정보 표시
+
+반응형 레이아웃 구현
+
+공용 Button 컴포넌트
+
+공용으로 사용할 Button 컴포넌트 구현
+
+
+### 이율리
+
+(자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
+
+관리자 페이지
+
+path parameter를 사용하여 학생 페이지와 동적 라우팅 기능 구현
+
+학생별 정보 목록 carousel 슬라이더 구현
+
+fetch(PATCH, DELETE)를 사용하여 개인정보 수정 및 탈퇴 기능 구현
+
+fetch(POST, PATCH, DELETE)를 사용하여 학생 정보 CRUD 기능 구현
+
+공용 Button 컴포넌트
+
+공용으로 사용할 Button 컴포넌트 구현
+
+
+
+제이
+
+(자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
+
+관리자 페이지
+
+fetch(GET)를 사용하여 학생별 시간 정보 표시 및 수강생 접속 현황 정보 표시
+
+반응형 레이아웃 구현
+
+마이 페이지
+
+fetch(PATCH, DELETE)를 사용하여 수강생의 개인정보 수정 및 탈퇴 기능 구현
+
+공용 Modal 컴포넌트
+
+공용으로 사용할 Modal 컴포넌트 구현

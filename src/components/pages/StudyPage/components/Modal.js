@@ -106,7 +106,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   const incorrectPasswordWarn = () => {
     const warning = (
       <div className="flex-row modal__warning">
-        <p className="font16 medium modal__warning-text">🚨 비밀번호가 일치하지 않습니다. 다시 입력해주세요.</p>
+        <p className="medium modal__warning-text">🚨 비밀번호가 일치하지 않습니다. 다시 입력해주세요.</p>
       </div>
     );
 

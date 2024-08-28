@@ -76,9 +76,6 @@
 }
 
 .study-card__emoji-container {
-  background-color: #00000080;
-  width: 152px;
-  height: 26px;
   position: absolute;
   bottom: 30px;
 }

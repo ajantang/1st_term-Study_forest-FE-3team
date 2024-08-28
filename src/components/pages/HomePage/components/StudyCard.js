@@ -1,7 +1,7 @@
 import './studyCard.css';
 import { Link } from 'react-router-dom';
-import React from 'react';
 import pointIcon from '../../../../assets/images/ic_point.png';
+import { Emojis } from '../../../UI/Emojis.js';
 
 const StudyCard = ({ id, studyName, description, nickname, point, background, createdAt, isRecentlyViewed }) => {
   const handleCardClick = () => {
@@ -98,7 +98,9 @@ const StudyCard = ({ id, studyName, description, nickname, point, background, cr
       <p className="study-card__description" style={{ color: anotherColor }}>
         {description}
       </p>
-      <div className="study-card__emoji-container"></div>
+      <div className="study-card__emoji-container">
+        <Emojis showExtraEmojisBtn={false} showAddEmojiBtn={false} studyId={id} />
+      </div>
     </Link>
   );
 };

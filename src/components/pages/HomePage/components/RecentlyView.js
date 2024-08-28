@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import './recentlyView.css';
 import StudyCard from './StudyCard.js';
-import { API_ADDRESS } from '../../../../constants/global.js';
+
+import { getStudyDetailInfo } from '../../../../api/api.js';
 
 const RecentlyView = () => {
   const [recentlyViewed, setRecentlyViewed] = useState([]);
@@ -17,9 +18,9 @@ const RecentlyView = () => {
       for (let i = 0; studyData.length < 3 && i < recentlyViewedStudy.length; i++) {
         const id = recentlyViewedStudy[i];
         try {
-          const response = await axios.get(`${API_ADDRESS}/study/${id}`);
+          const response = await getStudyDetailInfo(id);
           console.log('getStudyData');
-          studyData.push(response.data); // 유효한 데이터를 배열에 추가합니다.
+          studyData.push(response); // 유효한 데이터를 배열에 추가합니다.
         } catch (error) {
           console.log(`Not exist: ${id}`);
           recentlyViewedStudy.splice(i, 1); // 삭제된 id를 배열에서 제거합니다.
@@ -35,9 +36,10 @@ const RecentlyView = () => {
   return (
     <div className="recently-view__container">
       <p className="recently-view__container__text">최근 조회한 스터디</p>
-      <div className="recently-view__list">
-        {studyData.length > 0 ? (
-          studyData.map((study, index) => (
+
+      {studyData.length > 0 ? (
+        <div className="recently-view__list">
+          {studyData.map((study, index) => (
             <StudyCard
               key={index}
               id={study.id}
@@ -49,11 +51,13 @@ const RecentlyView = () => {
               createdAt={study.createdAt}
               isRecentlyViewed={true}
             />
-          ))
-        ) : (
+          ))}
+        </div>
+      ) : (
+        <div className="recently-view__text-box">
           <p className="recently-view__no-list">아직 조회한 스터디가 없어요</p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useValidation from '../../../hooks/useValidation.js';
 import './inputForm.css';
 import invisiblePassword from '../../../../assets/images/btn_visibility_off.png';
 import visiblePassword from '../../../../assets/images/btn_visibility_on.png';
-import { API_ADDRESS } from '../../../../constants/global.js';
+import { createStudy } from '../../../../api/api.js';
 
 const BASE_BACKGROUND = 'https://ifh.cc/g/zaNc6p.jpg';
 
@@ -69,19 +68,10 @@ const CreateStudy = () => {
   };
 
   const handleSubmit = async () => {
-    try {
-      const response = await axios.post(`${API_ADDRESS}/study`, {
-        nickname,
-        studyName,
-        description,
-        background: focusedBackground,
-        password,
-      });
-      const { id } = response.data;
-      navigate(`/study/${id}`);
-    } catch (error) {
-      console.error('Error creating study:', error);
-    }
+    const response = await createStudy(nickname, studyName, description, focusedBackground, password);
+    const { id } = response;
+    console.log(response);
+    navigate(`/study/${id}`);
   };
 
   const navigate = useNavigate();
