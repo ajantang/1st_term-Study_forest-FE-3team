@@ -16,9 +16,16 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const [value, setValue] = useState("");
   const [postValues, setPostValues] = useState([]);
   const [reRender, setReRender] = useState(false);
-  const [ listClass, setlistClass]
+  const [rockButton, setRockButton] = useState(false);
+
+  const [olListHeight, setOlListHeight] = useState(
+    "ListModal__list-ol list__ol-572 flex-col border-box"
+  );
+  const [listClass, setListClass] = useState([]);
+  const [postClass, setPostClass] = useState([]);
 
   const childRefs = useRef([]);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // API 호출 함수
@@ -41,7 +48,13 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
       setReRender(false);
       setValue("");
     }
-  }, [studyId, modalState, list, reRender]);
+
+    if (!listClass[0]) {
+      list.map(() => {
+        return setListClass((preListClass) => [...preListClass, "li-use"]);
+      });
+    }
+  }, [studyId, modalState, list, reRender, listClass]);
 
   // value와 input 값 일치 함수
   const changeValueHandler = (e) => {
@@ -52,118 +65,140 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const postInputHandler = async () => {
     if (!postInput) {
       setPostInput(true);
+      setOlListHeight("ListModal__list-ol list__ol-518 flex-col border-box");
+      setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+      }, 50);
     } else if (postInput && value !== "") {
       setPostValues((prePostValues) => [...prePostValues, value]);
+      setPostClass((prePostClass) => [...prePostClass, "li-use"]);
       setValue("");
+      setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+      }, 50);
     }
+  };
+
+  // post input 삭제 함수
+  const postInputDeleteHandler = () => {
+    setValue("");
+    setPostInput(false);
+    setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
   };
 
   // 수정 완료 함수
   const patchSuccessHandler = async () => {
     const filterValus = postValues.filter((habit) => habit !== "");
 
-    if (filterValus[0]) {
-      patchList(); // 모달창 닫기
+    if (!rockButton) {
+      if (filterValus[0]) {
+        patchList(); // 모달창 닫기
 
-      // const postPromises = filterValus.map(async (habit) => {
-      //   const surveyData = { name: habit };
-      //   const result = await postHabit(studyId, surveyData);
-      //   return result;
-      // });
+        const promises = childRefs.current
+          .filter((ref) => ref !== null)
+          .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 작동
 
-      const promises = childRefs.current
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 작동
-
-      for (const habit of filterValus) {
-        const surveyData = { name: habit };
-        await postHabit(studyId, surveyData);
-      }
-
-      const deletePromis = deletedIdx.map(async (idx) => {
-        if (idx) {
-          const habitId = habitIds[idx];
-          return await deleteHabit(habitId);
+        for (const habit of filterValus) {
+          const surveyData = { name: habit };
+          await postHabit(studyId, surveyData);
         }
-      });
 
-      if (value) {
-        // input에 값이 존재할 시
-        const surveyData = { name: value };
-        const postResult = await postHabit(studyId, surveyData);
-        await Promise.all([
-          ...promises,
-          // ...postPromises,
-          ...deletePromis,
-          postResult,
-        ]);
-      } else {
-        await Promise.all([
-          ...promises,
-          // ...postPromises,
-          ...deletePromis,
-        ]); // input에 값이 없을 시
-      }
+        const deletePromis = deletedIdx.map(async (idx) => {
+          if (idx) {
+            const habitId = habitIds[idx];
+            return await deleteHabit(habitId);
+          }
+        });
 
-      setValue("");
-      setPostValues([]);
-      setHabitIds([]);
-      setDeletedIdx([]);
-      setReRender(true);
-      setPostInput(false);
-      setPageRender(true);
-    } else if (value) {
-      // input에만 값이 있을 때
-      patchList();
-      const promises = childRefs.current
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest());
-
-      const surveyData = { name: value };
-      const postResult = await postHabit(studyId, surveyData);
-
-      const deletePromis = deletedIdx.map(async (idx) => {
-        if (idx) {
-          const habitId = habitIds[idx];
-          return await deleteHabit(habitId);
+        if (value) {
+          // input에 값이 존재할 시
+          const surveyData = { name: value };
+          const postResult = await postHabit(studyId, surveyData);
+          await Promise.all([
+            ...promises,
+            // ...postPromises,
+            ...deletePromis,
+            postResult,
+          ]);
+        } else {
+          await Promise.all([
+            ...promises,
+            // ...postPromises,
+            ...deletePromis,
+          ]); // input에 값이 없을 시
         }
-      });
 
-      await Promise.all([...promises, ...deletePromis, postResult]);
-
-      setValue("");
-      setPostValues([]);
-      setHabitIds([]);
-      setDeletedIdx([]);
-      setReRender(true);
-      setPostInput(false);
-      setPageRender(true);
-    } else {
-      patchList();
-      setPostInput(false);
-
-      // 이름 수정 있을 시 작동
-      const promises = childRefs.current
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest());
-
-      const deletePromis = deletedIdx.map(async (idx) => {
-        if (idx || idx === 0) {
-          const habitId = habitIds[idx];
-          return await deleteHabit(habitId);
-        }
-      });
-
-      const resultArrey = await Promise.all([...promises, ...deletePromis]);
-      const result = resultArrey.filter(
-        (arrey) => arrey !== null && arrey !== undefined
-      );
-
-      if (result[0]) {
+        setValue("");
+        setPostValues([]);
         setHabitIds([]);
         setDeletedIdx([]);
         setReRender(true);
+        setPostInput(false);
         setPageRender(true);
+        setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
+        setListClass([]);
+      } else if (value) {
+        // input에만 값이 있을 때
+        patchList();
+        const promises = childRefs.current
+          .filter((ref) => ref !== null)
+          .map((ref) => ref.sendRequest());
+
+        const surveyData = { name: value };
+        const postResult = await postHabit(studyId, surveyData);
+
+        const deletePromis = deletedIdx.map(async (idx) => {
+          if (idx) {
+            const habitId = habitIds[idx];
+            return await deleteHabit(habitId);
+          }
+        });
+
+        await Promise.all([...promises, ...deletePromis, postResult]);
+
+        setValue("");
+        setPostValues([]);
+        setHabitIds([]);
+        setDeletedIdx([]);
+        setReRender(true);
+        setPostInput(false);
+        setPageRender(true);
+        setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
+        setListClass([]);
+      } else {
+        patchList();
+        setPostInput(false);
+        setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
+
+        // 이름 수정 있을 시 작동
+        const promises = childRefs.current
+          .filter((ref) => ref !== null)
+          .map((ref) => ref.sendRequest());
+
+        const deletePromis = deletedIdx.map(async (idx) => {
+          if (idx || idx === 0) {
+            const habitId = habitIds[idx];
+            return await deleteHabit(habitId);
+          }
+        });
+
+        const resultArrey = await Promise.all([...promises, ...deletePromis]);
+        const result = resultArrey.filter(
+          (arrey) => arrey !== null && arrey !== undefined
+        );
+
+        if (result[0]) {
+          setHabitIds([]);
+          setDeletedIdx([]);
+          setReRender(true);
+          setPageRender(true);
+        }
+
+        setListClass([]);
       }
     }
   };
@@ -175,6 +210,8 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     setValue("");
     setPostValues([]);
     setDeletedIdx([]);
+    setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
+    setListClass([]);
   };
 
   return (
@@ -186,14 +223,17 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
             <p className="ListModal__title font24 extra-bold border-box">
               습관 목록
             </p>
-            <ol className="ListModal__list-ol flex-col border-box">
+            <ol className={olListHeight} ref={containerRef}>
               {list.map((habit, index) => {
                 return (
-                  <li key={habit.id}>
+                  <li key={habit.id} className={listClass[index]}>
                     <ListModalBody
                       habit={habit}
                       idx={index}
                       setDeletedIdx={setDeletedIdx}
+                      setRockButton={setRockButton}
+                      listClass={listClass}
+                      setListClass={setListClass}
                       ref={(el) => (childRefs.current[index] = el)}
                     />
                   </li>
@@ -201,12 +241,15 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
               })}
               {postValues.map((habit, idx) => {
                 return (
-                  <li key={idx}>
+                  <li key={idx} className={postClass[idx]}>
                     <ListModalPost
                       habit={habit}
                       idx={idx}
                       postValues={postValues}
                       setPostValues={setPostValues}
+                      setRockButton={setRockButton}
+                      postClass={postClass}
+                      setPostClass={setPostClass}
                     />
                   </li>
                 );
@@ -217,12 +260,14 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
                 <input
                   className="ListModal__input font16 bold border-box"
                   value={value}
+                  placeholder="새로운 습관 추가하기"
                   onChange={changeValueHandler}
                 />
                 <img
                   className="ListModal__img-trashCan border-box"
                   src={trashCanImg}
                   alt="쓰레기통"
+                  onClick={postInputDeleteHandler}
                 />
               </div>
             )}

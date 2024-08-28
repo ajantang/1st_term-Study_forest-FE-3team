@@ -33,16 +33,26 @@
 
 .ListModal__list-ol{
   width: 60rem;
-  height: 49.8rem;
   align-items: center;
-  gap: 2rem;
   list-style-type: none;
+  overflow: scroll;
+}
+
+.list__ol-518{
+  height: 51.8rem;
+}
+
+.list__ol-572{
+  height: 57.2rem;
+}
+
+.ListModal__list-ol::-webkit-scrollbar {
+  display: none;
 }
 
 .ListModal__plusInut {
   width: 60rem;
   height: 5.4rem;
-  margin-top: 2rem;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -54,7 +64,9 @@
   border: none;
   border-radius: 20rem;
   background-color: var(--bright-gray);
+  text-align: center;
   text-decoration: underline;
+  color: var(--gray);
 }
 
 .ListModal__img-trashCan{
@@ -84,7 +96,10 @@
   height: 5.8rem;
 }
 
+.li-use{
+  margin-bottom: 2rem;
+}
+
 .li-delete{
-  width: 0px;
-  height: 0px;
+  display: none;
 }

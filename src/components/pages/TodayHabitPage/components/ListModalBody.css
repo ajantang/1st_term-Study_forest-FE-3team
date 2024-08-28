@@ -31,3 +31,10 @@
   position: absolute;
   left: 50.8rem;
 }
+
+.ListModalBody__text-check{
+  color: var(--vivid-red);
+  position: absolute;
+  left: 12rem;
+  top: 5.8rem;
+}
