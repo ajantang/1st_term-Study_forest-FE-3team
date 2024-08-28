@@ -80,7 +80,7 @@ export const setStudyInfo = async (
   };
 
   try {
-    const res = await instance.patch(path);
+    const res = await instance.patch(path, data);
     return res.data;
   } catch (err) {
     console.log(err);
