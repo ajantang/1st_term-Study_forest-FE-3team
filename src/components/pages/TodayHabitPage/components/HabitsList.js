@@ -10,8 +10,12 @@ function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
   useEffect(() => {
     // API 호출 함수
     const getList = async () => {
-      const data = await gethabitList(studyId);
-      setList(data.habits);
+      try{
+        const data = await gethabitList(studyId);
+        setList(data.habits);
+      } catch(e) {
+        alert(e)
+      }
     };
 
     if (first) {

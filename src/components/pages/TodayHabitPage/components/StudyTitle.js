@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TodayButton from "../../../UI/TodayButton";
-import { getPoint } from "../../../../api/api";
+import { getStudyDetailInfo } from "../../../../api/api";
 // import {
 //   API_ADDRESS,
 //   MODAL_CONFIRM,
@@ -30,7 +30,7 @@ function StudyTitle({ studyId }) {
   };
 
   useEffect(() => {
-    getPoint(studyId).then((res) => {
+    getStudyDetailInfo(studyId).then((res) => {
       setStudyName(`${res.nickname}의 ${res.studyName}`);
     });
   });

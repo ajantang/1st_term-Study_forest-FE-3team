@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { updatePoint } from "../../../../api/api.js";
+import { setStudyInfo } from "../../../../api/api.js";
 import { changeDigits, changeTime } from "../utils/changeTime.js";
 import "./timer.css";
 import { studyIdContext } from "../TodaysFocusPage.js";
@@ -219,7 +219,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
     };
 
     const updateinfo = async (studyId, options) => {
-      await updatePoint(studyId, options);
+      await setStudyInfo(studyId, options);
     };
 
     updateinfo(studyId, options);

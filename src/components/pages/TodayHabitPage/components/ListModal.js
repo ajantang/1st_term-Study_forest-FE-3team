@@ -1,5 +1,9 @@
 import { useEffect, useState, useRef } from "react";
-import { deleteHabit, gethabitList, postHabit } from "../../../../api/api";
+import {
+  setHabitDelete,
+  createHabit,
+  gethabitList,
+} from "../../../../api/api";
 import ListModalBody from "./ListModalBody";
 import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 import btn_patchComplit from "../../../../assets/images/btn_patchComplit.svg";
@@ -9,38 +13,42 @@ import ListModalPost from "./ListModalPost";
 import "./ListModal.css";
 
 function ListModal({ studyId, modalState, patchList, setPageRender }) {
-  const [list, setList] = useState([]);                       // 서버에서 받아온 리스트 저장
-  const [habitIds, setHabitIds] = useState([]);               // 서버에서 받아온 습관 id들 저장
-  const [deletedIdx, setDeletedIdx] = useState([]);           // 리스트에서 삭제할 습관 인덱스 저장
-  const [postInput, setPostInput] = useState(false);          // 습관 추가 input 공개 여부
-  const [value, setValue] = useState("");                     // 습관 추가 인풋 값
-  const [postValues, setPostValues] = useState([]);           // 습관 추가할 값들 저장
-  const [reRender, setReRender] = useState(false);            // 모달창 리스트 리랜더링 여부(수정 사항있을 시 마지막에 작동)
-  const [rockButtonBody, setRockButtonBody] = useState([]);   // ListModalBody.js 습관 수정 시 에러 방지
-  const [rockButtonPost, setRockButtonPost] = useState([]);   // ListModalPost.js 습관 수정 시 에러 방지
-  const [checkLength0, setCheckLength0] = useState(false);    // 문자 길이가 0일때 에러 메세지 공개 여부
-  const [checkLength30, setCheckLength30] = useState(false);  // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
-  const [rockButton, setRockButton] = useState(false);        // 습관 생성 시 에러 방지
+  const [list, setList] = useState([]); // 서버에서 받아온 리스트 저장
+  const [habitIds, setHabitIds] = useState([]); // 서버에서 받아온 습관 id들 저장
+  const [deletedIdx, setDeletedIdx] = useState([]); // 리스트에서 삭제할 습관 인덱스 저장
+  const [postInput, setPostInput] = useState(false); // 습관 추가 input 공개 여부
+  const [value, setValue] = useState(""); // 습관 추가 인풋 값
+  const [postValues, setPostValues] = useState([]); // 습관 추가할 값들 저장
+  const [reRender, setReRender] = useState(false); // 모달창 리스트 리랜더링 여부(수정 사항있을 시 마지막에 작동)
+  const [rockButtonBody, setRockButtonBody] = useState([]); // ListModalBody.js 습관 수정 시 에러 방지
+  const [rockButtonPost, setRockButtonPost] = useState([]); // ListModalPost.js 습관 수정 시 에러 방지
+  const [checkLength0, setCheckLength0] = useState(false); // 문자 길이가 0일때 에러 메세지 공개 여부
+  const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
+  const [rockButton, setRockButton] = useState(false); // 습관 생성 시 에러 방지
   const [olListHeight, setOlListHeight] = useState(
-    "ListModal__list-ol list__ol-572 flex-col border-box"     // ol태그 클래스 저장
+    "ListModal__list-ol list__ol-572 flex-col border-box" // ol태그 클래스 저장
   );
   const [listClass, setListClass] = useState([]); // ListModalBody.js 내 삭제할 습관이 있을 시 li를 없애기 위한 클래스 저장
   const [postClass, setPostClass] = useState([]); // ListModalPost.js 내 삭제할 습관이 있을 시 li를 없애기 위한 클래스 저장
 
-  const childRefs = useRef([]);       // ListModalBody.js에서 patchAPI를 가져오기 위한 ref
-  const containerRef = useRef(null);  // 슴관 추가시 맨 아래 스크롤로 이동을 위한 ref
+  const childRefs = useRef([]); // ListModalBody.js에서 patchAPI를 가져오기 위한 ref
+  const containerRef = useRef(null); // 슴관 추가시 맨 아래 스크롤로 이동을 위한 ref
 
   useEffect(() => {
     // API 호출 함수
     const getList = async () => {
-      const data = await gethabitList(studyId);
-      setList(data.habits);
+      try {
+        const data = await gethabitList(studyId);
+        setList(data.habits);
 
-      // 습관 아이디 배열로 저장
-      const Ids = data.habits.map((habit) => {
-        return habit.id;
-      });
-      setHabitIds(Ids);
+        // 습관 아이디 배열로 저장
+        const Ids = data.habits.map((habit) => {
+          return habit.id;
+        });
+        setHabitIds(Ids);
+      } catch (e) {
+        alert(e);
+      }
     };
 
     if (!list[0] && modalState) {
@@ -133,10 +141,12 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   // 수정 완료 함수
   const patchSuccessHandler = async () => {
     const filterValus = postValues.filter((habit) => habit !== ""); // ListModalPost에서 삭제 예정인 값 필터
-    const filterockButtonBody = rockButtonBody.filter(              // ListModalBody에서 문자 길이 검사 시 문제 없는 값 제거
+    const filterockButtonBody = rockButtonBody.filter(
+      // ListModalBody에서 문자 길이 검사 시 문제 없는 값 제거
       (boolin) => boolin !== false
     );
-    const filterockButtonPost = rockButtonPost.filter(              // ListModalPost에서 문자 길이 검사 시 문제 없는 값 제거
+    const filterockButtonPost = rockButtonPost.filter(
+      // ListModalPost에서 문자 길이 검사 시 문제 없는 값 제거
       (boolin) => boolin !== false
     );
 
@@ -148,26 +158,36 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
 
         for (const habit of filterValus) {
           // 순차적으로 post
-          const surveyData = { name: habit };
-          await postHabit(studyId, surveyData);
+          try {
+            await createHabit(studyId, habit);
+          } catch (e) {
+            alert(e);
+          }
         }
 
         const deletePromis = deletedIdx.map(async (idx) => {
           // 삭제 예정인 습관 있을 시 동작
           if (idx || idx === 0) {
             const habitId = habitIds[idx];
-            return await deleteHabit(habitId);
+            return await setHabitDelete(habitId);
           }
         });
 
         if (value) {
           // input에 값이 존재할 시
-          const surveyData = { name: value };
-          const postResult = await postHabit(studyId, surveyData);
-          await Promise.all([...promises, ...deletePromis, postResult]);
+          const postResult = await createHabit(studyId, value);
+          try {
+            await Promise.all([...promises, ...deletePromis, postResult]);
+          } catch (e) {
+            alert(e);
+          }
         } else {
           // input에 값이 없을 시
-          await Promise.all([...promises, ...deletePromis]);
+          try {
+            await Promise.all([...promises, ...deletePromis]);
+          } catch (e) {
+            alert(e);
+          }
         }
 
         setValue("");
@@ -188,17 +208,19 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
           .filter((ref) => ref !== null)
           .map((ref) => ref.sendRequest());
 
-        const surveyData = { name: value };
-        const postResult = await postHabit(studyId, surveyData);
+        const postResult = await createHabit(studyId, value);
 
         const deletePromis = deletedIdx.map(async (idx) => {
           if (idx || idx === 0) {
             const habitId = habitIds[idx];
-            return await deleteHabit(habitId);
+            return await setHabitDelete(habitId);
           }
         });
-
-        await Promise.all([...promises, ...deletePromis, postResult]);
+        try {
+          await Promise.all([...promises, ...deletePromis, postResult]);
+        } catch (e) {
+          alert(e);
+        }
 
         setValue("");
         setPostValues([]);
@@ -220,23 +242,25 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
         const deletePromis = deletedIdx.map(async (idx) => {
           if (idx || idx === 0) {
             const habitId = habitIds[idx];
-            return await deleteHabit(habitId);
+            return await setHabitDelete(habitId);
           }
         });
+        try {
+          const resultArrey = await Promise.all([...promises, ...deletePromis]);
+          const result = resultArrey.filter(
+            (arrey) => arrey !== null && arrey !== undefined
+          );
 
-        const resultArrey = await Promise.all([...promises, ...deletePromis]);
-        const result = resultArrey.filter(
-          (arrey) => arrey !== null && arrey !== undefined
-        );
-
-        // post 외 동작만 있을 시
-        if (result[0]) {
-          setHabitIds([]);
-          setDeletedIdx([]);
-          setReRender(true);
-          setPageRender(true);
+          // post 외 동작만 있을 시
+          if (result[0]) {
+            setHabitIds([]);
+            setDeletedIdx([]);
+            setReRender(true);
+            setPageRender(true);
+          }
+        } catch (e) {
+          alert(e);
         }
-
         setPostInput(false);
         setRockButtonBody([]);
         setRockButtonPost([]);

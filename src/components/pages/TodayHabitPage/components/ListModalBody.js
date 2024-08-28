@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
-import { patchHabit } from "../../../../api/api";
+import { setHabitName } from "../../../../api/api";
 import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 import "./ListModalBody.css";
 
@@ -16,11 +16,11 @@ const ListModalBody = forwardRef(
     },
     ref
   ) => {
-    const [value, setValue] = useState({ name: habit.name });   // 습관 이름 저장
-    const [patchInput, setPatchInput] = useState(false);        // 습관 수정 input 공개 여부
-    const [hideDelete, setHideDelete] = useState(false);        // 삭제 예정 시 프론트에서 지우기 위한 값
-    const [checkLength0, setCheckLength0] = useState(false);    // 문자 길이가 0일때 에러 메세지 공개 여부
-    const [checkLength30, setCheckLength30] = useState(false);  // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
+    const [value, setValue] = useState(habit.name); // 습관 이름 저장
+    const [patchInput, setPatchInput] = useState(false); // 습관 수정 input 공개 여부
+    const [hideDelete, setHideDelete] = useState(false); // 삭제 예정 시 프론트에서 지우기 위한 값
+    const [checkLength0, setCheckLength0] = useState(false); // 문자 길이가 0일때 에러 메세지 공개 여부
+    const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
     const habitId = habit.id;
     const inputRef = useRef(null);
 
@@ -48,17 +48,16 @@ const ListModalBody = forwardRef(
 
     // value와 input 값 일치 함수
     const changValueHandler = (e) => {
-      setValue({ name: e.target.value });
+      setValue(e.target.value );
 
       // 키보드를 꾹 눌렀을 때를 위한 로직
-      if (value.name.trim().length > 30) {
+      if (value.trim().length > 30) {
         // 문자 길이가 30을 넘을 때
         setCheckLength30(true);
 
         const rockButtonBodys = [...rockButtonBody];
         rockButtonBodys[idx] = true;
         setRockButtonBody(rockButtonBodys);
-        
       } else {
         // 문자 길이가 문제 없을때
         setCheckLength0(false);
@@ -68,7 +67,7 @@ const ListModalBody = forwardRef(
 
     // value값 검사 함수
     const checkValueHandler = () => {
-      if (value.name.trim().length === 0) {
+      if (value.trim().length === 0) {
         // 문자 길이가 0일 때
         setCheckLength0(true);
         setCheckLength30(false);
@@ -76,15 +75,13 @@ const ListModalBody = forwardRef(
         const rockButtonBodys = [...rockButtonBody];
         rockButtonBodys[idx] = true;
         setRockButtonBody(rockButtonBodys);
-
-      } else if (value.name.trim().length > 30) {
+      } else if (value.trim().length > 30) {
         // 문자 길이가 30을 넘을 때
         setCheckLength30(true);
 
         const rockButtonBodys = [...rockButtonBody];
         rockButtonBodys[idx] = true;
         setRockButtonBody(rockButtonBodys);
-
       } else {
         // 문자 길이가 문제 없을때
         setCheckLength0(false);
@@ -99,10 +96,14 @@ const ListModalBody = forwardRef(
     // 상위 컴포에서 쓸 함수(PATCH API)
     useImperativeHandle(ref, () => ({
       sendRequest: async () => {
-        if (value.name !== habit.name && !hideDelete) {
-          const data = await patchHabit(habitId, value);
-          setPatchInput(false);
-          return data;
+        if (value !== habit.name && !hideDelete) {
+          try {
+            const data = await setHabitName(habitId, value);
+            setPatchInput(false);
+            return data;
+          } catch (e) {
+            alert(e);
+          }
         }
         return null;
       },
@@ -123,7 +124,7 @@ const ListModalBody = forwardRef(
             {patchInput && (
               <input
                 className="ListModalBody__text ListModalBody__text-align font16 bold border-box"
-                value={value.name}
+                value={value}
                 onChange={changValueHandler}
                 onKeyUp={checkValueHandler}
                 ref={inputRef}
