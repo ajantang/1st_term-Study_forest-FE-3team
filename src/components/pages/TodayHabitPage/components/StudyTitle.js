@@ -1,33 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TodayButton from "../../../UI/TodayButton";
 import { getStudyDetailInfo } from "../../../../api/api";
-// import {
-//   API_ADDRESS,
-//   MODAL_CONFIRM,
-//   MODAL_EDIT_STUDY,
-//   MODAL_GOTO_HABIT,
-//   MODAL_GOTO_CONCENTRATION,
-// } from "../../../../constants/global";
-// import Modal from "../../StudyPage/components/Modal";
 import "./StudyTitle.css";
+import { useNavigate } from "react-router-dom";
+import { studyIdContext } from "../TodayHabitPage.js";
 
-function StudyTitle({ studyId }) {
+function StudyTitle({ buttonName }) {
   const [studyName, setStudyName] = useState("스터디 이름");
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [modalType, setModalType] = useState(-1);
-
-  // const openModal = () => setIsModalOpen(true);
-  // const closeModal = () => setIsModalOpen(false);
-
-  const handleGotoHabit = () => {
-    // setModalType(MODAL_GOTO_HABIT);
-    // openModal();
-  };
-
-  const handleGotoConcentration = () => {
-    // setModalType(MODAL_GOTO_CONCENTRATION);
-    // openModal();
-  };
+  const navigate = useNavigate();
+  let studyId = useContext(studyIdContext);
 
   useEffect(() => {
     getStudyDetailInfo(studyId).then((res) => {
@@ -35,21 +16,31 @@ function StudyTitle({ studyId }) {
     });
   });
 
+  function navigateHandler() {
+    if (buttonName === "오늘의 집중") {
+      const path = `/study/${studyId}/todaysFocus`;
+      navigate(path);
+    } else if (buttonName === "오늘의 습관") {
+      const path = `/study/${studyId}/todayHabit`;
+      navigate(path);
+    }
+  }
+
+  function homeNavigateHandler() {
+    navigate("/");
+  }
+
   return (
     <div>
       <div className="StudyTitle__body flex-row border-box">
-        <p className="StudyTitle__studyName-color font32 extra-bold border-box">{studyName}</p>
+        <p className="StudyTitle__studyName-color font32 extra-bold border-box">
+          {studyName}
+        </p>
         <div className="StudyTitle__TodayButton flex-row font16 medium border-box">
-          <TodayButton onClick={handleGotoHabit}>오늘의 집중</TodayButton>
-          <TodayButton onClick={handleGotoConcentration}>홈</TodayButton>
+          <TodayButton onClick={navigateHandler}>{buttonName}</TodayButton>
+          <TodayButton onClick={homeNavigateHandler}>홈</TodayButton>
         </div>
       </div>
-      {/* <Modal
-          studyName={studyName}
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          modalType={modalType}
-        /> */}
     </div>
   );
 }

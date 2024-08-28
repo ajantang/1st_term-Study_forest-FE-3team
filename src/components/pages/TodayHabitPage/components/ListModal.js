@@ -1,9 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import {
-  setHabitDelete,
-  createHabit,
-  gethabitList,
-} from "../../../../api/api";
+import { useEffect, useState, useRef, useContext } from "react";
+import { setHabitDelete, createHabit, gethabitList } from "../../../../api/api";
 import ListModalBody from "./ListModalBody";
 import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 import btn_patchComplit from "../../../../assets/images/btn_patchComplit.svg";
@@ -11,8 +7,9 @@ import btn_cancle from "../../../../assets/images/btn_cancel.svg";
 import byn_plusButton from "../../../../assets/images/btn_plusButton.svg";
 import ListModalPost from "./ListModalPost";
 import "./ListModal.css";
+import { studyIdContext } from "../TodayHabitPage";
 
-function ListModal({ studyId, modalState, patchList, setPageRender }) {
+function ListModal({ modalState, patchList, setPageRender }) {
   const [list, setList] = useState([]); // 서버에서 받아온 리스트 저장
   const [habitIds, setHabitIds] = useState([]); // 서버에서 받아온 습관 id들 저장
   const [deletedIdx, setDeletedIdx] = useState([]); // 리스트에서 삭제할 습관 인덱스 저장
@@ -31,8 +28,10 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const [listClass, setListClass] = useState([]); // ListModalBody.js 내 삭제할 습관이 있을 시 li를 없애기 위한 클래스 저장
   const [postClass, setPostClass] = useState([]); // ListModalPost.js 내 삭제할 습관이 있을 시 li를 없애기 위한 클래스 저장
 
+  let studyId = useContext(studyIdContext);
   const childRefs = useRef([]); // ListModalBody.js에서 patchAPI를 가져오기 위한 ref
-  const containerRef = useRef(null); // 슴관 추가시 맨 아래 스크롤로 이동을 위한 ref
+  const containerRef = useRef(null); // 습관 추가시 맨 아래 스크롤로 이동을 위한 ref
+  const focusInputRef = useRef(null);
 
   useEffect(() => {
     // API 호출 함수
@@ -116,6 +115,9 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
           containerRef.current.scrollTop = containerRef.current.scrollHeight; //스크롤을 맨 하단으로 이동
         }
       }, 50);
+      setTimeout(() => {
+        focusInputRef.current.focus(); // input 요소로 포커스 이동
+      }, 50);
     } else if (postInput && value !== "" && !rockButton) {
       setPostValues((prePostValues) => [...prePostValues, value]);
       setPostClass((prePostClass) => [...prePostClass, "li-use"]);
@@ -125,7 +127,10 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
           containerRef.current.scrollTop = containerRef.current.scrollHeight; //스크롤을 맨 하단으로 이동
         }
       }, 50);
-    }
+      setTimeout(() => {
+        focusInputRef.current.focus(); // input 요소로 포커스 이동
+      }, 50);
+    };
   };
 
   // post input 삭제 함수
@@ -338,6 +343,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
                   placeholder="새로운 습관 추가하기"
                   onChange={changeValueHandler}
                   onKeyUp={checkValueHandler}
+                  ref={focusInputRef}
                 />
                 {checkLength0 && (
                   <p className="ListModalBody__text-check font12 semi-bold">

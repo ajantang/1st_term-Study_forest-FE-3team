@@ -6,7 +6,7 @@
 
 .todayHabitpage__body {
     width: 124.8rem; 
-    height: 86.3rem;
+    height: 87rem;
     border-radius: 2rem;
     margin-top: 3.9rem;
     background-color: #ffffff;
@@ -17,4 +17,5 @@
 .todayHaibtPage__content{
     width: 116.8rem;
     height: 78.3rem;
+    margin-top: 1.6rem;
 }

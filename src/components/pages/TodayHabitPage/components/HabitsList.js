@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { gethabitList } from "../../../../api/api";
 import HabitsListBody from "./HabitsListBody";
 import "./HabitsList.css";
+import { studyIdContext } from "../TodayHabitPage";
 
-function HabitsList({ studyId, patchList, pageRender, setPageRender }) {
+function HabitsList({ patchList, pageRender, setPageRender }) {
   const [list, setList] = useState([]);     // 서버에서 받아온 리스트 저장
   const [first, setFirst] = useState(true); // 습관이 없을 시 무한 랜더 방지
+  let studyId = useContext(studyIdContext);
 
   useEffect(() => {
     // API 호출 함수
