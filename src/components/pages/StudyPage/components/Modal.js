@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./Modal.css";
 
 import { Loading } from "../../../UI/Loading";
 import { studyIdContext } from "./StudyBody";
+import { useAuth } from "../../../../AuthContext";
 import { authStudyPassword, deleteStudyInfo } from "../../../../api/api";
 
 export function Modal({ studyName, isOpen, onClose, modalType }) {
@@ -28,7 +29,9 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     afterGotoConcentrationModalPass,
   ];
 
-  let studyId = useContext(studyIdContext);
+  // let studyId = useContext(studyIdContext);
+  const { studyId } = useParams();
+  const { login, logout } = useAuth();
 
   const buttonClass = [
     "modal__btn-confirm",
@@ -57,11 +60,13 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
 
   function afterGotoHabitModalPass() {
     const path = `/study/${studyId}/todayHabit`;
+    login();
     navigate(path);
   }
 
   function afterGotoConcentrationModalPass() {
     const path = `/study/${studyId}/todaysFocus`;
+    login();
     navigate(path);
   }
 
@@ -144,6 +149,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     setIsIncorrectPasswordWarnOpen(false);
     setIsPasswordLengWWarnOpen(false);
     initModal();
+    logout();
     onClose();
   };
 
