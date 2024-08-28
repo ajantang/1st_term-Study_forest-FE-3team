@@ -1,6 +1,6 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
-import { deleteHabit, patchHabit } from "../../../../api/api";
-import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import { setHabitDelete, setHabitName } from '../../../../api/api';
+import trashCanImg from '../../../../assets/images/btn_trashCanImg.png';
 
 const ListModalBody = forwardRef(({ habit, setReRender, setDeleted }, ref) => {
   const [value, setValue] = useState({ name: habit.name });
@@ -9,7 +9,7 @@ const ListModalBody = forwardRef(({ habit, setReRender, setDeleted }, ref) => {
 
   // 삭제 함수
   const deleteHabitHandler = async () => {
-    await deleteHabit(habitId);
+    await setHabitDelete(habitId);
     setReRender(true);
     setDeleted(true);
   };
@@ -28,7 +28,7 @@ const ListModalBody = forwardRef(({ habit, setReRender, setDeleted }, ref) => {
   useImperativeHandle(ref, () => ({
     sendRequest: async () => {
       if (value.name !== habit.name) {
-        const data = await patchHabit(habitId, value);
+        const data = await setHabitName(habitId, value);
         setPatchInput(false);
         return data;
       }

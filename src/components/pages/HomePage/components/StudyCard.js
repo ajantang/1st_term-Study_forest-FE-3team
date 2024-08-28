@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import pointIcon from '../../../../assets/images/ic_point.png';
 
-const StudyCard = ({ id, studyName, description, nickname, point, background, createdAt }) => {
+const StudyCard = ({ id, studyName, description, nickname, point, background, createdAt, isRecentlyViewed }) => {
   const handleCardClick = () => {
     const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
     const updatedRecentlyViewed = [id, ...recentlyViewed.filter((studyId) => studyId !== id)].slice(0, 5);
@@ -72,7 +72,12 @@ const StudyCard = ({ id, studyName, description, nickname, point, background, cr
   const anotherColor = getAnotherColor(background);
 
   return (
-    <Link to={`/study/${id}`} className="study-card" style={{ backgroundImage: `url(${background})` }} onClick={handleCardClick}>
+    <Link
+      to={`/study/${id}`}
+      className={`study-card ${isRecentlyViewed ? 'recently-viewd' : ''}`}
+      style={{ backgroundImage: `url(${background})` }}
+      onClick={handleCardClick}
+    >
       <div className="study-card__title__container">
         <h2 className="study-card__title">
           <span style={{ color: nicknameColor }}>{nickname}</span>

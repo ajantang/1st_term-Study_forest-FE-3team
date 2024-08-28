@@ -14,7 +14,7 @@ const RecentlyView = () => {
 
     const handleStudyData = async () => {
       const studyData = [];
-      for (let i = 0; studyData.length < 3; i++) {
+      for (let i = 0; studyData.length < 3 && i < recentlyViewedStudy.length; i++) {
         const id = recentlyViewedStudy[i];
         try {
           const response = await axios.get(`${API_ADDRESS}/study/${id}`);
@@ -29,28 +29,27 @@ const RecentlyView = () => {
       }
       setStudyData(studyData);
     };
-
     handleStudyData();
   }, []);
+
   return (
     <div className="recently-view__container">
-      <p>최근 조회한 스터디</p>
+      <p className="recently-view__container__text">최근 조회한 스터디</p>
       <div className="recently-view__list">
         {studyData.length > 0 ? (
-          studyData
-            .slice(0, 3)
-            .map((study, index) => (
-              <StudyCard
-                key={index}
-                id={study.id}
-                studyName={study.studyName}
-                description={study.description}
-                nickname={study.nickname}
-                point={study.point}
-                background={study.background}
-                createdAt={study.createdAt}
-              />
-            ))
+          studyData.map((study, index) => (
+            <StudyCard
+              key={index}
+              id={study.id}
+              studyName={study.studyName}
+              description={study.description}
+              nickname={study.nickname}
+              point={study.point}
+              background={study.background}
+              createdAt={study.createdAt}
+              isRecentlyViewed={true}
+            />
+          ))
         ) : (
           <p className="recently-view__no-list">아직 조회한 스터디가 없어요</p>
         )}

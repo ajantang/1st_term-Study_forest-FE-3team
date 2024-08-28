@@ -127,7 +127,7 @@ const CreateStudy = () => {
       <div className="create-study__form">
         <label className="font18 semi-bold create-study__label card-background">배경을 선택해주세요</label>
         <br />
-        <div className="grid-container">
+        <div className="create-study__grid-container">
           <div className="background green"></div>
           <div className="background yellow"></div>
           <div className="background blue"></div>

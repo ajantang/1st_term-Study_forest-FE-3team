@@ -1,13 +1,13 @@
-import "./todaysFocusPage.css";
-import Timer from "./components/Timer";
-import { getPoint } from "../../../api/api";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Header from "../../Layout/Header";
+import './todaysFocusPage.css';
+import Timer from './components/Timer';
+import { getPoint } from '../../../api/pointApi';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Header from '../../Layout/Header';
 
 const TodaysFocusPage = () => {
-  const [point, setPoint] = useState("");
-  const [alertGetPoint, setAlertGetPoint] = useState("");
+  const [point, setPoint] = useState('');
+  const [alertGetPoint, setAlertGetPoint] = useState('');
 
   const { studyId } = useParams();
 
@@ -44,12 +44,7 @@ const TodaysFocusPage = () => {
           <div className="mainframe">
             <div className="todaysfocus">
               <span className="font24">오늘의 집중</span>
-              <Timer
-                initialPoint={point}
-                setPoint={setPoint}
-                setAlertGetPoint={setAlertGetPoint}
-                id={studyId}
-              ></Timer>
+              <Timer initialPoint={point} setPoint={setPoint} setAlertGetPoint={setAlertGetPoint} id={studyId}></Timer>
             </div>
           </div>
         </div>

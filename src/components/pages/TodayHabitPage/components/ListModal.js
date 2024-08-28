@@ -1,14 +1,14 @@
-import { useEffect, useState, useRef } from "react";
-import { gethabitList, postHabit } from "../../../../api/api";
-import ListModalBody from "./ListModalBody";
-import trashCanImg from "../../../../assets/images/btn_trashCanImg.png";
-import ListModalPost from "./ListModalPost";
+import { useEffect, useState, useRef } from 'react';
+import { gethabitList, createHabit } from '../../../../api/api';
+import ListModalBody from './ListModalBody';
+import trashCanImg from '../../../../assets/images/btn_trashCanImg.png';
+import ListModalPost from './ListModalPost';
 
 function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const [list, setList] = useState([]);
   const [reRender, setReRender] = useState(false);
   const [postInput, setPostInput] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const [postValues, setPostValues] = useState([]);
   const [deleted, setDeleted] = useState(false);
 
@@ -27,8 +27,8 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     } else if (reRender) {
       getList();
       setReRender(false);
-      setValue("");
-      console.log("modal");
+      setValue('');
+      console.log('modal');
     }
   }, [studyId, modalState, list, reRender]);
 
@@ -41,15 +41,15 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const postInputHandler = async () => {
     if (!postInput) {
       setPostInput(true);
-    } else if (postInput && value !== "") {
+    } else if (postInput && value !== '') {
       setPostValues((prePostValues) => [...prePostValues, value]);
-      setValue("");
+      setValue('');
     }
   };
 
   // 수정 완료 함수
   const patchsuccessHandler = async () => {
-    const filterValus = postValues.filter((habit) => habit !== "");
+    const filterValus = postValues.filter((habit) => habit !== '');
 
     if (filterValus[0]) {
       patchList(); // 모달창 닫기
@@ -60,20 +60,20 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
 
       const postPromises = filterValus.map(async (habit) => {
         const surveyData = { name: habit };
-        const result = await postHabit(studyId, surveyData);
+        const result = await createHabit(studyId, surveyData);
         return result;
       });
 
       if (value) {
         // input에 값이 존재할 시
         const surveyData = { name: value };
-        const result = await postHabit(studyId, surveyData);
+        const result = await createHabit(studyId, surveyData);
         await Promise.all([...postPromises, result]);
       } else {
         await Promise.all(postPromises); // input에 값이 없을 시
       }
 
-      setValue("");
+      setValue('');
       setPostValues([]);
       setReRender(true);
       setPostInput(false);
@@ -81,15 +81,13 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
     } else if (value) {
       // input에만 값이 있을 때
       patchList();
-      const promises = childRefs.current
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest());
+      const promises = childRefs.current.filter((ref) => ref !== null).map((ref) => ref.sendRequest());
       await Promise.all(promises);
 
       const surveyData = { name: value };
-      await postHabit(studyId, surveyData);
+      await createHabit(studyId, surveyData);
 
-      setValue("");
+      setValue('');
       setPostValues([]);
       setReRender(true);
       setPostInput(false);
@@ -98,14 +96,10 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
       patchList();
       setPostInput(false);
 
-      const promises = childRefs.current
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest());
+      const promises = childRefs.current.filter((ref) => ref !== null).map((ref) => ref.sendRequest());
 
       const resultArrey = await Promise.all(promises);
-      const result = resultArrey.filter(
-        (arrey) => arrey !== null && arrey !== undefined
-      );
+      const result = resultArrey.filter((arrey) => arrey !== null && arrey !== undefined);
 
       if (deleted) {
         // 삭제한게 있을 시
@@ -123,7 +117,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
   const cencelHandler = () => {
     patchList();
     setPostInput(false);
-    setValue("");
+    setValue('');
     setPostValues([]);
 
     if (deleted) {
@@ -151,14 +145,7 @@ function ListModal({ studyId, modalState, patchList, setPageRender }) {
               );
             })}
             {postValues.map((habit, idx) => {
-              return (
-                <ListModalPost
-                  habit={habit}
-                  idx={idx}
-                  postValues={postValues}
-                  setPostValues={setPostValues}
-                />
-              );
+              return <ListModalPost habit={habit} idx={idx} postValues={postValues} setPostValues={setPostValues} />;
             })}
           </ol>
           {postInput && (
