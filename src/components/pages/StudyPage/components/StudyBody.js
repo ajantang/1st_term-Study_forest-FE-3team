@@ -70,32 +70,36 @@ export function StudyBody({
         <section className="study__section">
           <div className="study__content">
             <div className="flex-row study__topbar">
-              <Emojis />
-              <div className="flex-row study__topbar-gp-btn">
-                <p
-                  className="font16 medium study__topbar-btn"
-                  onClick={handleShareStudy}
-                >
-                  공유하기
-                </p>
-                <p>|</p>
-                <p
-                  className="font16 medium study__topbar-btn"
-                  onClick={handleEditStudy}
-                >
-                  수정하기
-                </p>
-                <p>|</p>
-                <p
-                  className="font16 medium study__topbar-btn-delete"
-                  onClick={handleDeleteStudy}
-                >
-                  스터디 삭제하기
-                </p>
+              <div className="study__topbar-emoji-frame">
+                <Emojis />
+              </div>
+              <div className="study__topbar-gp-btn-frame">
+                <div className="flex-row study__topbar-gp-btn">
+                  <p
+                    className="font16 medium study__topbar-btn"
+                    onClick={handleShareStudy}
+                  >
+                    공유하기
+                  </p>
+                  <p>|</p>
+                  <p
+                    className="font16 medium study__topbar-btn"
+                    onClick={handleEditStudy}
+                  >
+                    수정하기
+                  </p>
+                  <p>|</p>
+                  <p
+                    className="font16 medium study__topbar-btn-delete"
+                    onClick={handleDeleteStudy}
+                  >
+                    스터디 삭제하기
+                  </p>
+                </div>
               </div>
             </div>
             <div className="flex-row study__middlebar">
-              <p className="font32 extra-bold study__middlebar-studyname">
+              <p className="extra-bold study__middlebar-studyname">
                 {studyName}
               </p>
               <div className="flex-row study__middlebar-gp-btn">

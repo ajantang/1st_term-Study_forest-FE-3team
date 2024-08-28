@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import "./Modal.css";
+
 import { Loading } from "../../../UI/Loading";
 import { studyIdContext } from "./StudyBody";
 import { authStudyPassword, deleteStudyInfo } from "../../../../api/api";
@@ -14,8 +16,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   const [toggleVisibleClass, setToggleVisibleClass] = useState(
     "modal__password-input-visible-off"
   );
-
   const [loading, setLoading] = useState(false);
+
   const dialogRef = useRef(null);
   const navigate = useNavigate();
 
@@ -26,7 +28,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     afterGotoConcentrationModalPass,
   ];
 
-  let studyId = useContext(studyIdContext);
+  // let studyId = useContext(studyIdContext);
+  const { studyId } = useParams();
 
   const buttonClass = [
     "modal__btn-confirm",
@@ -53,14 +56,14 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     alert("수정 페이지로 이동 로직 추가 예정");
   }
 
-  function afterGotoHabitModalPass() {
+   function afterGotoHabitModalPass() {
     const path = `/study/${studyId}/todayHabit`;
-    navigate(path);
+    navigate(path,{ state: 'habit' });
   }
 
   function afterGotoConcentrationModalPass() {
     const path = `/study/${studyId}/todaysFocus`;
-    navigate(path);
+    navigate(path, { state: 'focus' });
   }
 
   const initModal = () => {
@@ -74,6 +77,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
       setIsPasswordLengWWarnOpen(true);
       return;
     }
+
     setLoading(true);
 
     authStudyPassword(studyId, inputValue)
@@ -118,7 +122,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   const incorrectPasswordWarn = () => {
     const warning = (
       <div className="flex-row modal__warning">
-        <p className="font16 medium modal__warning-text">
+        <p className="medium modal__warning-text">
           🚨 비밀번호가 일치하지 않습니다. 다시 입력해주세요.
         </p>
       </div>

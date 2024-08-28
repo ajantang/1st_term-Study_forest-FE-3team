@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { setStudyInfo } from "../../../../api/api.js";
-import { changeDigits, changeTime } from "../utils/changeTime.js";
+import { changeDigits, changeTime } from "../utils/changeTime.js"
 import "./timer.css";
 import { studyIdContext } from "../TodaysFocusPage.js";
-//
 
 const T = 25 * 60;
 const M = "25";
@@ -11,7 +10,8 @@ const S = "00";
 
 const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   var initPoint;
-  if (initialPoint) {
+
+  if(initialPoint || initialPoint === 0){
     initPoint = initialPoint;
   }
   const [countTime, setCountTime] = useState(T); // 입력한 시간이 카운트다운되는 숫자
@@ -214,16 +214,12 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   let studyId = useContext(studyIdContext);
   //획득한 총 포인트가 저장될 때마다 실행(stop버튼)
   useEffect(() => {
-    const options = {
-      point: totalPoint,
+    const updateinfo = async (studyId, point) => {
+      await setStudyInfo(studyId, point);
     };
 
-    const updateinfo = async (studyId, options) => {
-      await setStudyInfo(studyId, options);
-    };
-
-    updateinfo(studyId, options);
-  }, [totalPoint, studyId]);
+    updateinfo(studyId, totalPoint);
+  }, [totalPoint]);
 
   return (
     <>
