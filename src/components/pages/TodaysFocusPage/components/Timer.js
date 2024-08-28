@@ -214,11 +214,11 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   let studyId = useContext(studyIdContext);
   //획득한 총 포인트가 저장될 때마다 실행(stop버튼)
   useEffect(() => {
-    const updateinfo = async (studyId, point) => {
-      await setStudyInfo(studyId, point);
+    const updateinfo = async (studyId,point) => {
+      await setStudyInfo(studyId,'','','','', point);
     };
 
-    updateinfo(studyId, totalPoint);
+    updateinfo(studyId,totalPoint);
   }, [totalPoint]);
 
   return (
