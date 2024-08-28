@@ -57,8 +57,6 @@ function HabitWeekRecord({
 }) {
   stickerType = (stickerType % 18) + 1;
 
-  console.log(successIndices);
-
   const weekRecord = [
     <HabitMark key="0" type="0" />,
     <HabitMark key="1" type="0" />,
@@ -75,7 +73,7 @@ function HabitWeekRecord({
 
   return (
     <div className="flex-row">
-      <div className="habitrecord__table-habitname">{habitName}</div>
+      <div className="bold habitrecord__table-habitname">{habitName}</div>
       <div className="flex-row habitrecord__table-habitsuccesses">
         {weekRecord}
       </div>
@@ -156,7 +154,7 @@ export function HabitRecord({ studyId }) {
 
   return (
     <div className="study__habits habitrecord">
-      <div className="font24 extra-bold">습관 기록표</div>
+      <div className="extra-bold habitrecord__title">습관 기록표</div>
       <div className="habitrecord__table">
         <Dates />
         <HabitWeekRecords totalCount={totalCount} habits={habits} />

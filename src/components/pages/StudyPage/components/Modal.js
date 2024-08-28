@@ -29,7 +29,6 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   ];
 
   // let studyId = useContext(studyIdContext);
-  // let studyId = '826d746c-bbba-4d4d-a0ed-33f2e8d1f5fb'
   const { studyId } = useParams();
 
   const buttonClass = [
@@ -57,7 +56,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     alert("수정 페이지로 이동 로직 추가 예정");
   }
 
-  function afterGotoHabitModalPass() {
+   function afterGotoHabitModalPass() {
     const path = `/study/${studyId}/todayHabit`;
     navigate(path,{ state: 'habit' });
   }
@@ -123,7 +122,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   const incorrectPasswordWarn = () => {
     const warning = (
       <div className="flex-row modal__warning">
-        <p className="font16 medium modal__warning-text">
+        <p className="medium modal__warning-text">
           🚨 비밀번호가 일치하지 않습니다. 다시 입력해주세요.
         </p>
       </div>
