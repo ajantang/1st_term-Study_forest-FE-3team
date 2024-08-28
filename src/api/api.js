@@ -62,8 +62,22 @@ export const getStudyDetailInfo = async (studyId) => {
 };
 
 /** /study/:id PATCH - 상세 스터디 수정 */
-export const setStudyInfo = async (studyId) => {
+export const setStudyInfo = async (
+  studyId,
+  nickname,
+  studyName,
+  description,
+  background,
+  point
+) => {
   const path = `/study/${studyId}`;
+  const data = {
+    ...(nickname && { nickname }),
+    ...(studyName && { studyName }),
+    ...(description && { description }),
+    ...(background && { background }),
+    ...(point && { point }),
+  };
 
   try {
     const res = await instance.patch(path);
