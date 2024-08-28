@@ -44,7 +44,7 @@ function HabitsList({ patchList, pageRender, setPageRender }) {
           </p>
         </div>
       </div>
-      <div className="habitsList__iist-text flex-row border-box">
+      <div className="habitsList__list-text flex-row border-box">
         {!list[0] && (
           <div className="habitsList__noList-text font20 medium border-box">
             아직 습관이 없어요

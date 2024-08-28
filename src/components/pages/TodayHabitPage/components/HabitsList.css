@@ -32,7 +32,7 @@
   cursor: pointer;
 }
 
-.habitsList__iist-text {
+.habitsList__list-text {
   width: 112rem;
   height: 49.8rem;
   justify-content: center;
@@ -56,4 +56,23 @@
 
 .habitsList__list-ol::-webkit-scrollbar {
   display: none;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .habitsList__body {
+    width: 64.8rem;
+    margin-top: 4rem;
+  }
+
+  .habitsList__title-button {
+    width: 60rem;
+  }
+
+  .habitsList__button {
+    left: 23.5rem;
+  }
+
+  .habitsList__list-text {
+    width: 60rem;
+  }
 }
