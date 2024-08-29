@@ -3,9 +3,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import './modal.css';
 
+//import { Loading } from "../../../UI/Loading";
+//import { studyIdContext } from "./StudyBody";
+//import { useAuth } from "../../../../AuthContext";
+//import { authStudyPassword, deleteStudyInfo } from "../../../../api/api";
 import { Loading } from '../../../UI/Loading';
 
 import { authStudyPassword, deleteStudyInfo } from '../../../../api/api';
+
 
 export function Modal({ studyName, isOpen, onClose, modalType }) {
   const [inputValue, setInputValue] = useState('');
@@ -22,6 +27,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
 
   // let studyId = useContext(studyIdContext);
   const { studyId } = useParams();
+  //const { login, logout } = useAuth();
 
   const buttonClass = ['modal__btn-confirm', 'modal__btn-edit', 'modal__btn-habit', 'modal__btn-concentration'];
 
@@ -40,16 +46,21 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   }
 
   function afterEditStudyModalPass() {
-    alert('수정 페이지로 이동 로직 추가 예정');
+    const path = `/study/${studyId}/modify`;
+    navigate(path);
   }
 
   function afterGotoHabitModalPass() {
     const path = `/study/${studyId}/todayHabit`;
+    //login();
+    //navigate(path);
     navigate(path, { state: 'habit' });
   }
 
   function afterGotoConcentrationModalPass() {
     const path = `/study/${studyId}/todaysFocus`;
+    //login();
+    //navigate(path);
     navigate(path, { state: 'focus' });
   }
 
@@ -128,6 +139,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     setIsIncorrectPasswordWarnOpen(false);
     setIsPasswordLengWWarnOpen(false);
     initModal();
+    logout();
     onClose();
   };
 

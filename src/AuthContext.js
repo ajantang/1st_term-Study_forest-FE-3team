@@ -2,8 +2,8 @@ import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
-export const testAuth = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+export const AuthProvider = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // 인증 상태 관리
 
   const login = () => setIsAuthenticated(true);
   const logout = () => setIsAuthenticated(false);
