@@ -1,0 +1,55 @@
+.main__todayHabitPage{
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10rem;
+}
+
+.todayHabitpage__body {
+    width: 124.8rem; 
+    height: 87rem;
+    border-radius: 2rem;
+    margin-top: 3.9rem;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+
+.todayHaibtPage__content{
+    width: 116.8rem;
+    height: 78.3rem;
+    margin-top: 1.6rem;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .main__todayHabitPage{
+        margin-bottom: 7.9rem;
+    }
+
+    .todayHabitpage__body {
+        width: 69.6rem; 
+        height: 85rem;
+        margin-top: 1.6rem;
+    }
+
+    .todayHaibtPage__content{
+        width: 64.8rem;
+        height: 75.1rem;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+    .main__todayHabitPage{
+        margin-bottom: 14.2rem;
+    }
+
+    .todayHabitpage__body {
+        width: 34.4rem; 
+        height: 78rem;
+        margin-top: 2rem;
+    }
+
+    .todayHaibtPage__content{
+        width: 31.2rem;
+        height: 75.5rem;
+    }
+}
