@@ -1,14 +1,10 @@
 import { useState, useEffect, createContext } from "react";
-
 import Emojis from "../../../UI/Emojis";
 import StudyPoint from "../../../UI/StudyPoint";
 import HabitRecord from "./HabitRecord";
 import Modal from "./Modal";
-
 import TodayButton from "../../../UI/TodayButton";
-
 import "./StudyBody.css";
-
 import {
   MODAL_CONFIRM,
   MODAL_EDIT_STUDY,
