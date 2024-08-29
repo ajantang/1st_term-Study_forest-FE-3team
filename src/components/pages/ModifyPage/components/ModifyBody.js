@@ -23,6 +23,10 @@ const MAX_DESCRIPTION_LENGTH = 100;
 const WARN_MAX_DESCRIPTION_LENGTH = 200;
 
 export function ModifyBody({ studyId }) {
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
+  const [backgorundUrl, setBackgorundUrl] = useState(
+    "https://ifh.cc/g/zaNc6p.jpg"
+  );
   const [passwordInputType, setPasswordInputType] = useState("password");
   const [toggleVisiblePasswordClass, setToggleVisiblePasswordClass] = useState(
     "modify-study__password-input-visible-off"
@@ -114,9 +118,7 @@ export function ModifyBody({ studyId }) {
   function validateDescription(value) {
     const length = value.length;
 
-    if (length < MIN_DESCRIPTION_LENGTH) {
-      return WARN_MIN_DESCRIPTION_LENGTH;
-    } else if (MAX_DESCRIPTION_LENGTH < length) {
+    if (MAX_DESCRIPTION_LENGTH < length) {
       return WARN_MAX_DESCRIPTION_LENGTH;
     } else {
       return VALID_DATA;
@@ -127,17 +129,10 @@ export function ModifyBody({ studyId }) {
 
   function invalidDescriptionWarn() {
     switch (description.isValid) {
-      case WARN_MIN_DESCRIPTION_LENGTH: {
-        return (
-          <p className="regular modify-study__inputset-warning">
-            2자 이상 입력해주세요
-          </p>
-        );
-      }
       case WARN_MAX_DESCRIPTION_LENGTH: {
         return (
           <p className="regular modify-study__inputset-warning">
-            20자 이내로 입력해주세요
+            100자 이내로 입력해주세요
           </p>
         );
       }
@@ -147,9 +142,6 @@ export function ModifyBody({ studyId }) {
       }
     }
   }
-
-  let backgroundIndex = 0;
-  let backgorundUrl = "https://ifh.cc/g/zaNc6p.jpg";
 
   const backgrounds = () => {
     const backgroundSelectorList = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -176,11 +168,11 @@ export function ModifyBody({ studyId }) {
     }
 
     if (backgroundSelectorRefs.current[backgroundIndex]) {
-      backgroundSelectorRefs.current[backgroundIndex].cancelSelect();
+      backgroundSelectorRefs.current[backgroundIndex].setSelect(false);
     }
 
-    backgroundIndex = index;
-    backgorundUrl = imageUrl;
+    setBackgroundIndex(index);
+    setBackgorundUrl(imageUrl);
   };
 
   const toggleVisiblePassword = () => {

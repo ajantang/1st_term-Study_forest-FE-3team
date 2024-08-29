@@ -78,6 +78,8 @@
   font-size: 1.6rem;
   line-height: 1.19312em;
   padding: 1.5rem 2rem;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .modify-study__password-inputset {

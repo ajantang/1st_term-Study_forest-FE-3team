@@ -19,6 +19,7 @@ export const studyIdContext = createContext();
 export function StudyBody({
   studyId = "8523e4cc-0985-4c20-b8b2-2d86e4fe56d5",
 }) {
+  const [nickname, setNickname] = useState("닉네임");
   const [studyName, setStudyName] = useState("스터디 이름");
   const [description, setDescription] = useState("스터디 설명");
   const [studyPoint, setStudyPoint] = useState(0);
@@ -59,11 +60,12 @@ export function StudyBody({
         setStudyName(data.studyName);
         setDescription(data.description);
         setStudyPoint(data.point);
+        setNickname(data.nickname);
       })
       .catch((err) => {
-        /* 에러 처리 : 기획 필요필요 */
+        alert(err);
       });
-  });
+  }, []);
 
   return (
     <main className="study__main">
@@ -101,6 +103,8 @@ export function StudyBody({
             </div>
             <div className="flex-row study__middlebar">
               <p className="extra-bold study__middlebar-studyname">
+                {nickname}
+                {"의 "}
                 {studyName}
               </p>
               <div className="flex-row study__middlebar-gp-btn">
