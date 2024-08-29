@@ -44,7 +44,7 @@ const TodaysFocusPage = () => {
           <div className="content__container">
             <div className="content__container__top">
               <div className="content__container__top__title extra-bold font32">
-                <span>{studyName}</span>
+                <span>의 {studyName}</span>
                 <div className="flex-row content__container__top__title_btn">
                   <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
                   <TodayButton onClick={handleGotoHome}>홈</TodayButton>

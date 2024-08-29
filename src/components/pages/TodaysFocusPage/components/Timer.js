@@ -222,55 +222,57 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   }, [totalPoint]);
 
   return (
-    <>
+    <div className="timerset">
       <div className="timerset__display font16 medium">
         <div className="timerset__display__icon"></div>
         {changeTime(initialTime)}
       </div>
-      <div className={`timer extra-bold font150 ${changeCss("input", state)}`}>
-        {state === "over" ? "-" : ""}
-        <input
-          type="text"
-          className={`timer__input extra-bold font150 ${changeCss(
-            "input",
-            state
-          )}`}
-          value={minute}
-          onChange={timerMinute}
-          disabled={isDisableInput}
-        />
-        :
-        <input
-          type="text"
-          className={`timer__input extra-bold font150 ${changeCss(
-            "input",
-            state
-          )}`}
-          value={second}
-          onChange={timerSecond}
-          disabled={isDisableInput}
-        />
-      </div>
+      <div className="timerset__control">
+        <div className={`timer extra-bold font150 ${changeCss("input", state)}`}>
+          {state === "over" ? "-" : ""}
+          <input
+            type="text"
+            className={`timer__input extra-bold font150 ${changeCss(
+              "input",
+              state
+            )}`}
+            value={minute}
+            onChange={timerMinute}
+            disabled={isDisableInput}
+          />
+          :
+          <input
+            type="text"
+            className={`timer__input extra-bold font150 ${changeCss(
+              "input",
+              state
+            )}`}
+            value={second}
+            onChange={timerSecond}
+            disabled={isDisableInput}
+          />
+        </div>
 
-      <div className="timer__controls">
-        {pauseTimer}
-        {controlTimer}
-        <button
-          type="button"
-          id="startbtn"
-          className={`timer__controls__active extra-bold ${changeCss(
-            "button",
-            state
-          )}`}
-          onClick={StartTimer}
-          disabled={isDisableBtn}
-        >
-          &nbsp;&nbsp; {btnText}!
-        </button>
-        {clearTimer}
+        <div className="timer__controls">
+          {pauseTimer}
+          {controlTimer}
+          <button
+            type="button"
+            id="startbtn"
+            className={`timer__controls__active extra-bold ${changeCss(
+              "button",
+              state
+            )}`}
+            onClick={StartTimer}
+            disabled={isDisableBtn}
+          >
+            &nbsp;&nbsp; {btnText}!
+          </button>
+          {clearTimer}
+        </div>
+        <div className="content__alert">{alertCondition}</div>
       </div>
-      <div className="content__alert">{alertCondition}</div>
-    </>
+    </div>
   );
 };
 
