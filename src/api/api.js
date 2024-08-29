@@ -17,7 +17,8 @@ export const createStudy = async (nickname, studyName, description, background, 
     const res = await instance.post(path, data);
     return res.data;
   } catch (err) {
-    alert('이미 사용중인 닉네임입니다');
+    console.log(err);
+    throw err;
   }
 };
 
@@ -37,7 +38,7 @@ export const getStudyInfo = async (page, pageSize, order, keyWord) => {
     return res.data;
   } catch (err) {
     console.log(err);
-    return err.name;
+    throw err;
   }
 };
 

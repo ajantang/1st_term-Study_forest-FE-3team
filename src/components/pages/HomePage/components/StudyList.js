@@ -4,6 +4,7 @@ import searchBtn from '../../../../assets/images/Vector.png';
 import dropdownBtn from '../../../../assets/images/ic_toggle.png';
 import StudyCard from './StudyCard';
 import { getStudyInfo } from '../../../../api/api';
+import useDebounce from '../../../hooks/useDebounce';
 
 const StudyList = () => {
   const [studyCards, setStudyCards] = useState([]);
@@ -14,6 +15,7 @@ const StudyList = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [order, setOrder] = useState('recent');
   const dropDownRef = useRef(null);
+  const debouncedSearchKeyword = useDebounce(searchKeyword, 500); // 500ms 디바운스
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -35,7 +37,7 @@ const StudyList = () => {
   useEffect(() => {
     const fetchStudyCards = async () => {
       try {
-        const response = await getStudyInfo(1, pageSize, order, searchKeyword);
+        const response = await getStudyInfo(1, pageSize, order, debouncedSearchKeyword);
         console.log('fetchStudyCards');
         setStudyCards(response.studies);
         if (response.totalCount <= pageSize || response.totalCount === 0) {
@@ -49,7 +51,7 @@ const StudyList = () => {
       }
     };
     fetchStudyCards();
-  }, [order, pageSize, searchKeyword]);
+  }, [order, pageSize, debouncedSearchKeyword]);
 
   const handleViewMore = () => {
     setPageSize(pageSize + 6);

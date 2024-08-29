@@ -67,11 +67,16 @@ const CreateStudy = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    const response = await createStudy(nickname, studyName, description, focusedBackground, password);
-    const { id } = response;
-    console.log(response);
-    navigate(`/study/${id}`);
+  const handleSubmit = () => {
+    createStudy(nickname, studyName, description, focusedBackground, password)
+      .then((response) => {
+        const { id } = response;
+        console.log(response);
+        navigate(`/study/${id}`);
+      })
+      .catch((error) => {
+        alert('이미 사용 중인 닉네임입니다');
+      });
   };
 
   const navigate = useNavigate();
