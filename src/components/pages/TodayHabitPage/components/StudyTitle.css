@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.StudyTitle__studyName-color{
+.StudyTitle__studyName{
     color: var(--arsenic);
 }
 
@@ -14,4 +14,33 @@
     width: 24.2rem;
     height: 4.8rem;
     justify-content: space-between;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+    .StudyTitle__body{
+        width: 64.8rem;
+        margin-top: 2.4rem;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+    .StudyTitle__body{
+        width: 31.2rem;
+        height: 8.5rem;
+        margin-top: 1.6rem;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    .StudyTitle__studyName{
+        font-size: 2.4rem;
+        line-height: 1.19333em;
+    }
+
+    .StudyTitle__TodayButton{
+        width: 18.6rem;
+        height: 4rem;
+        justify-content: space-between;
+    }
 }

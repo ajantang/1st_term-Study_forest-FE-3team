@@ -21,11 +21,13 @@ function ListModal({ modalState, patchList, setPageRender }) {
   const [rockButtonPost, setRockButtonPost] = useState([]); // ListModalPost.js 습관 수정 시 에러 방지
   const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
   const [rockButton, setRockButton] = useState(false); // 습관 생성 시 에러 방지
+  const [postRock, setPostRock] = useState(false); // 수정 완료 버튼 중복 클릭 시 중복 작동 방지
   const [olListHeight, setOlListHeight] = useState(
     'ListModal__list-ol list__ol-572 flex-col border-box' // ol태그 클래스 저장
   );
   const [listClass, setListClass] = useState([]); // ListModalBody.js 내 삭제할 습관이 있을 시 li를 없애기 위한 클래스 저장
   const [postClass, setPostClass] = useState([]); // ListModalPost.js 내 삭제할 습관이 있을 시 li를 없애기 위한 클래스 저장
+  const [checkInputClass, setCheckInputClass] = useState('ListModal__input font16 bold border-box'); // 습관 추가 인풋 css
 
   let studyId = useContext(studyIdContext);
   const childRefs = useRef([]); // ListModalBody.js에서 patchAPI를 가져오기 위한 ref
@@ -45,7 +47,7 @@ function ListModal({ modalState, patchList, setPageRender }) {
         });
         setHabitIds(Ids);
       } catch (e) {
-        alert(e);
+        alert('잠시 후 다시 시도해주세요');
       }
     };
 
@@ -78,9 +80,11 @@ function ListModal({ modalState, patchList, setPageRender }) {
       // 문자 길이가 30을 넘을 때
       setCheckLength30(true);
       setRockButton(true);
+      setCheckInputClass('ListModal__input ListModal__text-error font16 bold border-box');
     } else {
       // 문자 길이가 문제 없을때
       setCheckLength30(false);
+      setCheckInputClass('ListModal__input font16 bold border-box');
     }
   };
 
@@ -90,10 +94,12 @@ function ListModal({ modalState, patchList, setPageRender }) {
       // 문자 길이가 30을 넘을 때
       setCheckLength30(true);
       setRockButton(true);
+      setCheckInputClass('ListModal__input ListModal__text-error font16 bold border-box');
     } else {
       // 문자 길이가 문제 없을때
       setCheckLength30(false);
       setRockButton(false);
+      setCheckInputClass('ListModal__input font16 bold border-box');
     }
   };
 
@@ -132,6 +138,7 @@ function ListModal({ modalState, patchList, setPageRender }) {
     setCheckLength30(false);
     setRockButton(false);
     setOlListHeight('ListModal__list-ol list__ol-572 flex-col border-box');
+    setCheckInputClass('ListModal__input font16 bold border-box');
   };
 
   // 수정 완료 함수
@@ -146,8 +153,10 @@ function ListModal({ modalState, patchList, setPageRender }) {
       (boolin) => boolin === true && boolin !== undefined && boolin !== null
     );
 
-    if (!filterockButtonBody[0] && !filterockButtonPost[0] && !rockButton) {
+    if (!filterockButtonBody[0] && !filterockButtonPost[0] && !rockButton && !postRock) {
       if (filterValus[0]) {
+        setPostRock(true);
+
         const promises = childRefs.current.filter((ref) => ref !== null).map((ref) => ref.sendRequest()); // 이름 수정 있을 시 동직
 
         for (const habit of filterValus) {
@@ -155,7 +164,7 @@ function ListModal({ modalState, patchList, setPageRender }) {
           try {
             await createHabit(studyId, habit);
           } catch (e) {
-            alert(e);
+            alert('잠시 후 다시 시도해주세요');
           }
         }
 
@@ -173,14 +182,14 @@ function ListModal({ modalState, patchList, setPageRender }) {
           try {
             await Promise.all([...promises, ...deletePromis, postResult]);
           } catch (e) {
-            alert(e);
+            alert('잠시 후 다시 시도해주세요');
           }
         } else {
           // input에 값이 없을 시
           try {
             await Promise.all([...promises, ...deletePromis]);
           } catch (e) {
-            alert(e);
+            alert('잠시 후 다시 시도해주세요');
           }
         }
 
@@ -196,8 +205,11 @@ function ListModal({ modalState, patchList, setPageRender }) {
         setRockButtonBody([]);
         setRockButtonPost([]);
         patchList(); // 모달창 닫기
+        setPostRock(false);
       } else if (value) {
         // input에만 값이 있을 때
+        setPostRock(true);
+
         const promises = childRefs.current.filter((ref) => ref !== null).map((ref) => ref.sendRequest());
 
         const postResult = await createHabit(studyId, value);
@@ -211,7 +223,7 @@ function ListModal({ modalState, patchList, setPageRender }) {
         try {
           await Promise.all([...promises, ...deletePromis, postResult]);
         } catch (e) {
-          alert(e);
+          alert('잠시 후 다시 시도해주세요');
         }
 
         setValue('');
@@ -226,7 +238,10 @@ function ListModal({ modalState, patchList, setPageRender }) {
         setRockButtonBody([]);
         setRockButtonPost([]);
         patchList(); // 모달창 닫기
+        setPostRock(false);
       } else {
+        setPostRock(true);
+
         const promises = childRefs.current.filter((ref) => ref !== null).map((ref) => ref.sendRequest());
 
         const deletePromis = deletedIdx.map(async (idx) => {
@@ -248,13 +263,14 @@ function ListModal({ modalState, patchList, setPageRender }) {
             setListClass([]);
           }
         } catch (e) {
-          alert(e);
+          alert('잠시 후 다시 시도해주세요');
         }
         setPostInput(false);
         setRockButtonBody([]);
         setRockButtonPost([]);
         setOlListHeight('ListModal__list-ol list__ol-572 flex-col border-box');
         patchList();
+        setPostRock(false);
       }
     }
   };
@@ -315,9 +331,9 @@ function ListModal({ modalState, patchList, setPageRender }) {
               })}
             </ol>
             {postInput && (
-              <div className="ListModal__plusInut flex-row border-box">
+              <div className={'ListModal__plusInut flex-row border-box'}>
                 <input
-                  className="ListModal__input font16 bold border-box"
+                  className={checkInputClass}
                   value={value}
                   placeholder="새로운 습관 추가하기"
                   onChange={changeValueHandler}

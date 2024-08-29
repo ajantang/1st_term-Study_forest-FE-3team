@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import trashCanImg from "../../../../assets/images/btn_trashCanImg.svg";
 import "./ListModalBody.css";
 
@@ -12,15 +12,23 @@ function ListModalPost({
   rockButtonPost,
   setRockButtonPost,
 }) {
-  const [value, setValue] = useState(habit);                  // 생성할 습관 이름 저장
-  const [patchInput, setPatchInput] = useState(false);        // 습관 수정 input 공개 여부
-  const [deleted, setDeleted] = useState(false);              // 삭제 예정 시 프론트에서 지우기 위한 값
-  const [checkLength0, setCheckLength0] = useState(false);    // 문자 길이가 0일때 에러 메세지 공개 여부
-  const [checkLength30, setCheckLength30] = useState(false);  // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
+  const [value, setValue] = useState(habit); // 생성할 습관 이름 저장
+  const [patchInput, setPatchInput] = useState(false); // 습관 수정 input 공개 여부
+  const [deleted, setDeleted] = useState(false); // 삭제 예정 시 프론트에서 지우기 위한 값
+  const [checkLength0, setCheckLength0] = useState(false); // 문자 길이가 0일때 에러 메세지 공개 여부
+  const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
+  const [checkInputClass, setCheckInputClass] = useState(
+    "ListModalBody__text ListModalBody__text-align font16 bold border-box"
+  ); // 습관 수정 인풋 css
+
+  const inputRef = useRef(null);
 
   //patch input 생성 함수
   const patchClick = () => {
     setPatchInput(true);
+    setTimeout(() => {
+      inputRef.current.focus(); // input 요소로 포커스 이동
+    }, 50);
   };
 
   // value와 input 값 일치 함수
@@ -31,6 +39,9 @@ function ListModalPost({
     if (value.trim().length > 30) {
       // 문자 길이가 30을 넘을 때
       setCheckLength30(true);
+      setCheckInputClass(
+        "ListModalBody__text ListModalBody__text-align ListModalBody__text-error font16 bold border-box"
+      );
 
       const rockButtonPosts = [...rockButtonPost];
       rockButtonPosts[idx] = true;
@@ -39,6 +50,9 @@ function ListModalPost({
       // 문자 길이가 문제 없을때
       setCheckLength0(false);
       setCheckLength30(false);
+      setCheckInputClass(
+        "ListModalBody__text ListModalBody__text-align font16 bold border-box"
+      );
     }
   };
 
@@ -52,6 +66,9 @@ function ListModalPost({
       // 문자 길이가 0일 때
       setCheckLength0(true);
       setCheckLength30(false);
+      setCheckInputClass(
+        "ListModalBody__text ListModalBody__text-align ListModalBody__text-error font16 bold border-box"
+      );
 
       const rockButtonPosts = [...rockButtonPost];
       rockButtonPosts[idx] = true;
@@ -59,6 +76,9 @@ function ListModalPost({
     } else if (value.trim().length > 30) {
       // 문자 길이가 30을 넘을 때
       setCheckLength30(true);
+      setCheckInputClass(
+        "ListModalBody__text ListModalBody__text-align ListModalBody__text-error font16 bold border-box"
+      );
 
       const rockButtonPosts = [...rockButtonPost];
       rockButtonPosts[idx] = true;
@@ -67,6 +87,9 @@ function ListModalPost({
       // 문자 길이가 문제 없을때
       setCheckLength0(false);
       setCheckLength30(false);
+      setCheckInputClass(
+        "ListModalBody__text ListModalBody__text-align font16 bold border-box"
+      );
 
       const rockButtonPosts = [...rockButtonPost];
       rockButtonPosts[idx] = false;
@@ -104,10 +127,11 @@ function ListModalPost({
           )}
           {patchInput && (
             <input
-              className="ListModalBody__text ListModalBody__text-align font16 bold border-box"
+              className={checkInputClass}
               value={value}
               onChange={changeValueHandler}
               onKeyUp={changePostValuesHandler}
+              ref={inputRef}
             />
           )}
           {checkLength0 && (

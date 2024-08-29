@@ -31,14 +31,14 @@ function HabitsListBody({ habit }) {
         await deleteSuccessHabitDate(successId); // 습관 완료 취소
         setSuccessId('');
       } catch (e) {
-        alert(e);
+        alert('잠시 후 다시 시도해주세요');
       }
     } else if (!successId) {
       try {
         const res = await createSuccessHabitDate(habitId); // 습관 완료 추가
         setSuccessId(res.id);
       } catch (e) {
-        alert(e);
+        alert('잠시 후 다시 시도해주세요');
       }
     }
   };
