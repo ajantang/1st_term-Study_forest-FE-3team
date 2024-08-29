@@ -44,13 +44,11 @@ const TodaysFocusPage = () => {
           <div className="content__container">
             <div className="content__container__top">
               <div className="content__container__top__title extra-bold font32">
-                  {studyName}
+                <span>{studyName}</span>
                 <div className="flex-row content__container__top__title_btn">
-                <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
-                <TodayButton onClick={handleGotoHome}>
-                  홈
-                </TodayButton>
-              </div>
+                  <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
+                  <TodayButton onClick={handleGotoHome}>홈</TodayButton>
+                </div>
               </div>
               <div className="content__container__top__middle">
                 <span className="font18 regular">현재까지 획득한 포인트</span>
