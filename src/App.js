@@ -12,39 +12,61 @@ import PrivateRoute from "../src/utils/PrivateRoute";
 function App() {
   return (
     <BrowserRouter>
-      <Routes> 
-        {/* <Route path="/" element={<p>home</p>}>
+      <Routes>
+        <Route path="/" element={<Main />}>
+          <Route index element={<HomePage />} />
           <Route path="create" element={<CreateStudyPage />} />
-          <Route path="study/:studyId" element={<StudyPage />} />
-          <Route element={<PrivateRoute />}>
-            <Route
-              path="study/:studyId/todayHabit"
-              element={<TodatHabitPage />}
-            />
-            <Route
-              path="study/:studyId/todaysFocus"
-              element={<TodaysFocusPage />}
-            />
-          </Route>
-        </Route> */}
-        <Route element={<Main />}>
-          <Route path="/" element={<HomePage />} />
-            <Route path="create" element={<CreateStudyPage />} />
-            <Route path="study/:studyId" element={<StudyPage />} />
+          <Route path="study/:studyId">
+            <Route index element={<StudyPage />} />
             <Route element={<PrivateRoute />}>
-              <Route
-                path="study/:studyId/todayHabit"
-                element={<TodatHabitPage />}
-              />
-              <Route
-                path="study/:studyId/todaysFocus"
-                element={<TodaysFocusPage />}
-              />
+              <Route path="todayHabit" element={<TodatHabitPage />} />
+              <Route path="todaysFocus" element={<TodaysFocusPage />} />
             </Route>
           </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+
+// function App() {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         {/* <Route path="/" element={<p>home</p>}>
+//           <Route path="create" element={<CreateStudyPage />} />
+//           <Route path="study/:studyId" element={<StudyPage />} />
+//           <Route element={<PrivateRoute />}>
+//             <Route
+//               path="study/:studyId/todayHabit"
+//               element={<TodatHabitPage />}
+//             />
+//             <Route
+//               path="study/:studyId/todaysFocus"
+//               element={<TodaysFocusPage />}
+//             />
+//           </Route>
+//         </Route> */}
+//         <Route element={<Main />}>
+//           <Route path="/" element={<HomePage />} />
+//             <Route path="create" element={<CreateStudyPage />} />
+//             <Route path="study/:studyId" element={<StudyPage />} />
+//             <Route element={<PrivateRoute />}>
+//               <Route
+//                 path="study/:studyId/todayHabit"
+//                 element={<TodatHabitPage />}
+//               />
+//               <Route
+//                 path="study/:studyId/todaysFocus"
+//                 element={<TodaysFocusPage />}
+//               />
+//             </Route>
+//           </Route>
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// }
+
+// export default App;

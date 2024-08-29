@@ -194,7 +194,7 @@ export const setHabitDelete = async (habitId) => {
 /** /success POST - 완료한 습관 추가 */
 export const createSuccessHabitDate = async (habitId) => {
   const path = `/success`;
-  const data = { id: habitId };
+  const data = { habitId };
 
   try {
     const res = await instance.post(path, data);
@@ -210,8 +210,7 @@ export const deleteSuccessHabitDate = async (successHabitDateId) => {
   const path = `/success/${successHabitDateId}`;
 
   try {
-    const res = await instance.delete(path);
-    return res.status();
+    await instance.delete(path);
   } catch (err) {
     console.log(err);
     throw err;

@@ -1,0 +1,106 @@
+.ListModal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.ListModal__body {
+  width: 64.8rem;
+  height: 86.1rem;
+  border-radius: 2rem;
+  border: 1px solid var(--gainsboro);
+  background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+}
+
+.ListModal__title {
+  width: 60rem;
+  height: 2.9rem;
+  margin-bottom: 2.4rem;
+  color: var(--arsenic);
+  text-align: center;
+}
+
+.ListModal__list-ol {
+  width: 60rem;
+  align-items: center;
+  list-style-type: none;
+  overflow: scroll;
+}
+
+.list__ol-518 {
+  height: 51.8rem;
+}
+
+.list__ol-572 {
+  height: 57.2rem;
+}
+
+.ListModal__list-ol::-webkit-scrollbar {
+  display: none;
+}
+
+.ListModal__plusInut {
+  width: 60rem;
+  height: 5.4rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.ListModal__input {
+  width: 40rem;
+  height: 5.4rem;
+  border: none;
+  border-radius: 20rem;
+  background-color: var(--bright-gray);
+  text-align: center;
+  text-decoration: underline;
+  color: var(--gray);
+}
+
+.ListModal__img-trashCan {
+  width: 4.8rem;
+  height: 4.8rem;
+  position: absolute;
+  left: 50.8rem;
+}
+
+.ListModal__img-plus {
+  width: 40rem;
+  height: 5.4rem;
+  margin-top: 2rem;
+  cursor: pointer;
+}
+
+.ListModal__button {
+  width: 60rem;
+  height: 5.4rem;
+  margin-top: 2.4rem;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.ListModal__img-button {
+  width: 28.8rem;
+  height: 5.8rem;
+}
+
+.li-use {
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.li-delete {
+  display: none;
+}

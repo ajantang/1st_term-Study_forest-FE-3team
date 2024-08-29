@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { gethabitData } from "../../../../api/api";
 import "./HabitRecord.css";
-
 import { ReactComponent as StickerEmpty } from "../../../../assets/images/sticker_empty.svg";
 import { ReactComponent as Sticker01 } from "../../../../assets/images/sticker_light_green_100_01.svg";
 import { ReactComponent as Sticker02 } from "../../../../assets/images/sticker_light_green_100_02.svg";

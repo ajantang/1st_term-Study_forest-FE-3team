@@ -4,7 +4,6 @@ import useValidation from "../../../hooks/useValidation.js";
 import "./inputForm.css";
 import invisiblePassword from "../../../../assets/images/btn_visibility_off.png";
 import visiblePassword from "../../../../assets/images/btn_visibility_on.png";
-
 import { API_ADDRESS } from "../../../../constants/global.js";
 
 const CreateStudy = () => {
