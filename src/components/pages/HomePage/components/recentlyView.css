@@ -70,6 +70,7 @@
 
   .recently-view__list {
     margin: 35px auto 0;
+    width: max-content;
   }
 
   .recently-view__no-list {
