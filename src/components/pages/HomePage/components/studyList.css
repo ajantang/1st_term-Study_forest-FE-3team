@@ -1,7 +1,7 @@
 .study-list__container {
   width: 1200px;
   height: auto;
-  min-height: 822px;
+
   background-color: white;
   margin: 0 auto;
   border-radius: 12px;
@@ -147,7 +147,7 @@ input:focus {
   line-height: 23.87px;
   font-weight: 500;
   color: #818181;
-  margin: 331px auto 0;
+  margin: 331px auto 332px;
   width: max-content;
 }
 
@@ -180,11 +180,6 @@ input:focus {
     margin-bottom: 34px;
     font-size: 16px;
     line-height: 19.09px;
-  }
-
-  .background {
-    width: 148px;
-    height: 148px;
   }
 
   .study-list__grid {
