@@ -79,10 +79,6 @@ export const setStudyInfo = async (
     ...(point && { point }),
   };
 
-  // export const setStudyInfo = async (studyId, point) => {
-  //   const path = `/study/${studyId}`;
-  //   const data = { point: point };
-
   try {
     const res = await instance.patch(path, data);
     return res.data;
@@ -212,7 +208,8 @@ export const deleteSuccessHabitDate = async (successHabitDateId) => {
   const path = `/success/${successHabitDateId}`;
 
   try {
-    await instance.delete(path);
+    const res = await instance.delete(path);
+    return res.status();
   } catch (err) {
     console.log(err);
     throw err;

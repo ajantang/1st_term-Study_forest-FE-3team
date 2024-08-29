@@ -1,8 +1,8 @@
-import './studypoint.css';
-import { ReactComponent as PointMark } from '../../../../assets/images/ic_point.svg';
+import "./StudyPoint.css";
+import { ReactComponent as PointMark } from "../../../../assets/images/ic_point.svg";
 
 export function StudyPoint({ point }) {
-  const icSize = '1.9rem';
+  const icSize = "1.9rem";
   return (
     <div className="study__point">
       <div className="point__description">현재까지 획득한 포인트</div>
