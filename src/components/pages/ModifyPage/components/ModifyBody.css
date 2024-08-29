@@ -228,4 +228,12 @@
     height: 5.8rem;
     background-image: url("../../../../assets/images/btn_confirm_s.svg");
   }
+
+  .modify-study__btn-modify-disable {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    width: var(--modify-content-width-mobile);
+    height: 5.8rem;
+    background-image: url("../../../../assets/images/btn_confirm_disable_s.svg");
+  }
 }
