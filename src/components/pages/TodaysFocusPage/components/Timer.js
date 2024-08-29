@@ -62,16 +62,29 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
     setBtnText("Start");
   }
 
+  const handlerBalnk = (e) => {
+    if(e.target.value === ""){
+      alert('숫자를 입력해주세요.');
+      setMinute(M)
+      setSecond(S)
+    }
+  }
+
   //INPUT값 받아와서 변환
   const timerMinute = (e) => {
-    let min = changeDigits(e.target.value);
+    let min = e.target.value.replace(/[^0-9]/g, "");
+    min = changeDigits(min);
+
     setMinute(min);
     setCountTime(Number(min * 60) + Number(second));
     setInitialTime(Number(min * 60) + Number(second));
   };
 
   const timerSecond = (e) => {
-    let sec = changeDigits(e.target.value);
+    let sec = e.target.value.replace(/[^0-9]/g, "");
+    sec = changeDigits(sec);
+
+
     //60이상의 값 입력 시 분으로 자동 넘김
     if (sec >= 60) {
       if (minute >= 99) {
@@ -238,6 +251,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
             )}`}
             value={minute}
             onChange={timerMinute}
+            onBlur={handlerBalnk}
             disabled={isDisableInput}
           />
           :
@@ -249,6 +263,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
             )}`}
             value={second}
             onChange={timerSecond}
+            onBlur={handlerBalnk}
             disabled={isDisableInput}
           />
         </div>
