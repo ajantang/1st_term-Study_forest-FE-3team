@@ -1,21 +1,15 @@
-import axios from "axios";
-import { API_ADDRESS } from "../constants/global";
+import axios from 'axios';
+import { API_ADDRESS } from '../constants/global';
 
 const instance = axios.create({
   baseURL: API_ADDRESS,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
 /** /study POST - 스터디 생성 */
-export const createStudy = async (
-  nickname,
-  studyName,
-  description,
-  background,
-  password
-) => {
+export const createStudy = async (nickname, studyName, description, background, password) => {
   const path = `/study`;
   const data = { nickname, studyName, description, background, password };
 
@@ -24,7 +18,7 @@ export const createStudy = async (
     return res.data;
   } catch (err) {
     console.log(err);
-    return err.name;
+    throw err;
   }
 };
 
@@ -44,7 +38,7 @@ export const getStudyInfo = async (page, pageSize, order, keyWord) => {
     return res.data;
   } catch (err) {
     console.log(err);
-    return err.name;
+    throw err;
   }
 };
 
@@ -62,22 +56,10 @@ export const getStudyDetailInfo = async (studyId) => {
 };
 
 /** /study/:id PATCH - 상세 스터디 수정 */
-export const setStudyInfo = async (
-  studyId,
-  nickname,
-  studyName,
-  description,
-  background,
-  point
-) => {
+
+export const setStudyInfo = async (studyId, point) => {
   const path = `/study/${studyId}`;
-  const data = {
-    ...(nickname && { nickname }),
-    ...(studyName && { studyName }),
-    ...(description && { description }),
-    ...(background && { background }),
-    ...(point && { point }),
-  };
+  const data = { point: point };
 
   try {
     const res = await instance.patch(path, data);
@@ -192,7 +174,7 @@ export const setHabitDelete = async (habitId) => {
 /** /success POST - 완료한 습관 추가 */
 export const createSuccessHabitDate = async (habitId) => {
   const path = `/success`;
-  const data = { id: habitId };
+  const data = { habitId };
 
   try {
     const res = await instance.post(path, data);
@@ -208,8 +190,7 @@ export const deleteSuccessHabitDate = async (successHabitDateId) => {
   const path = `/success/${successHabitDateId}`;
 
   try {
-    const res = await instance.delete(path);
-    return res.status();
+    await instance.delete(path);
   } catch (err) {
     console.log(err);
     throw err;

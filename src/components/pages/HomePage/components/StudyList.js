@@ -1,22 +1,28 @@
-import "./studyList.css";
-import axios from "axios";
-import React, { useState, useRef, useEffect } from "react";
-import searchBtn from "../../../../assets/images/Vector.png";
-import dropdownBtn from "../../../../assets/images/ic_toggle.png";
-import StudyCard from "./StudyCard";
-import { API_ADDRESS } from "../../../../constants/global";
+import './studyList.css';
+import { useState, useRef, useEffect } from 'react';
+import searchBtn from '../../../../assets/images/Vector.png';
+import dropdownBtn from '../../../../assets/images/ic_toggle.png';
+import StudyCard from './StudyCard';
+import { getStudyInfo } from '../../../../api/api';
+import useDebounce from '../../../hooks/useDebounce';
 
 const StudyList = () => {
   const [studyCards, setStudyCards] = useState([]);
-  const [page, setPage] = useState(1);
-  const [pageSize] = useState(6);
-  const [hasMore, setHasMore] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
+  const [pageSize, setPageSize] = useState(6);
+  const [hasMore, setHasMore] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [boxText, setBoxText] = useState("최근 순");
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const [order, setOrder] = useState("recent");
+  const [boxText, setBoxText] = useState('최근 순');
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [order, setOrder] = useState('recent');
   const dropDownRef = useRef(null);
+  const debouncedSearchKeyword = useDebounce(searchKeyword, 500); // 500ms 디바운스
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleDropDown = () => {
     setIsOpen(!isOpen);
@@ -28,97 +34,47 @@ const StudyList = () => {
     }
   };
 
-  const fetchStudyCards = async (page, searchKeyword, order) => {
-    setIsLoading(true);
-    const response = await axios.get(
-      `${API_ADDRESS}/study?page=${page}&pageSize=${pageSize}&order=${order}&keyWord=${searchKeyword}`
-    );
-    if (response.data.length < pageSize) {
-      setHasMore(false);
-    } else {
-      setHasMore(true);
-    }
-    const newCards = response.data;
-    const uniqueCards = Array.from(
-      new Set([...studyCards, ...newCards].map((card) => card.id))
-    ).map((id) => {
-      return [...studyCards, ...newCards].find((card) => card.id === id);
-    });
-    setStudyCards(uniqueCards);
-    setIsLoading(false);
+  useEffect(() => {
+    const fetchStudyCards = async () => {
+      try {
+        const response = await getStudyInfo(1, pageSize, order, debouncedSearchKeyword);
+        console.log('fetchStudyCards');
+        setStudyCards(response.studies);
+        if (response.totalCount <= pageSize || response.totalCount === 0) {
+          setHasMore(false);
+        } else {
+          setHasMore(true);
+          console.log(pageSize);
+        }
+      } catch (error) {
+        console.error('Error fetching study cards:', error);
+      }
+    };
+    fetchStudyCards();
+  }, [order, pageSize, debouncedSearchKeyword]);
+
+  const handleViewMore = () => {
+    setPageSize(pageSize + 6);
   };
 
-  useEffect(() => {
-    setStudyCards([]);
-    setPage(1);
-    fetchStudyCards(1, searchKeyword, order);
-  }, [searchKeyword, order]);
-
-  useEffect(() => {
-    if (page > 1) {
-      fetchStudyCards(page, searchKeyword, order);
-    }
-  }, [page]);
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   const handleClickRecent = () => {
-    setBoxText("최신순");
-    setOrder("recent");
-    setPage(1);
-    setStudyCards([]);
-    fetchStudyCards(1, searchKeyword, "recent");
+    setBoxText('최신순');
+    setOrder('recent');
   };
 
   const handleClickOldest = () => {
-    setBoxText("오래된 순");
-    setOrder("oldest");
-    setPage(1);
-    setStudyCards([]);
-    fetchStudyCards(1, searchKeyword, "oldest");
+    setBoxText('오래된 순');
+    setOrder('oldest');
   };
 
   const handleClickMostPoint = () => {
-    setBoxText("많은 포인트 순");
-    setOrder("mostPoint");
-    setPage(1);
-    setStudyCards([]);
-    fetchStudyCards(1, searchKeyword, "mostPoint");
+    setBoxText('많은 포인트 순');
+    setOrder('mostPoint');
   };
 
   const handleClicLeastPoint = () => {
-    setBoxText("적은 포인트 순");
-    setOrder("leastPoint");
-    setPage(1);
-    setStudyCards([]);
-    fetchStudyCards(1, searchKeyword, "leastPoint");
-  };
-
-  const handleViewMore = () => {
-    if (!isLoading) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const handleSearchChange = (event) => {
-    setSearchKeyword(event.target.value);
-  };
-
-  const handleSearchClick = () => {
-    setStudyCards([]);
-    setPage(1);
-    fetchStudyCards(1, searchKeyword, order);
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      handleSearchClick();
-    }
+    setBoxText('적은 포인트 순');
+    setOrder('leastPoint');
   };
 
   return (
@@ -129,64 +85,55 @@ const StudyList = () => {
           <input
             placeholder="검색"
             className="study-list__nav__search"
-            value={searchKeyword}
-            onChange={handleSearchChange}
-            onKeyPress={handleKeyPress}
+            onChange={(e) => {
+              setSearchKeyword(e.target.value);
+              setPageSize(6);
+            }}
           />
-          <img
-            src={searchBtn}
-            alt="search"
-            className="study-list__nav__search-icon"
-            onClick={handleSearchClick}
-          />
+          <img src={searchBtn} alt="search" className="study-list__nav__search-icon" />
         </div>
-        <div
-          className="study-list__nav__dropdown"
-          onClick={toggleDropDown}
-          ref={dropDownRef}
-        >
+        <div className="study-list__nav__dropdown" onClick={toggleDropDown} ref={dropDownRef}>
           <p>{boxText}</p>
-          <img
-            src={dropdownBtn}
-            alt="dropdownBtn"
-            className={`dropdownBtn ${isOpen ? "rotate" : ""}`}
-          />
+          <img src={dropdownBtn} alt="dropdownBtn" className={`study-list__nav__dropdown-btn ${isOpen ? 'rotate' : ''}`} />
           {isOpen && (
             <div className="study-list__nav__dropdown-box">
-              <div className="order recent" onClick={handleClickRecent}>
+              <div className="study-list__nav__dropdown-box__order recent" onClick={handleClickRecent}>
                 최근 순
               </div>
-              <div className="order oldest" onClick={handleClickOldest}>
+              <div className="study-list__nav__dropdown-box__order oldest" onClick={handleClickOldest}>
                 오래된 순
               </div>
-              <div className="order most-point" onClick={handleClickMostPoint}>
+              <div className="study-list__nav__dropdown-box__order most-point" onClick={handleClickMostPoint}>
                 많은 포인트 순
               </div>
-              <div className="order least-point" onClick={handleClicLeastPoint}>
+              <div className="study-list__nav__dropdown-box__order least-point" onClick={handleClicLeastPoint}>
                 적은 포인트 순
               </div>
             </div>
           )}
         </div>
       </div>
-      <div className="study-list__grid">
-        {studyCards.map((card, index) => (
-          <StudyCard
-            key={index}
-            id={card.id}
-            name={card.studyName}
-            description={card.description}
-            nickname={card.nickname}
-            point={card.point}
-            background={card.background}
-          />
-        ))}
-      </div>
+
+      {studyCards.length > 0 ? (
+        <div className="study-list__grid">
+          {studyCards.map((card, index) => (
+            <StudyCard
+              key={index}
+              id={card.id}
+              studyName={card.studyName}
+              description={card.description}
+              nickname={card.nickname}
+              point={card.point}
+              background={card.background}
+              createdAt={card.createdAt}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="study-list__no-list">아직 둘러 볼 스터디가 없어요</p>
+      )}
       {hasMore && (
-        <div
-          className={`study-list__view-more ${isLoading ? "disabled" : ""}`}
-          onClick={handleViewMore}
-        >
+        <div className={`study-list__view-more`} onClick={handleViewMore}>
           더보기
         </div>
       )}

@@ -5,12 +5,19 @@
   padding: 30px;
   display: inline-block;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  background-origin: border-box;
+  position: relative;
+  text-decoration: none;
 }
 
 .study-card__title {
-  color: black;
+  color: #414141;
   font-size: 18px;
   line-height: 21.48px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .study-card__title__container {
@@ -22,7 +29,7 @@
   font-size: 12px;
   line-height: 14.32px;
   font-weight: 500;
-  color: black;
+  white-space: nowrap;
 }
 
 .study-card__point-container {
@@ -31,9 +38,10 @@
   padding: 4px 8px;
   border-radius: 50px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  width: auto;
+  width: max-content;
   height: 22px;
-  display: flex;
+  box-sizing: border-box;
+  align-items: center;
 }
 
 .study-card__ic_point {
@@ -41,14 +49,87 @@
   width: 14px;
 }
 
+.study-card__date {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.71px;
+  margin-top: 10px;
+}
+
 .study-card__description {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: black;
   margin-top: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.study-card_title_name {
+.study-card__title__study-name {
   margin-left: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.study-card__emoji-container {
+  position: absolute;
+  bottom: 30px;
+}
+
+@media (min-width: 744px) and (max-width: 1199px) {
+  .study-card {
+    width: 312px;
+    height: 243px;
+  }
+
+  .study-card__point {
+    white-space: nowrap;
+  }
+
+  .study-card.recently-viewd {
+    width: 358px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 743px) {
+  .study-card {
+    width: 312px;
+    height: 180px;
+    padding: 16px;
+  }
+
+  .study-card__title__container {
+    flex-direction: column-reverse;
+
+    gap: 6px;
+  }
+
+  .study-card__title {
+    font-size: 16px;
+    line-height: 19.09px;
+  }
+
+  .study-card__date {
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 14.32px;
+  }
+
+  .study-card__description {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 16.71px;
+  }
+
+  .study-card__emoji-container {
+    bottom: 16px;
+  }
+  .study-card.recently-viewd {
+    width: 240px;
+    height: 180px;
+  }
 }
