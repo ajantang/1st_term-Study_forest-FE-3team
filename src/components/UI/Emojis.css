@@ -1,0 +1,120 @@
+.emoji {
+  height: 3.1rem;
+  box-sizing: border-box;
+  /* border: 0.1rem solid; */
+  border-radius: 3.125em;
+  /* border-color: rgba(0, 0, 0, 0.5); */
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.emoji__emoji {
+  margin-right: 0.5rem;
+}
+
+.emojis__boxes {
+  gap: 0.4rem;
+}
+
+.emojis {
+  display: flex;
+  flex-direction: row;
+  /* width: 24rem; */
+  height: 3.1rem;
+}
+
+.emojis__btn-extra-anchor {
+  position: relative;
+}
+
+.emojis__btn-extra {
+  margin-left: 0.4rem;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 3.125em;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.emojis__btn-extra-clicked {
+  margin-left: 0.4rem;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 3.125em;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.emojis__extra {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  width: 23rem;
+  box-sizing: border-box;
+  border-radius: 0.9375em;
+  border: 0.1rem solid;
+  border-color: var(--gray);
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 1.2rem;
+  background-color: white;
+  z-index: 9;
+}
+
+.emojis__btn-add {
+  margin-left: 0.4rem;
+  width: 6.7rem;
+  height: 100%;
+  background-image: url("../../assets/images/btn_add_emoji.svg");
+}
+
+.emojis__btn-add-anchor {
+  position: relative;
+}
+
+.emojis__picker {
+  position: absolute;
+  top: 110%;
+}
+
+/* ===== PC / Tablet-width : 744px ~ ====== */
+@media (min-width: 744px) {
+  .emojis__picker {
+    left: 0;
+  }
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .emojis__btn-add {
+    margin-left: 0.4rem;
+    width: 3.1rem;
+    height: 100%;
+    background-image: url("../../assets/images/btn_add_emoji_s.svg");
+  }
+
+  .emojis__btn-add-anchor {
+    position: relative;
+  }
+
+  .emojis__picker {
+    right: -55%;
+  }
+
+  .emojis__gp-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

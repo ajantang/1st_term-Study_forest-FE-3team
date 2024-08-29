@@ -1,0 +1,19 @@
+.currentTime__body {
+  width: 18.4rem;
+  height: 6.4rem;
+}
+
+.currentTime__text-color {
+  color: var(--gray);
+}
+
+.currenTime__time {
+  width: 18.4rem;
+  height: 3.5rem;
+  border-radius: 5rem;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  margin-top: 0.8rem;
+  color: var(--arsenic);
+  justify-content: center;
+  align-items: center;
+}
