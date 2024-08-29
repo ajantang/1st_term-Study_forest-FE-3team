@@ -1,17 +1,17 @@
-import { getStudyDetailInfo } from '../../../api/api';
-import { useEffect, useState, createContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { getStudyDetailInfo } from "../../../api/api";
+import { useEffect, useState, createContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import Timer from './components/Timer';
-import TodayButton from '../../UI/TodayButton';
-import './todaysFocusPage.css';
+import Timer from "./components/Timer";
+import TodayButton from "../../UI/TodayButton";
+import "./todaysFocusPage.css";
 
 export const studyIdContext = createContext();
 
 const TodaysFocusPage = () => {
-  const [point, setPoint] = useState('');
-  const [studyName, setStudyName] = useState('');
-  const [alertGetPoint, setAlertGetPoint] = useState('');
+  const [point, setPoint] = useState("");
+  const [studyName, setStudyName] = useState("");
+  const [alertGetPoint, setAlertGetPoint] = useState("");
 
   const { studyId } = useParams();
 
@@ -44,7 +44,7 @@ const TodaysFocusPage = () => {
           <div className="content__container">
             <div className="content__container__top">
               <div className="content__container__top__title extra-bold font32">
-                {studyName}
+                <span>{studyName}</span>
                 <div className="flex-row content__container__top__title_btn">
                   <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
                   <TodayButton onClick={handleGotoHome}>홈</TodayButton>
@@ -61,15 +61,19 @@ const TodaysFocusPage = () => {
             <div className="content__container__main">
               <div className="content__container__main__top">
                 <span className="font24 extra-bold">오늘의 집중</span>
-                <Timer initialPoint={point} setPoint={setPoint} setAlertGetPoint={setAlertGetPoint}></Timer>
+                <Timer
+                  initialPoint={point}
+                  setPoint={setPoint}
+                  setAlertGetPoint={setAlertGetPoint}
+                ></Timer>
               </div>
             </div>
           </div>
           <div className="content__alert">{alertGetPoint}</div>
         </div>
-      </studyIdContext.Provider>
+      </studyIdContext.Provider >
     </>
   );
-};
+}
 
 export default TodaysFocusPage;
