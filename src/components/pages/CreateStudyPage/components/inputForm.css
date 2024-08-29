@@ -187,13 +187,13 @@
   font-family: EF_jejudoldam;
 }
 
-@media (max-width: 1279px) {
+@media (min-width: 744px) and (max-width: 1199px) {
   .create-study {
     margin: 20px auto 197px;
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 375px) and (max-width: 743px) {
   .create-study {
     width: 344px;
     margin: 40px auto 171px;

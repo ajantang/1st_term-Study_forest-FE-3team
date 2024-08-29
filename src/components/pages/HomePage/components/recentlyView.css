@@ -35,7 +35,7 @@
   text-align: center;
 }
 
-@media (max-width: 1279px) {
+@media (min-width: 744px) and (max-width: 1199px) {
   .recently-view__container {
     width: 697px;
     height: 338px;
@@ -58,7 +58,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 375px) and (max-width: 743px) {
   .recently-view__container {
     width: 344px;
     height: 247px;

@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import './Modal.css';
+import './modal.css';
 
 import { Loading } from '../../../UI/Loading';
-import { studyIdContext } from './StudyBody';
+
 import { authStudyPassword, deleteStudyInfo } from '../../../../api/api';
 
 export function Modal({ studyName, isOpen, onClose, modalType }) {
@@ -20,7 +20,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
 
   const afterModalPass = [afterDeleteStudyModalPass, afterEditStudyModalPass, afterGotoHabitModalPass, afterGotoConcentrationModalPass];
 
-  let studyId = useContext(studyIdContext);
+  // let studyId = useContext(studyIdContext);
+  const { studyId } = useParams();
 
   const buttonClass = ['modal__btn-confirm', 'modal__btn-edit', 'modal__btn-habit', 'modal__btn-concentration'];
 
@@ -44,12 +45,12 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
 
   function afterGotoHabitModalPass() {
     const path = `/study/${studyId}/todayHabit`;
-    navigate(path);
+    navigate(path, { state: 'habit' });
   }
 
   function afterGotoConcentrationModalPass() {
     const path = `/study/${studyId}/todaysFocus`;
-    navigate(path);
+    navigate(path, { state: 'focus' });
   }
 
   const initModal = () => {

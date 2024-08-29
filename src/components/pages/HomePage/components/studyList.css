@@ -151,7 +151,7 @@ input:focus {
   width: max-content;
 }
 
-@media (max-width: 1279px) {
+@media (min-width: 744px) and (max-width: 1199px) {
   .study-list__container {
     width: 697px;
     height: auto;
@@ -170,7 +170,7 @@ input:focus {
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 375px) and (max-width: 743px) {
   .study-list__container {
     width: 344px;
     height: auto;

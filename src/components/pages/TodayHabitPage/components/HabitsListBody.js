@@ -1,34 +1,45 @@
 import { useEffect, useState } from 'react';
-import { deleteSuccessHabitDate, createSuccessHabitDate } from '../../../../api/api';
+import { createSuccessHabitDate, deleteSuccessHabitDate } from '../../../../api/api';
 import './HabitsListBody.css';
 
 // 습관 리스트 바디
 function HabitsListBody({ habit }) {
-  const [successId, setSuccessId] = useState('');
-  const [habitClassName, setHabitClassName] = useState('habitsListBodylist--fals');
-  const [firstLoding, setFirstLoding] = useState(true);
+  const [successId, setSuccessId] = useState(habit.HabitSuccessDates[0]?.id); // 완료한 습관일 시 HabitSuccessDates의 id 저장
+  const [habitClassName, setHabitClassName] = useState(
+    // 완료 여부에 따른 배경 색 변경 클래스
+    'habitsList__list-li flex-row font16 bold habitsListBody--false border-box'
+  );
+
   const habitId = habit.id;
 
   useEffect(() => {
-    if (firstLoding && habit.HabitSuccessDates[0]) {
-      // 첫 렌더링 시 완료한 것일 경우
-      setHabitClassName('habitsListBodylist--true');
-      setSuccessId(habit.HabitSuccessDates[0].id);
-      setFirstLoding(false);
-    } else if (successId) {
-      setHabitClassName('habitsListBodylist--true');
+    if (successId) {
+      setHabitClassName(
+        'habitsList__list-li flex-row font16 bold habitsListBody--true border-box' // 완료한 습관일 때
+      );
     } else {
-      setHabitClassName('habitsListBodylist--fals');
+      setHabitClassName(
+        'habitsList__list-li flex-row font16 bold habitsListBody--false border-box' // 미완료한 습관일때
+      );
     }
-  }, [habit, successId, firstLoding]);
+  }, [successId]);
 
+  // 습관 완료 추가 및 취소 함수
   const successApiHandler = async () => {
     if (successId) {
-      await deleteSuccessHabitDate(successId); // 습관 완료 취소
-      setSuccessId('');
+      try {
+        await deleteSuccessHabitDate(successId); // 습관 완료 취소
+        setSuccessId('');
+      } catch (e) {
+        alert(e);
+      }
     } else if (!successId) {
-      const res = await createSuccessHabitDate(habitId); // 습관 완료 추가
-      setSuccessId(res.id);
+      try {
+        const res = await createSuccessHabitDate(habitId); // 습관 완료 추가
+        setSuccessId(res.id);
+      } catch (e) {
+        alert(e);
+      }
     }
   };
 

@@ -80,7 +80,7 @@
   bottom: 30px;
 }
 
-@media (max-width: 1279px) {
+@media (min-width: 744px) and (max-width: 1199px) {
   .study-card {
     width: 312px;
     height: 243px;
@@ -95,7 +95,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 375px) and (max-width: 743px) {
   .study-card {
     width: 312px;
     height: 180px;
