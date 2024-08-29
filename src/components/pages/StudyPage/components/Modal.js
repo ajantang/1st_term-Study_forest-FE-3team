@@ -155,7 +155,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     setIsIncorrectPasswordWarnOpen(false);
     setIsPasswordLengWWarnOpen(false);
     initModal();
-    logout();
+    // logout();
     onClose();
   };
 

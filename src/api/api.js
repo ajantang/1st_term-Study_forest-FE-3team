@@ -62,7 +62,6 @@ export const getStudyDetailInfo = async (studyId) => {
 };
 
 /** /study/:id PATCH - 상세 스터디 수정 */
-
 export const setStudyInfo = async (
   studyId,
   nickname,
