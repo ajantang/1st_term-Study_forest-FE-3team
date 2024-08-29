@@ -72,7 +72,11 @@ function HabitWeekRecord({
 
   return (
     <div className="flex-row">
-      <div className="bold habitrecord__table-habitname">{habitName}</div>
+      <div className="habitrecord__table-habitname sticky-left">
+        <div className="bold habitrecord__table-habitname_text">
+          {habitName}
+        </div>
+      </div>
       <div className="flex-row habitrecord__table-habitsuccesses">
         {weekRecord}
       </div>
@@ -127,13 +131,17 @@ function Dates() {
   const marks = recentOneWeek.map((date, index) => {
     const mark = `${date.date} (${date.day})`;
     return (
-      <div key={index} className="habitrecord__title-day">
+      <div key={index} className="habitrecord__title-day sticky-header">
         {mark}
       </div>
     );
   });
 
-  return <div className="flex-row habitrecord__title-days">{marks}</div>;
+  return (
+    <div class="habitrecord__header">
+      <div className="flex-row habitrecord__title-days">{marks}</div>
+    </div>
+  );
 }
 
 export function HabitRecord({ studyId }) {

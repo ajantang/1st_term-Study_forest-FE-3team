@@ -44,6 +44,20 @@ export function StudyBody({
     openModal();
   };
 
+  const nicknameAndStudyName = () => {
+    const nicknameInfo = `${nickname}의 `;
+    const studyNmaeInfo = `${studyName}`;
+    const studyInfo = (
+      <>
+        <span className="study__middlebar-studyInfo_nickname">
+          {nicknameInfo}
+        </span>
+        {studyNmaeInfo}
+      </>
+    );
+    return studyInfo;
+  };
+
   const handleGotoHabit = () => {
     setModalType(MODAL_GOTO_HABIT);
     openModal();
@@ -102,10 +116,8 @@ export function StudyBody({
               </div>
             </div>
             <div className="flex-row study__middlebar">
-              <p className="extra-bold study__middlebar-studyname">
-                {nickname}
-                {"의 "}
-                {studyName}
+              <p className="extra-bold study__middlebar-studyInfo">
+                {nicknameAndStudyName()}
               </p>
               <div className="flex-row study__middlebar-gp-btn">
                 <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>

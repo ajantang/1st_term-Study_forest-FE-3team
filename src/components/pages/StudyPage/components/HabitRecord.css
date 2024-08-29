@@ -118,6 +118,15 @@
     padding-right: 2rem;
   }
 
+  .habitrecord__table-habitname_text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* 원하는 줄 수로 설정 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; /* 줄바꿈 허용 */
+  }
+
   .habitrecord__table-habitsuccess {
     width: 6.4rem;
     height: 6.4rem;
@@ -131,13 +140,34 @@
     height: 45rem;
     padding: 1.6rem;
     /* 임시 히든 처리 */
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 
   .habitrecord__table {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
     width: 56rem;
     height: 41rem;
     margin-top: 0.3rem;
+  }
+
+  .habitrecord__header {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+  }
+
+  .sticky-header {
+    position: sticky;
+    top: 0;
+  }
+
+  .sticky-left {
+    position: sticky;
+    left: 0;
   }
 
   .habitrecord__title-day {
@@ -146,6 +176,8 @@
   }
 
   .habitrecord__title-days {
+    z-index: 2;
+
     width: 56rem;
     justify-content: end;
     font-size: 1.4rem;
@@ -154,6 +186,10 @@
 
   .habitrecord__table-value-frame {
     width: 57.6rem;
+
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .habitrecord__empty-message {
@@ -170,6 +206,15 @@
     padding-right: 1.6rem;
     font-size: 1.4rem;
     line-height: 1.19357em;
+  }
+
+  .habitrecord__table-habitname_text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
   }
 
   .habitrecord__table-habitsuccess {
