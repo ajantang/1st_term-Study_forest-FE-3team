@@ -25,13 +25,13 @@
 }
 
 .modal__message {
-  margin-top: 2.8rem;
+  margin-top: 2.4rem;
   color: var(--gray);
 }
 
 .modal__password {
   width: 100%;
-  margin-top: 2.8rem;
+  margin-top: 2.4rem;
 }
 
 .modal__password-label {
@@ -61,7 +61,7 @@
   right: 2.4rem;
   transform: translateY(-50%);
   border: none;
-  background-image: url('../../../../assets/images/btn_visibility_on.svg');
+  background-image: url("../../../../assets/images/btn_visibility_on.svg");
 }
 
 .modal__password-input-visible-off {
@@ -72,35 +72,35 @@
   right: 2.4rem;
   transform: translateY(-50%);
   border: none;
-  background-image: url('../../../../assets/images/btn_visibility_off.svg');
+  background-image: url("../../../../assets/images/btn_visibility_off.svg");
 }
 
 .modal__btn-confirm {
   margin-top: 4rem;
   width: 60rem;
   height: 5.8rem;
-  background-image: url('../../../../assets/images/btn_confirm.svg');
+  background-image: url("../../../../assets/images/btn_confirm.svg");
 }
 
 .modal__btn-edit {
   margin-top: 4rem;
   width: 60rem;
   height: 5.8rem;
-  background-image: url('../../../../assets/images/btn_toEdit.svg');
+  background-image: url("../../../../assets/images/btn_toHabit.svg");
 }
 
 .modal__btn-habit {
   margin-top: 4rem;
   width: 60rem;
   height: 5.8rem;
-  background-image: url('../../../../assets/images/btn_toHabit.svg');
+  background-image: url("../../../../assets/images/btn_toHabit.svg");
 }
 
 .modal__btn-concentration {
   margin-top: 4rem;
   width: 60rem;
   height: 5.8rem;
-  background-image: url('../../../../assets/images/btn_toConcentration.svg');
+  background-image: url("../../../../assets/images/btn_toConcentration.svg");
 }
 
 .modal__warning {
@@ -117,6 +117,8 @@
 }
 
 .modal__warning-text {
+  font-size: 1.6rem;
+  line-height: 1.19312em;
   color: var(--vivid-red);
 }
 
@@ -128,4 +130,83 @@
   right: 2.4rem;
   color: var(--fern-green);
   cursor: pointer;
+}
+
+/* ===== Mobile-width : 375px ~ 743px ====== */
+@media (min-width: 375px) and (max-width: 743px) {
+  .modal {
+    position: absolute;
+    top: -34.6rem;
+    width: 34.4rem;
+    height: 34.1rem;
+  }
+
+  .modal__content {
+    width: 31.2rem;
+    margin-top: 2.3rem;
+  }
+
+  .modal__studyname {
+    font-size: 1.8rem;
+    line-height: 1.19333em;
+  }
+
+  .modal__message {
+    margin-top: 1.6rem;
+  }
+
+  .modal__password {
+    margin-top: 1.6rem;
+  }
+
+  .modal__password-input {
+    width: 31.2rem;
+  }
+
+  .modal__btn-confirm {
+    margin-top: 2.4rem;
+    width: 31.2rem;
+    height: 5.8rem;
+    background-image: url("../../../../assets/images/btn_confirm_s.svg");
+  }
+
+  .modal__btn-edit {
+    margin-top: 2.4rem;
+    width: 31.2rem;
+    height: 5.8rem;
+    background-image: url("../../../../assets/images/btn_toEdit_s.svg");
+  }
+
+  .modal__btn-habit {
+    margin-top: 2.4rem;
+    width: 31.2rem;
+    height: 5.8rem;
+    background-image: url("../../../../assets/images/btn_toHabit_s.svg");
+  }
+
+  .modal__btn-concentration {
+    margin-top: 2.4rem;
+    width: 31.2rem;
+    height: 5.8rem;
+    background-image: url("../../../../assets/images/btn_toConcentration_s.svg");
+  }
+
+  .modal__warning {
+    width: 31.2rem;
+  }
+
+  .modal__warning-text {
+    font-size: 1.4rem;
+    line-height: 1.19357em;
+  }
+
+  .modal__btn-close {
+    width: 6rem;
+    height: 2.9rem;
+    position: absolute;
+    top: 28.8rem;
+    right: 12.6rem;
+    color: var(--fern-green);
+    cursor: pointer;
+  }
 }
