@@ -68,6 +68,10 @@
     line-height: 19.09px;
   }
 
+  .recently-view__container::-webkit-scrollbar {
+    display: none;
+  }
+
   .recently-view__list {
     margin: 35px auto 0;
     width: max-content;

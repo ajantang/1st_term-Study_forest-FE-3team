@@ -182,11 +182,6 @@ input:focus {
     line-height: 19.09px;
   }
 
-  .background {
-    width: 148px;
-    height: 148px;
-  }
-
   .study-list__grid {
     display: flex;
     flex-direction: column;

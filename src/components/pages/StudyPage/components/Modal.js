@@ -11,7 +11,6 @@ import { Loading } from '../../../UI/Loading';
 
 import { authStudyPassword, deleteStudyInfo } from '../../../../api/api';
 
-
 export function Modal({ studyName, isOpen, onClose, modalType }) {
   const [inputValue, setInputValue] = useState('');
   const [isIncorrectPasswordWarnOpen, setIsIncorrectPasswordWarnOpen] = useState(false);
@@ -139,7 +138,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
     setIsIncorrectPasswordWarnOpen(false);
     setIsPasswordLengWWarnOpen(false);
     initModal();
-    logout();
+    // logout();
     onClose();
   };
 
