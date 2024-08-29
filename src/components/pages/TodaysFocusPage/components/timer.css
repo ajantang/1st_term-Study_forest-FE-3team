@@ -1,0 +1,198 @@
+@scope (.content__container__main__top) {
+  :scope {
+    --timer__icon: url("../../../../assets/images/ic_timer.svg");
+    --polygon__icon: url("../../../../assets/images/polygon.svg");
+    --stop__icon: url("../../../../assets/images/ic_stop.svg");
+    --pause__icon: url("../../../../assets/images/btn_pause.svg");
+    --reset__icon: url("../../../../assets/images/btn_restart.svg");
+  }
+}
+
+.timerset__display {
+  width: 8.3rem;
+  height: 3.1rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 5rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  line-height: 3.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.timerset__display__icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  background-image: var(--timer__icon);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.timer {
+  width: 112rem;
+  display: flex;
+  justify-content: center;
+  line-height: 100%;
+}
+
+.timer__input {
+  border: none;
+  height: 17.9rem;
+  width: 20rem;
+  color: var(--arsenic);
+  text-align: center;
+}
+
+.timer__controls {
+  width: 50.9rem;
+  height: 6.4rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.timer__controls__active {
+  width: 33.3rem;
+  height: 6rem;
+  font-size: 2.8rem;
+  color: white;
+  border: none;
+  border-radius: 5rem;
+  background-color: var(--dark-sea-green);
+  background-repeat: no-repeat;
+  background-size: 3rem;
+  background-position: 8.8rem;
+}
+
+.timer__controls__pause {
+  width: 6.4rem;
+  height: 6.4rem;
+  border: none;
+  border-radius: 5rem;
+  background-image: var(--pause__icon);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.timer__controls__reset {
+  width: 6.4rem;
+  height: 6.4rem;
+  border: none;
+  border-radius: 5rem;
+  background-image: var(--reset__icon);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.condition__alert {
+  width: 22.3rem;
+  height: 4.7rem;
+  border-radius: 1.2rem;
+  line-height: 4.7rem;
+  text-align: center;
+}
+
+/* 상태마다 달라지는 css */
+.vividred {
+  color: var(--vivid-red);
+}
+
+.gray {
+  color: var(--gray);
+}
+
+.init {
+  background-image: var(--polygon__icon);
+}
+
+.start {
+  background-color: var(--gray);
+  background-image: var(--polygon__icon);
+  pointer-events: none;
+}
+
+.restart {
+  background-color: var(--dark-sea-green);
+  background-image: var(--polygon__icon);
+  background-position: 7.5rem;
+}
+
+.stop {
+  background-image: var(--stop__icon);
+}
+
+.nodisplay {
+  display: none;
+}
+
+.pause {
+  background-color: var(--piggy-pink);
+  color: var(--vivid-red);
+}
+
+.points {
+  color: var(--fern-green);
+  background-color: var(--chinese-white);
+}
+
+/* Tablet */
+@media (min-width: 744px) and (max-width:1199px){
+  .timer {
+    width: 59.3rem;
+    font-size: 12rem;
+  }
+
+  .timer__input {
+    width: 20rem;
+    height: 15rem;
+    font-size: 12rem;
+  }
+}
+
+/* mobile */ 
+@media  (min-width: 375px) and (max-width: 743px) {
+  .timer {
+    width: 28rem;
+    font-size: 8rem;
+    line-height: 80%;
+  }
+
+  .timer__input {
+    height: 8rem;
+    width: 11.0rem;
+    font-size: 8rem;
+  }
+
+  .timer__controls {
+    width: 28rem;
+    height: 4.8rem;
+  }
+
+  .timer__controls__active {
+    width: 14rem;
+    height: 4.5rem;
+    font-size: 1.8rem;
+    border-radius: 3.048rem;
+    background-size: 2.4rem;
+    background-position: 2rem;
+  }
+
+  .timer__controls__pause {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  .timer__controls__reset {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  .condition__alert {
+    width: 20.2rem;
+    height: 4.5rem;
+    font-size: 1.4rem;
+  }
+  
+  .restart {
+    background-position: 1.5rem;
+  }
+}
