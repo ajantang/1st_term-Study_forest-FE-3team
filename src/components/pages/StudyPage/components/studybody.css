@@ -1,0 +1,92 @@
+.study__main {
+  margin-top: var(--header-height);
+  width: 112rem;
+}
+
+.study__section {
+  width: 120rem;
+  height: 88.9rem;
+  border: 0.1rem solid;
+  border-radius: 2rem;
+}
+
+.study__content {
+  width: 112rem;
+  margin: 0 auto;
+}
+
+.study__topbar {
+  width: 112rem;
+  height: 3.1rem;
+  margin-top: 4rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.study__topbar-gp-btn {
+  gap: 1.6rem;
+}
+
+.study__topbar-btn {
+  color: var(--fern-green);
+  cursor: pointer;
+}
+
+.study__topbar-btn-delete {
+  color: var(--gray);
+  cursor: pointer;
+}
+
+.study__middlebar {
+  width: 112rem;
+  height: 4.8rem;
+  margin-top: 2.4rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.study__middlebar-studyname {
+  color: var(--arsenic);
+}
+
+.study__middlebar-gp-btn {
+  /* 폰트 미적용으로 width 임시 수정. 검토 필요 */
+  width: 32rem;
+  height: 4.8rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* .study__middlebar-btn {
+  width: 14.4rem;
+  height: 4.8rem;
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-color: var(--gainsboro);
+  border-radius: 0.9375em;
+  color: var(--gray);
+  background-color: white;
+  cursor: pointer;
+} */
+
+.study__description {
+  width: 112rem;
+  margin-top: 1.6rem;
+}
+
+.study__description-label {
+  color: var(--gray);
+}
+
+.study__description-text {
+  margin-top: 0.8rem;
+  color: var(--arsenic);
+}
+
+.study__point {
+  margin-top: 2.4rem;
+}
+
+.study__habits {
+  margin-top: 3.6rem;
+}

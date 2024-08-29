@@ -11,7 +11,7 @@ export function changeDigits(i) {
 
 // 화면에 시간 타입으로 표시
 export function changeTime(i) {
-  if(i >= 6000){
+  if (i >= 6000) {
     i = 5999;
   }
 
@@ -22,4 +22,3 @@ export function changeTime(i) {
   }
   return i;
 }
-

@@ -1,0 +1,21 @@
+.main__todayHabitPage{
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10rem;
+}
+
+.todayHabitpage__body {
+    width: 124.8rem; 
+    height: 87rem;
+    border-radius: 2rem;
+    margin-top: 3.9rem;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+
+.todayHaibtPage__content{
+    width: 116.8rem;
+    height: 78.3rem;
+    margin-top: 1.6rem;
+}
