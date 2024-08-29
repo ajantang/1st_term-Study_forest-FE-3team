@@ -6,7 +6,7 @@ import { getStudyDetailInfo, setStudyInfo } from "../../../../api/api";
 import BackgroundSelector from "../../../UI/BackgroundSelector";
 import "./ModifyBody.css";
 
-const VALID_DATA = 0;
+const VALID_DATA = 999;
 const MIN_NICKNAME_LENGTH = 2;
 const WARN_MIN_NICKNAME_LENGTH = 402;
 const MAX_NICKNAME_LENGTH = 12;
@@ -17,26 +17,24 @@ const WARN_MIN_STUDY_NAME_LENGTH = 402;
 const MAX_STUDY_NAME_LENGTH = 20;
 const WARN_MAX_STUDY_NAME_LENGTH = 420;
 
-const MIN_DESCRIPTION_LENGTH = 2;
-const WARN_MIN_DESCRIPTION_LENGTH = 402;
 const MAX_DESCRIPTION_LENGTH = 100;
 const WARN_MAX_DESCRIPTION_LENGTH = 200;
 
 export function ModifyBody({ studyId }) {
   const [backgroundIndex, setBackgroundIndex] = useState(0);
-  const [backgorundUrl, setBackgorundUrl] = useState(
+  const [backgroundUrl, setBackgroundUrl] = useState(
     "https://ifh.cc/g/zaNc6p.jpg"
   );
-  const [passwordInputType, setPasswordInputType] = useState("password");
-  const [toggleVisiblePasswordClass, setToggleVisiblePasswordClass] = useState(
-    "modify-study__password-input-visible-off"
-  );
-  const [passwordConfirmInputType, setPasswordConfirmInputType] =
-    useState("password");
-  const [
-    toggleVisiblePasswordConfirmClass,
-    setVisibleTogglePasswordConfirmClass,
-  ] = useState("modify-study__password-input-visible-off");
+  // const [passwordInputType, setPasswordInputType] = useState("password");
+  // const [toggleVisiblePasswordClass, setToggleVisiblePasswordClass] = useState(
+  //   "modify-study__password-input-visible-off"
+  // );
+  // const [passwordConfirmInputType, setPasswordConfirmInputType] =
+  //   useState("password");
+  // const [
+  //   toggleVisiblePasswordConfirmClass,
+  //   setVisibleTogglePasswordConfirmClass,
+  // ] = useState("modify-study__password-input-visible-off");
 
   const navigate = useNavigate();
   const backgroundSelectorRefs = useRef([]);
@@ -67,7 +65,7 @@ export function ModifyBody({ studyId }) {
       case WARN_MAX_NICKNAME_LENGTH: {
         return (
           <p className="regular modify-study__inputset-warning">
-            10자 이내로 입력해주세요
+            12자 이내로 입력해주세요
           </p>
         );
       }
@@ -143,59 +141,68 @@ export function ModifyBody({ studyId }) {
     }
   }
 
-  const backgrounds = () => {
-    const backgroundSelectorList = [0, 1, 2, 3, 4, 5, 6, 7];
-    backgroundSelectorRefs.current = Array(backgroundSelectorList.length).fill(
-      null
-    );
-    const backgroundSelectors = backgroundSelectorList.map((item) => {
-      return (
-        <BackgroundSelector
-          key={item}
-          ref={(ref) => (backgroundSelectorRefs.current[item] = ref)}
-          classListIndex={item}
-          onClick={handleClickBackgroundSelector}
-        />
-      );
-    });
-
-    return backgroundSelectors;
-  };
-
   const handleClickBackgroundSelector = (index, imageUrl) => {
-    if (backgroundIndex === index) {
-      return;
-    }
+    if (backgroundIndex === index) return;
 
     if (backgroundSelectorRefs.current[backgroundIndex]) {
       backgroundSelectorRefs.current[backgroundIndex].setSelect(false);
     }
 
     setBackgroundIndex(index);
-    setBackgorundUrl(imageUrl);
+    setBackgroundUrl(imageUrl);
   };
 
-  const toggleVisiblePassword = () => {
-    if (passwordInputType === "text") {
-      setPasswordInputType("password");
-      setToggleVisiblePasswordClass("modify-study__password-input-visible-off");
-    } else {
-      setPasswordInputType("text");
-      setToggleVisiblePasswordClass("modify-study__password-input-visible-on");
-    }
-  };
+  const backgroundSelectorList = [0, 1, 2, 3, 4, 5, 6, 7];
 
-  const toggleVisiblePasswordConfirm = () => {
-    if (passwordInputType === "text") {
-      setPasswordConfirmInputType("password");
-      setVisibleTogglePasswordConfirmClass(
-        "modify-study__password-input-visible-off"
+  const backgroundSelectors = backgroundSelectorList.map((item) => {
+    return (
+      <BackgroundSelector
+        key={item}
+        ref={(ref) => {
+          if (ref) backgroundSelectorRefs.current[item] = ref;
+          else delete backgroundSelectorRefs.current[item];
+        }}
+        classListIndex={item}
+        onClick={handleClickBackgroundSelector}
+      />
+    );
+  });
+
+  // const toggleVisiblePassword = () => {
+  //   if (passwordInputType === "text") {
+  //     setPasswordInputType("password");
+  //     setToggleVisiblePasswordClass("modify-study__password-input-visible-off");
+  //   } else {
+  //     setPasswordInputType("text");
+  //     setToggleVisiblePasswordClass("modify-study__password-input-visible-on");
+  //   }
+  // };
+
+  // const toggleVisiblePasswordConfirm = () => {
+  //   if (passwordInputType === "text") {
+  //     setPasswordConfirmInputType("password");
+  //     setVisibleTogglePasswordConfirmClass(
+  //       "modify-study__password-input-visible-off"
+  //     );
+  //   } else {
+  //     setPasswordConfirmInputType("text");
+  //     setVisibleTogglePasswordConfirmClass(
+  //       "modify-study__password-input-visible-on"
+  //     );
+  //   }
+  // };
+
+  const btnModify = () => {
+    if (
+      [nickname.isValid, studyName.isValid, description.isValid].every(
+        (value) => value === 999
+      )
+    ) {
+      return (
+        <svg className="modify-study__btn-modify" onClick={handleModifyStudy} />
       );
     } else {
-      setPasswordConfirmInputType("text");
-      setVisibleTogglePasswordConfirmClass(
-        "modify-study__password-input-visible-on"
-      );
+      return <svg className="modify-study__btn-modify-disable" />;
     }
   };
 
@@ -205,7 +212,7 @@ export function ModifyBody({ studyId }) {
       nickname.value,
       studyName.value,
       description.value,
-      backgorundUrl,
+      backgroundUrl,
       null
     )
       .then((data) => {
@@ -224,10 +231,19 @@ export function ModifyBody({ studyId }) {
         nickname.setValue(data.nickname);
         studyName.setValue(data.studyName);
         description.setValue(data.description);
-        console.log(data);
       })
       .catch((err) => {})
       .finally();
+
+    backgroundSelectorList.forEach((index) => {
+      if (backgroundSelectorRefs.current[index]) {
+        backgroundSelectorRefs.current[index].setSelect(false);
+      }
+    });
+
+    if (backgroundSelectorRefs.current[backgroundIndex]) {
+      backgroundSelectorRefs.current[backgroundIndex].setSelect(true);
+    }
   }, []);
 
   return (
@@ -262,16 +278,14 @@ export function ModifyBody({ studyId }) {
               onChange={description.onChange}
               value={description.value}
             />
-            <p className="modify-study__inputset-warning">
-              {invalidDescriptionWarn()}
-            </p>
+            {invalidDescriptionWarn()}
           </div>
           <div className="flex-col modify-study__select-background">
             <div className="semi-bold modify-study__inputset-label">
               배경을 선택해주세요
             </div>
             <div className="flex-row modify-study__select-gp-background">
-              {backgrounds()}
+              {backgroundSelectors}
             </div>
           </div>
           {/* <div className="flex-col modify-study__inputset">
@@ -310,10 +324,7 @@ export function ModifyBody({ studyId }) {
               임시 에러 텍스트 영역
             </p>
           </div> */}
-          <svg
-            className="modify-study__btn-modify"
-            onClick={handleModifyStudy}
-          />
+          {btnModify()}
         </div>
       </section>
     </main>

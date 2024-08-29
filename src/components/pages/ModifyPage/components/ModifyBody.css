@@ -4,7 +4,6 @@
 }
 
 .modify-study__main {
-  margin-top: var(--header-height);
   padding-top: 4rem;
   width: 69.6rem;
   margin: 0 auto;
@@ -148,10 +147,20 @@
   background-size: contain;
 }
 
+.modify-study__btn-modify-disable {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  width: 100%;
+  height: 5.8rem;
+  background-image: url("../../../../assets/images/btn_confirm_disable.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 /* ===== Tablet - width : 744px ~ 1199px ===== */
 @media (min-width: 744px) and (max-width: 1199px) {
   .modify-study__main {
-    margin-top: var(--header-height);
     padding-top: 2rem;
   }
 
@@ -163,7 +172,6 @@
 /* ===== Mobile-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
   .modify-study__main {
-    margin-top: var(--header-height);
     padding-top: 2rem;
   }
 
