@@ -55,7 +55,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   }
 
   function afterEditStudyModalPass() {
-    alert("수정 페이지로 이동 로직 추가 예정");
+    const path = `/study/${studyId}/modify`;
+    navigate(path);
   }
 
   function afterGotoHabitModalPass() {
