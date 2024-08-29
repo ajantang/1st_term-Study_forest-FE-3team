@@ -1,21 +1,15 @@
-import axios from "axios";
-import { API_ADDRESS } from "../constants/global";
+import axios from 'axios';
+import { API_ADDRESS } from '../constants/global';
 
 const instance = axios.create({
   baseURL: API_ADDRESS,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
 /** /study POST - 스터디 생성 */
-export const createStudy = async (
-  nickname,
-  studyName,
-  description,
-  background,
-  password
-) => {
+export const createStudy = async (nickname, studyName, description, background, password) => {
   const path = `/study`;
   const data = { nickname, studyName, description, background, password };
 
@@ -24,7 +18,7 @@ export const createStudy = async (
     return res.data;
   } catch (err) {
     console.log(err);
-    return err.name;
+    throw err;
   }
 };
 
@@ -44,7 +38,7 @@ export const getStudyInfo = async (page, pageSize, order, keyWord) => {
     return res.data;
   } catch (err) {
     console.log(err);
-    return err.name;
+    throw err;
   }
 };
 
@@ -68,7 +62,7 @@ export const setStudyInfo = async (studyId, point) => {
   const data = { point: point };
 
   try {
-    const res = await instance.patch(path,data);
+    const res = await instance.patch(path, data);
     return res.data;
   } catch (err) {
     console.log(err);

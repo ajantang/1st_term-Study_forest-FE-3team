@@ -61,7 +61,7 @@
   right: 2.4rem;
   transform: translateY(-50%);
   border: none;
-  background-image: url("../../../../assets/images/btn_visibility_on.svg");
+  background-image: url('../../../../assets/images/btn_visibility_on.svg');
 }
 
 .modal__password-input-visible-off {
@@ -72,35 +72,35 @@
   right: 2.4rem;
   transform: translateY(-50%);
   border: none;
-  background-image: url("../../../../assets/images/btn_visibility_off.svg");
+  background-image: url('../../../../assets/images/btn_visibility_off.svg');
 }
 
 .modal__btn-confirm {
   margin-top: 4rem;
   width: 60rem;
   height: 5.8rem;
-  background-image: url("../../../../assets/images/btn_confirm.svg");
+  background-image: url('../../../../assets/images/btn_confirm.svg');
 }
 
 .modal__btn-edit {
   margin-top: 4rem;
   width: 60rem;
   height: 5.8rem;
-  background-image: url("../../../../assets/images/btn_toEdit.svg");
+  background-image: url('../../../../assets/images/btn_toEdit.svg');
 }
 
 .modal__btn-habit {
   margin-top: 4rem;
   width: 60rem;
   height: 5.8rem;
-  background-image: url("../../../../assets/images/btn_toHabit.svg");
+  background-image: url('../../../../assets/images/btn_toHabit.svg');
 }
 
 .modal__btn-concentration {
   margin-top: 4rem;
   width: 60rem;
   height: 5.8rem;
-  background-image: url("../../../../assets/images/btn_toConcentration.svg");
+  background-image: url('../../../../assets/images/btn_toConcentration.svg');
 }
 
 .modal__warning {

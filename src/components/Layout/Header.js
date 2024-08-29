@@ -1,6 +1,6 @@
-import logo from "../../assets/images/img_logo.png";
-import { NavLink } from "react-router-dom";
-import "./header.css";
+import logo from '../../assets/images/img_logo.png';
+import { NavLink } from 'react-router-dom';
+import './header.css';
 
 const Header = ({ hideCreateButton }) => {
   return (
