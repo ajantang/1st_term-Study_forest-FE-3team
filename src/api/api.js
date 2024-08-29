@@ -1,15 +1,21 @@
-import axios from 'axios';
-import { API_ADDRESS } from '../constants/global';
+import axios from "axios";
+import { API_ADDRESS } from "../constants/global";
 
 const instance = axios.create({
   baseURL: API_ADDRESS,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 /** /study POST - 스터디 생성 */
-export const createStudy = async (nickname, studyName, description, background, password) => {
+export const createStudy = async (
+  nickname,
+  studyName,
+  description,
+  background,
+  password
+) => {
   const path = `/study`;
   const data = { nickname, studyName, description, background, password };
 
@@ -57,9 +63,22 @@ export const getStudyDetailInfo = async (studyId) => {
 
 /** /study/:id PATCH - 상세 스터디 수정 */
 
-export const setStudyInfo = async (studyId, point) => {
+export const setStudyInfo = async (
+  studyId,
+  nickname,
+  studyName,
+  description,
+  background,
+  point
+) => {
   const path = `/study/${studyId}`;
-  const data = { point: point };
+  const data = {
+    ...(nickname && { nickname }),
+    ...(studyName && { studyName }),
+    ...(description && { description }),
+    ...(background && { background }),
+    ...(point && { point }),
+  };
 
   try {
     const res = await instance.patch(path, data);
@@ -190,7 +209,8 @@ export const deleteSuccessHabitDate = async (successHabitDateId) => {
   const path = `/success/${successHabitDateId}`;
 
   try {
-    await instance.delete(path);
+    const res = await instance.delete(path);
+    return res.status();
   } catch (err) {
     console.log(err);
     throw err;
