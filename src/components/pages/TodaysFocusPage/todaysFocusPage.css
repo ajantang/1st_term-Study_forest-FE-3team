@@ -44,6 +44,9 @@
   height: 4.8rem;
   display: flex;
   justify-content: space-between;
+  span{
+    cursor: pointer;
+  }
 }
 
 .content__container__top__title_btn {
