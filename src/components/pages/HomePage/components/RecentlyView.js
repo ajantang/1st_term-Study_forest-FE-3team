@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import "./recentlyView.css";
 import StudyCard from "./StudyCard.js";
-
 import { getStudyDetailInfo } from "../../../../api/api.js";
 
 const RecentlyView = () => {
