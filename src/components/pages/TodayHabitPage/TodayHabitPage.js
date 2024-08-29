@@ -5,6 +5,7 @@ import HabitsList from "./components/HabitsList";
 import ListModal from "./components/ListModal";
 import "./TodayHabitPage.css";
 import StudyTitle from "./components/StudyTitle";
+import UpdateRecentlyViewed from "../../../utils/UpdateRecentlyViewed";
 
 export const studyIdContext = createContext();
 
@@ -12,6 +13,8 @@ function TodatHabitPage() {
   const [modalOn, setModalOn] = useState(false);
   const [pageRender, setPageRender] = useState(false);
   const { studyId } = useParams();
+
+  UpdateRecentlyViewed(studyId)
 
   const patchListHandler = () => {
     if (modalOn) {

@@ -209,7 +209,7 @@ export const deleteSuccessHabitDate = async (successHabitDateId) => {
 
   try {
     const res = await instance.delete(path);
-    return res.status();
+    return res.status;
   } catch (err) {
     console.log(err);
     throw err;

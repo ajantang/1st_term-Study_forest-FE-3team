@@ -7,6 +7,14 @@
   cursor: pointer;
 }
 
+.habitsListBody__text {
+  width: 38rem;
+  height: 5.4rem;
+  justify-content: center;
+  align-items: center;
+  word-break: break-all;
+}
+
 .habitsListBody--true {
   background-color: var(--dark-sea-green);
   color: #ffffff;
@@ -20,5 +28,9 @@
 @media (min-width: 375px) and (max-width: 743px) {
   .habitsList__list-li {
     width: 28rem;
+  }
+
+  .habitsListBody__text {
+    width: 26rem;
   }
 }
