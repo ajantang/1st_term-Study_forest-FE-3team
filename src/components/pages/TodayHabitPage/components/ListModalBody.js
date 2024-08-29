@@ -21,6 +21,10 @@ const ListModalBody = forwardRef(
     const [hideDelete, setHideDelete] = useState(false); // 삭제 예정 시 프론트에서 지우기 위한 값
     const [checkLength0, setCheckLength0] = useState(false); // 문자 길이가 0일때 에러 메세지 공개 여부
     const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
+    const [checkInputClass, setCheckInputClass] = useState(
+      "ListModalBody__text ListModalBody__text-align font16 bold border-box"
+    ); // 습관 수정 인풋 css
+
     const habitId = habit.id;
     const inputRef = useRef(null);
 
@@ -48,12 +52,15 @@ const ListModalBody = forwardRef(
 
     // value와 input 값 일치 함수
     const changValueHandler = (e) => {
-      setValue(e.target.value );
+      setValue(e.target.value);
 
       // 키보드를 꾹 눌렀을 때를 위한 로직
       if (value.trim().length > 30) {
         // 문자 길이가 30을 넘을 때
         setCheckLength30(true);
+        setCheckInputClass(
+          "ListModalBody__text ListModalBody__text-align ListModalBody__text-error font16 bold border-box"
+        );
 
         const rockButtonBodys = [...rockButtonBody];
         rockButtonBodys[idx] = true;
@@ -62,6 +69,9 @@ const ListModalBody = forwardRef(
         // 문자 길이가 문제 없을때
         setCheckLength0(false);
         setCheckLength30(false);
+        setCheckInputClass(
+          "ListModalBody__text ListModalBody__text-align font16 bold border-box"
+        );
       }
     };
 
@@ -71,6 +81,9 @@ const ListModalBody = forwardRef(
         // 문자 길이가 0일 때
         setCheckLength0(true);
         setCheckLength30(false);
+        setCheckInputClass(
+          "ListModalBody__text ListModalBody__text-align ListModalBody__text-error font16 bold border-box"
+        );
 
         const rockButtonBodys = [...rockButtonBody];
         rockButtonBodys[idx] = true;
@@ -78,6 +91,9 @@ const ListModalBody = forwardRef(
       } else if (value.trim().length > 30) {
         // 문자 길이가 30을 넘을 때
         setCheckLength30(true);
+        setCheckInputClass(
+          "ListModalBody__text ListModalBody__text-align ListModalBody__text-error font16 bold border-box"
+        );
 
         const rockButtonBodys = [...rockButtonBody];
         rockButtonBodys[idx] = true;
@@ -86,6 +102,9 @@ const ListModalBody = forwardRef(
         // 문자 길이가 문제 없을때
         setCheckLength0(false);
         setCheckLength30(false);
+        setCheckInputClass(
+          "ListModalBody__text ListModalBody__text-align font16 bold border-box"
+        );
 
         const rockButtonBodys = [...rockButtonBody];
         rockButtonBodys[idx] = false;
@@ -102,7 +121,7 @@ const ListModalBody = forwardRef(
             setPatchInput(false);
             return data;
           } catch (e) {
-            alert(e);
+            alert('잠시 후 다시 시도해주세요');
           }
         }
         return null;
@@ -123,7 +142,7 @@ const ListModalBody = forwardRef(
             )}
             {patchInput && (
               <input
-                className="ListModalBody__text ListModalBody__text-align font16 bold border-box"
+                className={checkInputClass}
                 value={value}
                 onChange={changValueHandler}
                 onKeyUp={checkValueHandler}

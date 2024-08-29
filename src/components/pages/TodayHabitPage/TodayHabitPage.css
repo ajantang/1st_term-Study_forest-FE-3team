@@ -36,3 +36,20 @@
         height: 75.1rem;
     }
 }
+
+@media (min-width: 375px) and (max-width: 743px) {
+    .main__todayHabitPage{
+        margin-bottom: 14.2rem;
+    }
+
+    .todayHabitpage__body {
+        width: 34.4rem; 
+        height: 78rem;
+        margin-top: 2rem;
+    }
+
+    .todayHaibtPage__content{
+        width: 31.2rem;
+        height: 75.5rem;
+    }
+}

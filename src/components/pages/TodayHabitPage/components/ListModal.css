@@ -69,11 +69,16 @@
   color: var(--gray);
 }
 
+.ListModal__text-error{
+  border: 1.5px solid var(--vivid-red);;
+}
+
 .ListModal__img-trashCan {
   width: 4.8rem;
   height: 4.8rem;
   position: absolute;
   left: 50.8rem;
+  cursor: pointer;
 }
 
 .ListModal__img-plus {
@@ -85,7 +90,7 @@
 
 .ListModal__button {
   width: 60rem;
-  height: 5.4rem;
+  height: 5.8rem;
   margin-top: 2.4rem;
   justify-content: space-between;
   cursor: pointer;
@@ -105,6 +110,59 @@
   display: none;
 }
 
-@media (min-width: 744px) and (max-width: 1199px) {
+@media (min-width: 375px) and (max-width: 743px) {
+  .ListModal__body {
+    width: 34.4rem;
+    height: 74.1rem;
+  }
+
+  .ListModal__title {
+    width: 31.2rem;
+    font-size: 2rem;
+    line-height: 1.1935em;
+  }
   
+  .ListModal__list-ol {
+    width: 31.2rem;
+  }
+
+  .list__ol-518 {
+    height: 43.4rem;
+  }
+  
+  .list__ol-572 {
+    height: 48.8rem;
+  }
+
+  .ListModal__plusInut {
+    width: 31.2rem;
+    justify-content: start;
+  }
+
+  .ListModal__input {
+    width: 25.6rem;
+    font-size: 1.4rem;
+    line-height: 1.19357em;
+  }
+
+  .ListModal__img-trashCan {
+    left: 26.4rem;
+  }
+
+  .ListModal__img-plus {
+    width: 31.2rem;
+    margin-top: 2.4rem;
+  }
+
+  .ListModal__button {
+    width: 29.6rem;
+  }
+
+  .ListModal__img-button {
+    width: 14rem;
+  }
+
+  .li-use {
+    margin-bottom: 0.8rem;
+  }
 }

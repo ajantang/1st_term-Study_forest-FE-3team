@@ -16,7 +16,7 @@ function HabitsList({ patchList, pageRender, setPageRender }) {
         const data = await gethabitList(studyId);
         setList(data.habits);
       } catch(e) {
-        alert(e)
+        alert('해당 스터디를 찾을 수 없습니다')
       }
     };
 
