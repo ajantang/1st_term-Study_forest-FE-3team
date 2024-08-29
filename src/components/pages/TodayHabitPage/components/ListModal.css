@@ -69,8 +69,8 @@
   color: var(--gray);
 }
 
-.ListModal__text-error{
-  border: 1.5px solid var(--vivid-red);;
+.ListModal__text-error {
+  border: 1.5px solid var(--vivid-red);
 }
 
 .ListModal__img-trashCan {
@@ -99,6 +99,19 @@
 .ListModal__img-button {
   width: 28.8rem;
   height: 5.8rem;
+  border-radius: 1.6rem;
+}
+
+.ListModal__img-cencel{
+  background-image: url("../../../../assets/images/btn_cancel.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.ListModal__img-patch{
+  background-image: url("../../../../assets/images/btn_patchComplit.svg");
+  background-size: cover;
+  background-position: center;
 }
 
 .li-use {
@@ -121,7 +134,7 @@
     font-size: 2rem;
     line-height: 1.1935em;
   }
-  
+
   .ListModal__list-ol {
     width: 31.4rem;
   }
@@ -129,7 +142,7 @@
   .list__ol-518 {
     height: 43.4rem;
   }
-  
+
   .list__ol-572 {
     height: 48.8rem;
   }
