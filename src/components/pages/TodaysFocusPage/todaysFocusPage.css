@@ -49,7 +49,6 @@
 
 .content__container__top__title_btn {
   gap: 1.6rem;
-  justify-content: space-between;
 }
 
 .content__container__top__middle {
@@ -107,7 +106,7 @@
 }
 
 /* Tablet */
-@media (min-width: 744px) and (max-width:1023px){ 
+@media (min-width: 744px) and (max-width:1199px){ 
   .content {
     padding: 2.4rem;
     width: 64.8rem;
@@ -150,7 +149,7 @@
 } 
 
 /* mobile */ 
-@media all and (max-width:479px) {
+@media (min-width: 375px) and (max-width:743px) {
   .content {
     width: 31.2rem;
     height: 54.8rem;
@@ -175,7 +174,7 @@
   
   .content__container__top__title_btn {
     gap: 0.8rem;
-    justify-content: space-between;
+    width: 31.2rem;
   }
   
   .content__container__top__middle{
