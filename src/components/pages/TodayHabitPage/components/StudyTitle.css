@@ -8,6 +8,7 @@
 
 .StudyTitle__studyName{
     color: var(--arsenic);
+    cursor: pointer;
 }
 
 .StudyTitle__TodayButton{

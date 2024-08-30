@@ -14,23 +14,59 @@ import {
 } from "../../../../constants/global";
 import { getStudyDetailInfo } from "../../../../api/api";
 
+import { ReactComponent as IC_facebook } from "../../../../assets/images/ic_facebook.svg";
+import { ReactComponent as IC_X } from "../../../../assets/images/ic_twitter.svg";
+import { ReactComponent as IC_youtube } from "../../../../assets/images/ic_youtube.svg";
+import { ReactComponent as IC_instagram } from "../../../../assets/images/ic_instagram.svg";
+
 export const studyIdContext = createContext();
+
+function ShareIcon({ shareIndex, onCloseShareBox }) {
+  const SHARE_ICONS = [
+    { component: <IC_facebook />, url: "https://www.facebook.com" },
+    { component: <IC_X />, url: "https://x.com" },
+    { component: <IC_youtube />, url: "https://www.youtube.com" },
+    { component: <IC_instagram />, url: "https://www.instagram.com" },
+  ];
+
+  const handleClickShareIcon = () => {
+    navigator.clipboard.writeText(document.location.href);
+    onCloseShareBox();
+    window.open(SHARE_ICONS[shareIndex].url, "_blank", "noreferrer");
+  };
+
+  return (
+    <div className="flex-row share-box__icon" onClick={handleClickShareIcon}>
+      {SHARE_ICONS[shareIndex].component}
+    </div>
+  );
+}
+
+function ShareBox({ onCloseShareBox }) {
+  const shareList = [0, 1, 2, 3];
+  const icons = shareList.map((item) => {
+    return <ShareIcon shareIndex={item} onCloseShareBox={onCloseShareBox} />;
+  });
+
+  return <div className="flex-row share-box">{icons}</div>;
+}
 
 export function StudyBody({
   studyId = "8523e4cc-0985-4c20-b8b2-2d86e4fe56d5",
 }) {
+  const [nickname, setNickname] = useState("닉네임");
   const [studyName, setStudyName] = useState("스터디 이름");
   const [description, setDescription] = useState("스터디 설명");
   const [studyPoint, setStudyPoint] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState(-1);
+  const [showShareBox, setShowShareBox] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const handleShareStudy = () => {
-    navigator.clipboard.writeText(document.location.href);
-    alert("주소를 복사했습니다");
+    setShowShareBox(!showShareBox);
   };
 
   const handleDeleteStudy = () => {
@@ -41,6 +77,20 @@ export function StudyBody({
   const handleEditStudy = () => {
     setModalType(MODAL_EDIT_STUDY);
     openModal();
+  };
+
+  const nicknameAndStudyName = () => {
+    const nicknameInfo = `${nickname}의 `;
+    const studyNmaeInfo = `${studyName}`;
+    const studyInfo = (
+      <>
+        <span className="study__middlebar-studyInfo_nickname">
+          {nicknameInfo}
+        </span>
+        {studyNmaeInfo}
+      </>
+    );
+    return studyInfo;
   };
 
   const handleGotoHabit = () => {
@@ -59,11 +109,12 @@ export function StudyBody({
         setStudyName(data.studyName);
         setDescription(data.description);
         setStudyPoint(data.point);
+        setNickname(data.nickname);
       })
       .catch((err) => {
-        /* 에러 처리 : 기획 필요필요 */
+        alert(err);
       });
-  });
+  }, []);
 
   return (
     <main className="study__main">
@@ -76,12 +127,17 @@ export function StudyBody({
               </div>
               <div className="study__topbar-gp-btn-frame">
                 <div className="flex-row study__topbar-gp-btn">
-                  <p
-                    className="font16 medium study__topbar-btn"
-                    onClick={handleShareStudy}
-                  >
-                    공유하기
-                  </p>
+                  <div className="share-box__anchor">
+                    <p
+                      className="font16 medium study__topbar-btn "
+                      onClick={handleShareStudy}
+                    >
+                      공유하기
+                    </p>
+                    {showShareBox ? (
+                      <ShareBox onCloseShareBox={handleShareStudy} />
+                    ) : undefined}
+                  </div>
                   <p>|</p>
                   <p
                     className="font16 medium study__topbar-btn"
@@ -100,8 +156,8 @@ export function StudyBody({
               </div>
             </div>
             <div className="flex-row study__middlebar">
-              <p className="extra-bold study__middlebar-studyname">
-                {studyName}
+              <p className="extra-bold study__middlebar-studyInfo">
+                {nicknameAndStudyName()}
               </p>
               <div className="flex-row study__middlebar-gp-btn">
                 <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
