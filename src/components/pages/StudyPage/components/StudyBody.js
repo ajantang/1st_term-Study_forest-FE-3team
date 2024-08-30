@@ -21,7 +21,7 @@ import { ReactComponent as IC_instagram } from "../../../../assets/images/ic_ins
 
 export const studyIdContext = createContext();
 
-function ShareIcon({ shareIndex }) {
+function ShareIcon({ shareIndex, onCloseShareBox }) {
   const SHARE_ICONS = [
     { component: <IC_facebook />, url: "https://www.facebook.com" },
     { component: <IC_X />, url: "https://x.com" },
@@ -31,6 +31,7 @@ function ShareIcon({ shareIndex }) {
 
   const handleClickShareIcon = () => {
     navigator.clipboard.writeText(document.location.href);
+    onCloseShareBox();
     window.open(SHARE_ICONS[shareIndex].url, "_blank", "noreferrer");
   };
 
@@ -41,10 +42,10 @@ function ShareIcon({ shareIndex }) {
   );
 }
 
-function ShareBox() {
+function ShareBox({ onCloseShareBox }) {
   const shareList = [0, 1, 2, 3];
   const icons = shareList.map((item) => {
-    return <ShareIcon shareIndex={item} />;
+    return <ShareIcon shareIndex={item} onCloseShareBox={onCloseShareBox} />;
   });
 
   return <div className="flex-row share-box">{icons}</div>;
@@ -133,7 +134,9 @@ export function StudyBody({
                     >
                       공유하기
                     </p>
-                    {showShareBox ? ShareBox() : undefined}
+                    {showShareBox ? (
+                      <ShareBox onCloseShareBox={handleShareStudy} />
+                    ) : undefined}
                   </div>
                   <p>|</p>
                   <p
