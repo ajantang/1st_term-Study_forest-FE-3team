@@ -34,6 +34,22 @@
   background-size: cover;
 }
 
+@media (min-width: 744px) and (max-width: 1199px) {
+  .lodingPage__render {
+    width: 80rem;
+    height: 30rem;
+  }
+
+  .lodingPage__img-logo {
+    width: 70rem;
+  }
+
+  .lodingPage__img-spinner {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
 @media (min-width: 375px) and (max-width: 743px) {
   .lodingPage__render {
     width: 30rem;
