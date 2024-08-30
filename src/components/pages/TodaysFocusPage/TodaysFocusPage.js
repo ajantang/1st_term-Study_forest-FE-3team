@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Timer from "./components/Timer";
 import TodayButton from "../../UI/TodayButton";
 import "./todaysFocusPage.css";
+import UpdateRecentlyViewed from "../../../utils/UpdateRecentlyViewed";
 
 export const studyIdContext = createContext();
 
@@ -43,6 +44,10 @@ const TodaysFocusPage = () => {
 
     getInfo(studyId);
   }, [point, studyId]);
+
+  useEffect(() => {
+    UpdateRecentlyViewed(studyId)
+  }, [studyId])
 
   return (
     <>

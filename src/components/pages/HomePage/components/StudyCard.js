@@ -4,12 +4,7 @@ import pointIcon from '../../../../assets/images/ic_point.png';
 import { Emojis } from '../../../UI/Emojis.js';
 
 const StudyCard = ({ id, studyName, description, nickname, point, background, createdAt, isRecentlyViewed }) => {
-  const handleCardClick = () => {
-    const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
-    const updatedRecentlyViewed = [id, ...recentlyViewed.filter((studyId) => studyId !== id)].slice(0, 5);
-    localStorage.setItem('recentlyViewed', JSON.stringify(updatedRecentlyViewed));
-  };
-
+ 
   const calculateDays = (createdAt) => {
     const createdDate = new Date(createdAt);
     const today = new Date();
@@ -17,6 +12,20 @@ const StudyCard = ({ id, studyName, description, nickname, point, background, cr
     const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
     return dayDifference;
   };
+
+  // const calculateDays = (createdAt) => {
+  //   const createdDate = new Date(createdAt); // 지역 시간으로 반환
+  //   createdDate.setHours(0, 0, 0, 0) // 00시 정각
+
+  //   const today = new Date();
+  //   today.setHours(0, 0, 0, 0) // 00시 정각
+
+  //   const timeDifference = today - createdDate;
+  //   const dayDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+  //   return dayDifference;
+  // };
+
+
 
   const days = calculateDays(createdAt);
 
@@ -76,7 +85,6 @@ const StudyCard = ({ id, studyName, description, nickname, point, background, cr
       to={`/study/${id}`}
       className={`study-card ${isRecentlyViewed ? 'recently-viewd' : ''}`}
       style={{ backgroundImage: `url(${background})` }}
-      onClick={handleCardClick}
     >
       <div className="study-card__title__container">
         <h2 className="study-card__title">
