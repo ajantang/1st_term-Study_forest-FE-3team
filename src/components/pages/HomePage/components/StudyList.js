@@ -6,7 +6,7 @@ import StudyCard from "./StudyCard";
 import { getStudyInfo } from "../../../../api/api";
 import useDebounce from "../../../hooks/useDebounce";
 
-const StudyList = () => {
+const StudyList = ({}) => {
   const [studyCards, setStudyCards] = useState([]);
   const [pageSize, setPageSize] = useState(6);
   const [hasMore, setHasMore] = useState(false);

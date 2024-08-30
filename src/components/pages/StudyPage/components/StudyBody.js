@@ -53,6 +53,7 @@ function ShareBox({ onCloseShareBox }) {
 
 export function StudyBody({
   studyId = "8523e4cc-0985-4c20-b8b2-2d86e4fe56d5",
+  setLoding
 }) {
   const [nickname, setNickname] = useState("닉네임");
   const [studyName, setStudyName] = useState("스터디 이름");
@@ -176,7 +177,7 @@ export function StudyBody({
             </div>
             <StudyPoint point={studyPoint} />
           </div>
-          <HabitRecord studyId={studyId} />
+          <HabitRecord studyId={studyId} setLoding={setLoding}/>
         </section>
         <Modal
           studyName={studyName}

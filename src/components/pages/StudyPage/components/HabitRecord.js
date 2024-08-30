@@ -148,11 +148,12 @@ function Dates({ totalCount }) {
   }
 }
 
-export function HabitRecord({ studyId }) {
+export function HabitRecord({ studyId, setLoding }) {
   const [habits, setHabits] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
+    setLoding(true);
     gethabitData(studyId)
       .then((data) => {
         setTotalCount(data.totalHabit);
@@ -160,7 +161,8 @@ export function HabitRecord({ studyId }) {
       })
       .catch((err) => {
         alert(err);
-      });
+      })
+      .finally(() => setLoding(false)); 
   }, []);
 
   return (
