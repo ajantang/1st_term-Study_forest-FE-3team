@@ -8,6 +8,13 @@
   }
 }
 
+.timerset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.5rem;
+}
+
 .timerset__display {
   width: 8.3rem;
   height: 3.1rem;
@@ -26,6 +33,13 @@
   background-image: var(--timer__icon);
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.timerset__control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9.4rem;
 }
 
 .timer {
@@ -135,7 +149,11 @@
 }
 
 /* Tablet */
-@media (min-width: 744px) and (max-width:1199px){
+@media (min-width: 744px) and (max-width: 1199px) {
+  .timerset__control {
+    gap: 10rem;
+  }
+
   .timer {
     width: 59.3rem;
     font-size: 12rem;
@@ -143,13 +161,21 @@
 
   .timer__input {
     width: 20rem;
-    height: 15rem;
+    height: 14.3rem;
     font-size: 12rem;
   }
 }
 
-/* mobile */ 
-@media  (min-width: 375px) and (max-width: 743px) {
+/* mobile */
+@media (min-width: 375px) and (max-width: 743px) {
+  .timerset {
+    gap: 1.7rem;
+  }
+
+  .timerset__control {
+    gap: 7.4rem;
+  }
+
   .timer {
     width: 28rem;
     font-size: 8rem;
@@ -158,7 +184,7 @@
 
   .timer__input {
     height: 8rem;
-    width: 11.0rem;
+    width: 11rem;
     font-size: 8rem;
   }
 
@@ -191,7 +217,7 @@
     height: 4.5rem;
     font-size: 1.4rem;
   }
-  
+
   .restart {
     background-position: 1.5rem;
   }
