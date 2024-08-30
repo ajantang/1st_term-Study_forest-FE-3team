@@ -15,17 +15,22 @@ function PrivateRoute() {
   const navigate = useNavigate();
 
   let modalType;
-  
+
   switch (page) {
     case "todayHabit": {
       modalType = MODAL_GOTO_HABIT;
+      break;
     }
     case "todaysFocus": {
       modalType = MODAL_GOTO_CONCENTRATION;
+      break;
     }
     case "modify": {
       modalType = MODAL_CONFIRM;
+      break;
     }
+    default:
+      modalType = MODAL_CONFIRM;
   }
 
   const closeModal = () => {
