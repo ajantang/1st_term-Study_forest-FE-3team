@@ -1,20 +1,21 @@
-import { useEffect, useState, useContext } from 'react';
-import { studyIdContext } from '../pages/StudyPage/components/StudyBody';
-import data from '@emoji-mart/data';
-import Picker from '@emoji-mart/react';
-import { getEmojiInfo, addEmojiInfo } from '../../api/api';
+import { useEffect, useState } from "react";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
+import { getEmojiInfo, addEmojiInfo } from "../../api/api";
 
-import { ReactComponent as Plus } from '../../assets/images/ic_plus.svg';
+import { ReactComponent as Plus } from "../../assets/images/ic_plus.svg";
 
-import './Emojis.css';
+import "./Emojis.css";
 
 export function Emoji({ emojiCode, emojiCount }) {
   const castedEmojiCode = emojiCode.toString();
-  const parsedEmojiCode = castedEmojiCode.split('-').map((hex) => parseInt(hex, 16));
+  const parsedEmojiCode = castedEmojiCode
+    .split("-")
+    .map((hex) => parseInt(hex, 16));
   const emoji = String.fromCodePoint(...parsedEmojiCode);
 
   if (emojiCount > 99) {
-    emojiCount = '99+';
+    emojiCount = "99+";
   }
 
   return (
@@ -25,15 +26,17 @@ export function Emoji({ emojiCode, emojiCount }) {
   );
 }
 
-export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true, studyId }) {
+export function Emojis({
+  showExtraEmojisBtn = true,
+  showAddEmojiBtn = true,
+  studyId,
+}) {
   const [isExtraOpne, setIsExtraOpen] = useState(false);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
-  const [extraBtnClass, setExtraBtnClass] = useState('flex-row font16 regular emojis__btn-extra');
+  const [extraBtnClass, setExtraBtnClass] = useState(
+    "flex-row font16 regular emojis__btn-extra"
+  );
   const [emojis, setEmojis] = useState([]);
-
-  // if (!studyId) {
-  //   studyId = useContext(studyIdContext);
-  // }
 
   const handleAddEmoji = () => {
     setIsPickerOpen(!isPickerOpen);
@@ -42,7 +45,9 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true, stud
   const handleSelectedEmoji = (emoji) => {
     setIsPickerOpen(false);
     addEmojiInfo(studyId, emoji.unified).then((data) => {
-      const updatedEmojiIndex = emojis.findIndex((emoji) => emoji.emojiCode === data.emojiCode);
+      const updatedEmojiIndex = emojis.findIndex(
+        (emoji) => emoji.emojiCode === data.emojiCode
+      );
 
       if (updatedEmojiIndex === -1) {
         const newEmoji = { emojiCode: data.emojiCode, count: 1 };
@@ -59,13 +64,25 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true, stud
     if (emojis.length > 3) {
       const topThreeEmojis = emojis.slice(0, 3);
       const emojiBoxesTagInfo = topThreeEmojis.map((emoji, index) => {
-        return <Emoji key={index} emojiCode={emoji.emojiCode} emojiCount={emoji.count} />;
+        return (
+          <Emoji
+            key={index}
+            emojiCode={emoji.emojiCode}
+            emojiCount={emoji.count}
+          />
+        );
       });
       return emojiBoxesTagInfo;
     }
 
     const emojiBoxesTagInfo = emojis.map((emoji, index) => {
-      return <Emoji key={index} emojiCode={emoji.emojiCode} emojiCount={emoji.count} />;
+      return (
+        <Emoji
+          key={index}
+          emojiCode={emoji.emojiCode}
+          emojiCount={emoji.count}
+        />
+      );
     });
     return emojiBoxesTagInfo;
   };
@@ -75,16 +92,22 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true, stud
 
     if (emojis.length > 3) {
       extraEmojis = emojis.slice(3).map((emoji, index) => {
-        return <Emoji key={index} emojiCode={emoji.emojiCode} emojiCount={emoji.count} />;
+        return (
+          <Emoji
+            key={index}
+            emojiCode={emoji.emojiCode}
+            emojiCount={emoji.count}
+          />
+        );
       });
     }
 
     const handleExtraEmojiBtn = () => {
       setIsExtraOpen(!isExtraOpne);
       setExtraBtnClass(
-        extraBtnClass === 'flex-row font16 regular emojis__btn-extra'
-          ? 'flex-row font16 regular emojis__btn-extra-clicked'
-          : 'flex-row font16 regular emojis__btn-extra'
+        extraBtnClass === "flex-row font16 regular emojis__btn-extra"
+          ? "flex-row font16 regular emojis__btn-extra-clicked"
+          : "flex-row font16 regular emojis__btn-extra"
       );
     };
 
@@ -95,7 +118,9 @@ export function Emojis({ showExtraEmojisBtn = true, showAddEmojiBtn = true, stud
             <Plus /> {emojis.length - 3}..
           </div>
         ) : undefined}
-        {isExtraOpne ? <div className="flex-row font16 emojis__extra">{extraEmojis}</div> : undefined}
+        {isExtraOpne ? (
+          <div className="flex-row font16 emojis__extra">{extraEmojis}</div>
+        ) : undefined}
       </div>
     );
 

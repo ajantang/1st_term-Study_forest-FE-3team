@@ -1,19 +1,18 @@
 // import logo from "./logo.svg";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './styles/global.css';
-import Main from './main';
-import HomePage from './components/pages/HomePage/HomePage';
-import CreateStudyPage from './components/pages/CreateStudyPage/CreateStudyPage';
-import StudyPage from './components/pages/StudyPage/StudyPage';
-import TodatHabitPage from './components/pages/TodayHabitPage/TodayHabitPage';
-import TodaysFocusPage from './components/pages/TodaysFocusPage/TodaysFocusPage';
-import PrivateRoute from '../src/utils/PrivateRoute';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./styles/global.css";
+import Main from "./main";
+import HomePage from "./components/pages/HomePage/HomePage";
+import CreateStudyPage from "./components/pages/CreateStudyPage/CreateStudyPage";
+import StudyPage from "./components/pages/StudyPage/StudyPage";
+import TodatHabitPage from "./components/pages/TodayHabitPage/TodayHabitPage";
+import TodaysFocusPage from "./components/pages/TodaysFocusPage/TodaysFocusPage";
+import PrivateRoute from "../src/utils/PrivateRoute";
+import ModifyPage from "./components/pages/ModifyPage/ModifyPage";
 
 function App() {
   return (
     <BrowserRouter>
-
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<HomePage />} />
@@ -24,6 +23,7 @@ function App() {
               <Route path="todayHabit" element={<TodatHabitPage />} />
               <Route path="todaysFocus" element={<TodaysFocusPage />} />
             </Route>
+            <Route path="modify" element={<ModifyPage />} />
           </Route>
         </Route>
       </Routes>
