@@ -3,6 +3,8 @@ import { setHabitName } from '../../../../api/api';
 import trashCanImg from '../../../../assets/images/btn_trashCanImg.svg';
 import './ListModalBody.css';
 
+import { motion } from 'framer-motion';
+
 const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx, listClass, setListClass, rockButtonBody, setRockButtonBody }, ref) => {
   const [value, setValue] = useState(habit.name); // 습관 이름 저장
   const [patchInput, setPatchInput] = useState(false); // 습관 수정 input 공개 여부
@@ -118,7 +120,15 @@ const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx, listClass, setLis
           )}
           {checkLength0 && <p className="ListModalBody__text-check font12 semi-bold">값을 입력해주세요</p>}
           {checkLength30 && <p className="ListModalBody__text-check font12 semi-bold">30자 이내로 입력해주세요</p>}
-          <img className="ListModalBody__img-trashCan" onClick={deleteHabitHandler} src={trashCanImg} alt="쓰레기통" />
+          <motion.img
+            className="ListModal__img-trashCan"
+            src={trashCanImg}
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 1 }}
+            whileHover={{ scale: 1.08 }}
+            alt="쓰레기통"
+            onClick={deleteHabitHandler}
+          />
         </div>
       )}
     </>

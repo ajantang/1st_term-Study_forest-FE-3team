@@ -7,6 +7,9 @@ import ListModalPost from "./ListModalPost";
 import "./ListModal.css";
 import { studyIdContext } from "../TodayHabitPage";
 
+import { motion } from 'framer-motion';
+import { MOTION } from '../../../../constants/global';
+
 function ListModal({ modalState, patchList, setPageRender }) {
   const [list, setList] = useState([]); // 서버에서 받아온 리스트 저장
   const [habitIds, setHabitIds] = useState([]); // 서버에서 받아온 습관 id들 저장
@@ -364,29 +367,41 @@ function ListModal({ modalState, patchList, setPageRender }) {
                     30자 이내로 입력해주세요
                   </p>
                 )}
-                <img
+                <motion.img
                   className="ListModal__img-trashCan border-box"
                   src={trashCanImg}
+                  initial={{ scale: 1 }}
+                  whileTap={{ scale: 1 }}
+                  whileHover={{ scale: 1.08 }}
                   alt="쓰레기통"
                   onClick={postInputDeleteHandler}
                 />
               </div>
             )}
-            <img
+            <motion.img
               className="ListModal__img-plus border-box"
               onClick={postInputHandler}
               src={byn_plusButton}
+              initial={{ scale: 1 }}
+              whileTap={{ scale: 1 }}
+              whileHover={{ scale: 1.05 }}
               alt="추가 버튼"
             />
             <div className="ListModal__button flex-row border-box">
-              <div
+              <motion.div
                 className="ListModal__img-button ListModal__img-cencel"
                 onClick={cencelHandler}
+                initial={{ scale: 1 }}
+                whileTap={{ scale: 1 }}
+                whileHover={MOTION.whileHover}
                 alt="취소"
               />
-              <div
+              <motion.div
                 className="ListModal__img-button ListModal__img-patch"
                 onClick={patchSuccessHandler}
+                initial={{ scale: 1 }}
+                whileTap={{ scale: 1 }}
+                whileHover={MOTION.whileHover}
                 alt="수정 완료"
               />
             </div>

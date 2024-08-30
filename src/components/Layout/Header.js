@@ -1,5 +1,8 @@
 import logo from '../../assets/images/img_logo.png';
 import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { MOTION } from '../../constants/global';
+
 import './header.css';
 
 const Header = ({ hideCreateButton }) => {
@@ -11,7 +14,13 @@ const Header = ({ hideCreateButton }) => {
         </NavLink>
         {!hideCreateButton && (
           <NavLink to="/create" className="header__btn-link">
-            <div className="header__btn">스터디 만들기</div>
+            <motion.div
+              className="header__btn"
+              initial={{ scale: 1 }}
+              whileTap={{ scale: 1 }}
+              whileHover={MOTION.whileHover}>
+              스터디 만들기
+            </motion.div>
           </NavLink>
         )}
       </div>

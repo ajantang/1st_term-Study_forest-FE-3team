@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { getEmojiInfo, addEmojiInfo } from "../../api/api";
+import { motion } from 'framer-motion';
+import { MOTION } from '../../constants/global';
+
 
 import { ReactComponent as Plus } from "../../assets/images/ic_plus.svg";
 
@@ -130,7 +133,12 @@ export function Emojis({
   const addEmojiBtn = () => {
     const addEmojiBtn = (
       <div className="emojis__btn-add-anchor">
-        <svg className="emojis__btn-add" onClick={handleAddEmoji} />
+         <motion.svg
+          className="emojis__btn-add"
+          onClick={handleAddEmoji}
+          initial={MOTION.initial}
+          whileTap={{ scale: 1 }}
+          whileHover={MOTION.whileHover} />
         {isPickerOpen && (
           <div className="emojis__picker">
             <Picker data={data} onEmojiSelect={handleSelectedEmoji} />

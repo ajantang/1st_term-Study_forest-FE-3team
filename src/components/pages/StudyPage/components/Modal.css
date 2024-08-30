@@ -80,6 +80,7 @@
   width: 60rem;
   height: 5.8rem;
   background-image: url("../../../../assets/images/btn_confirm.svg");
+  border-radius: 1.6rem;
 }
 
 .modal__btn-edit {
@@ -87,6 +88,7 @@
   width: 60rem;
   height: 5.8rem;
   background-image: url("../../../../assets/images/btn_toEdit.svg");
+  border-radius: 1.6rem;
 }
 
 .modal__btn-habit {
@@ -94,6 +96,7 @@
   width: 60rem;
   height: 5.8rem;
   background-image: url("../../../../assets/images/btn_toHabit.svg");
+  border-radius: 1.6rem;
 }
 
 .modal__btn-concentration {
@@ -101,6 +104,7 @@
   width: 60rem;
   height: 5.8rem;
   background-image: url("../../../../assets/images/btn_toConcentration.svg");
+  border-radius: 1.6rem;
 }
 
 .modal__warning {
@@ -130,6 +134,15 @@
   right: 2.4rem;
   color: var(--fern-green);
   cursor: pointer;
+}
+
+.modal__btn-close:hover {
+  font-weight: 800;
+}
+
+.modal__btn-close:active {
+  font-weight: 700;
+  color: var(--dark-sea-green);
 }
 
 /* ===== Mobile-width : 375px ~ 743px ====== */

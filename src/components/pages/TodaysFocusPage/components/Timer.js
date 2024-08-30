@@ -1,8 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
+import { motion } from 'framer-motion';
+
+import { MOTION } from '../../../../constants/global';
 import { setStudyInfo } from "../../../../api/api.js";
 import { changeDigits, changeTime } from "../utils/changeTime.js";
-import "./timer.css";
 import { studyIdContext } from "../TodaysFocusPage.js";
+
+import "./timer.css"; 
 
 const T = 25 * 60;
 const M = "25";
@@ -117,24 +121,30 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
     setIsDisableBtn(true);
     setIsDisableInput(true);
 
-    // 일시정지 버튼 동적 생성
-    setPauseTimer(
-      <button
+     // 일시정지 버튼 동적 생성
+     setPauseTimer(
+      <motion.button
         type="button"
         className="timer__controls__pause"
         onClick={PauseTimer}
-      ></button>
+        initial={{ scale: 1 }}
+        whileTap={{ scale: 1 }}
+        whileHover={MOTION.whileHover}
+      />
     );
+
 
     // 초기화 버튼 동적 생성
     setClearTimer(
-      <button
+      <motion.button
         type="button"
         className="timer__controls__reset"
         onClick={ClearTimer}
-      ></button>
+        initial={{ scale: 1 }}
+        whileTap={{ scale: 1 }}
+        whileHover={MOTION.whileHover}
+      />
     );
-
     // 1초 간격으로 실행
     timer = setInterval(() => {
       count--;
@@ -164,14 +174,17 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
         setPauseTimer("");
         // 정지 버튼 동적 생성
         setControltimer(
-          <button
+          <motion.button
             type="button"
             id="stoptbtn"
             className={`timer__controls__active extra-bold stop`}
             onClick={StopTimer}
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 1 }}
+            whileHover={MOTION.whileHover}
           >
             &nbsp;&nbsp; Stop!
-          </button>
+          </motion.button>
         );
         if (count >= -60) {
           // 초과 시간이 60초가 넘어갈 때 화면 표시 계산
@@ -184,7 +197,6 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
         // 10분 초과 시 1포인트 얻음
         if (count % 600 === 0) {
           obtainPoint++;
-          console.log(obtainPoint);
         }
       }
     }, 1000);
@@ -271,7 +283,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
         <div className="timer__controls">
           {pauseTimer}
           {controlTimer}
-          <button
+          <motion.button
             type="button"
             id="startbtn"
             className={`timer__controls__active extra-bold ${changeCss(
@@ -280,9 +292,12 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
             )}`}
             onClick={StartTimer}
             disabled={isDisableBtn}
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 1 }}
+            whileHover={MOTION.whileHover}
           >
             &nbsp;&nbsp; {btnText}!
-          </button>
+          </motion.button>
           {clearTimer}
         </div>
         <div className="content__alert">{alertCondition}</div>
