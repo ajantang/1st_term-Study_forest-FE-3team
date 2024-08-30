@@ -219,8 +219,10 @@
   }
 
   .habitrecord__empty-message {
-    width: 56rem;
+    width: 28rem;
     height: 41rem;
+    font-size: 1.6rem;
+    line-height: 1.19312em;
   }
 
   .habitrecord__table-habitname {

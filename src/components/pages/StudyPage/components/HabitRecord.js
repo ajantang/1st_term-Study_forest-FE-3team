@@ -114,7 +114,7 @@ function HabitWeekRecords({ totalCount, habits }) {
   return data;
 }
 
-function Dates() {
+function Dates({ totalCount }) {
   const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
   const recentOneWeek = [];
 
@@ -137,11 +137,15 @@ function Dates() {
     );
   });
 
-  return (
-    <div className="habitrecord__header">
-      <div className="flex-row habitrecord__title-days">{marks}</div>
-    </div>
-  );
+  if (totalCount) {
+    return (
+      <div className="habitrecord__header">
+        <div className="flex-row habitrecord__title-days">{marks}</div>
+      </div>
+    );
+  } else {
+    return undefined;
+  }
 }
 
 export function HabitRecord({ studyId, setLoding }) {
@@ -166,7 +170,7 @@ export function HabitRecord({ studyId, setLoding }) {
       <div className="extra-bold habitrecord__title">습관 기록표</div>
       <div>
         <div className="habitrecord__table">
-          <Dates />
+          <Dates totalCount={totalCount} />
           <HabitWeekRecords totalCount={totalCount} habits={habits} />
         </div>
       </div>

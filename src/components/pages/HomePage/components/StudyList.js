@@ -1,26 +1,26 @@
-import './studyList.css';
-import { useState, useRef, useEffect } from 'react';
-import searchBtn from '../../../../assets/images/Vector.png';
-import dropdownBtn from '../../../../assets/images/ic_toggle.png';
-import StudyCard from './StudyCard';
-import { getStudyInfo } from '../../../../api/api';
-import useDebounce from '../../../hooks/useDebounce';
+import "./studyList.css";
+import { useState, useRef, useEffect } from "react";
+import searchBtn from "../../../../assets/images/Vector.svg";
+import dropdownBtn from "../../../../assets/images/ic_toggle.svg";
+import StudyCard from "./StudyCard";
+import { getStudyInfo } from "../../../../api/api";
+import useDebounce from "../../../hooks/useDebounce";
 
 const StudyList = ({}) => {
   const [studyCards, setStudyCards] = useState([]);
   const [pageSize, setPageSize] = useState(6);
   const [hasMore, setHasMore] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [boxText, setBoxText] = useState('최근 순');
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const [order, setOrder] = useState('recent');
+  const [boxText, setBoxText] = useState("최근 순");
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const [order, setOrder] = useState("recent");
   const dropDownRef = useRef(null);
   const debouncedSearchKeyword = useDebounce(searchKeyword, 500); // 500ms 디바운스
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -37,17 +37,20 @@ const StudyList = ({}) => {
   useEffect(() => {
     const fetchStudyCards = async () => {
       try {
-        const response = await getStudyInfo(1, pageSize, order, debouncedSearchKeyword);
-        console.log('fetchStudyCards');
+        const response = await getStudyInfo(
+          1,
+          pageSize,
+          order,
+          debouncedSearchKeyword
+        );
         setStudyCards(response.studies);
         if (response.totalCount <= pageSize || response.totalCount === 0) {
           setHasMore(false);
         } else {
           setHasMore(true);
-          console.log(pageSize);
         }
       } catch (error) {
-        console.error('Error fetching study cards:', error);
+        console.error("Error fetching study cards:", error);
       }
     };
     fetchStudyCards();
@@ -58,23 +61,23 @@ const StudyList = ({}) => {
   };
 
   const handleClickRecent = () => {
-    setBoxText('최신순');
-    setOrder('recent');
+    setBoxText("최신순");
+    setOrder("recent");
   };
 
   const handleClickOldest = () => {
-    setBoxText('오래된 순');
-    setOrder('oldest');
+    setBoxText("오래된 순");
+    setOrder("oldest");
   };
 
   const handleClickMostPoint = () => {
-    setBoxText('많은 포인트 순');
-    setOrder('mostPoint');
+    setBoxText("많은 포인트 순");
+    setOrder("mostPoint");
   };
 
   const handleClicLeastPoint = () => {
-    setBoxText('적은 포인트 순');
-    setOrder('leastPoint');
+    setBoxText("적은 포인트 순");
+    setOrder("leastPoint");
   };
 
   return (
@@ -90,23 +93,49 @@ const StudyList = ({}) => {
               setPageSize(6);
             }}
           />
-          <img src={searchBtn} alt="search" className="study-list__nav__search-icon" />
+          <img
+            src={searchBtn}
+            alt="search"
+            className="study-list__nav__search-icon"
+          />
         </div>
-        <div className="study-list__nav__dropdown" onClick={toggleDropDown} ref={dropDownRef}>
+        <div
+          className="study-list__nav__dropdown"
+          onClick={toggleDropDown}
+          ref={dropDownRef}
+        >
           <p>{boxText}</p>
-          <img src={dropdownBtn} alt="dropdownBtn" className={`study-list__nav__dropdown-btn ${isOpen ? 'rotate' : ''}`} />
+          <img
+            src={dropdownBtn}
+            alt="dropdownBtn"
+            className={`study-list__nav__dropdown-btn ${
+              isOpen ? "rotate" : ""
+            }`}
+          />
           {isOpen && (
             <div className="study-list__nav__dropdown-box">
-              <div className="study-list__nav__dropdown-box__order recent" onClick={handleClickRecent}>
+              <div
+                className="study-list__nav__dropdown-box__order recent"
+                onClick={handleClickRecent}
+              >
                 최근 순
               </div>
-              <div className="study-list__nav__dropdown-box__order oldest" onClick={handleClickOldest}>
+              <div
+                className="study-list__nav__dropdown-box__order oldest"
+                onClick={handleClickOldest}
+              >
                 오래된 순
               </div>
-              <div className="study-list__nav__dropdown-box__order most-point" onClick={handleClickMostPoint}>
+              <div
+                className="study-list__nav__dropdown-box__order most-point"
+                onClick={handleClickMostPoint}
+              >
                 많은 포인트 순
               </div>
-              <div className="study-list__nav__dropdown-box__order least-point" onClick={handleClicLeastPoint}>
+              <div
+                className="study-list__nav__dropdown-box__order least-point"
+                onClick={handleClicLeastPoint}
+              >
                 적은 포인트 순
               </div>
             </div>
