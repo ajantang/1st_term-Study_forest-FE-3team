@@ -133,6 +133,7 @@
   background-color: white;
   align-items: center;
   gap: 0.8rem;
+  z-index: 90;
 }
 
 /* ===== Tablet - width : 744px ~ 1199px ===== */

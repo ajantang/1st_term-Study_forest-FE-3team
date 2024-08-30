@@ -33,6 +33,15 @@
   cursor: pointer;
 }
 
+.habitsList__button:hover {
+  font-weight: 800;
+}
+
+.habitsList__button:active {
+  font-weight: 700;
+  color: var(--dark-sea-green);
+}
+
 .habitsList__list-text {
   width: 112rem;
   height: 54rem;

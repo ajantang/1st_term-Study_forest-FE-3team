@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from "react";
+import { motion } from 'framer-motion';
 
 import Emojis from "../../../UI/Emojis";
 import StudyPoint from "../../../UI/StudyPoint";
@@ -134,7 +135,7 @@ export function StudyBody({
                       onClick={handleShareStudy}
                     >
                       공유하기
-                    </p>
+                      </p>
                     {showShareBox ? (
                       <ShareBox onCloseShareBox={handleShareStudy} />
                     ) : undefined}

@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { motion } from 'framer-motion';
+import { MOTION } from '../../../../constants/global'
 
 import "./Modal.css";
 
@@ -191,7 +193,13 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
             />
           </div>
         </div>
-        <svg className={buttonClass[modalType]} onClick={onModalClick} />
+        <motion.svg
+          className={buttonClass[modalType]}
+          onClick={onModalClick}
+          initial={MOTION.initial}
+          whileTap={{ scale: 1 }}
+          whileHover={MOTION.whileHover}
+        ></motion.svg>
         <p
           className="font16 medium modal__btn-close"
           onClick={handleModalClose}
