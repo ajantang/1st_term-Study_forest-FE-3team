@@ -138,7 +138,7 @@ function Dates() {
   });
 
   return (
-    <div class="habitrecord__header">
+    <div className="habitrecord__header">
       <div className="flex-row habitrecord__title-days">{marks}</div>
     </div>
   );
@@ -155,16 +155,18 @@ export function HabitRecord({ studyId }) {
         setHabits(data.habits);
       })
       .catch((err) => {
-        /* 에러 처리 : 기획 필요필요 */
+        alert(err);
       });
   }, []);
 
   return (
     <div className="study__habits habitrecord">
       <div className="extra-bold habitrecord__title">습관 기록표</div>
-      <div className="habitrecord__table">
-        <Dates />
-        <HabitWeekRecords totalCount={totalCount} habits={habits} />
+      <div>
+        <div className="habitrecord__table">
+          <Dates />
+          <HabitWeekRecords totalCount={totalCount} habits={habits} />
+        </div>
       </div>
     </div>
   );

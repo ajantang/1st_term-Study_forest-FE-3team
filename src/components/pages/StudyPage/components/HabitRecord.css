@@ -8,6 +8,19 @@
   margin: 0 auto;
   /* margin-top: 4rem; */
   padding: 2.4rem;
+
+  /* invisible scroll */
+  overflow-y: auto;
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE, Edge */
+  -ms-overflow-style: none;
+}
+
+.habitrecord::-webkit-scrollbar {
+  /* invisible scroll */
+  /* chrome */
+  display: none;
 }
 
 .habitrecord__table {
@@ -31,10 +44,26 @@
 }
 
 .habitrecord__table-value-frame {
-  width: 108.8rem;
   height: 38.4rem;
+
+  /* visible scroll */
+  /* width: 108.8rem;
   overflow-y: auto;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable; */
+
+  /* invisible scroll */
+  width: 107.2rem;
+  overflow-y: auto;
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE, Edge */
+  -ms-overflow-style: none;
+}
+
+.habitrecord__table-value-frame::-webkit-scrollbar {
+  /* invisible scroll */
+  /* chrome */
+  display: none;
 }
 
 .habitrecord__empty-message {
@@ -102,7 +131,7 @@
   }
 
   .habitrecord__table-value-frame {
-    width: 61.6rem;
+    width: 60rem;
   }
 
   .habitrecord__empty-message {
@@ -139,9 +168,6 @@
     width: 31.2rem;
     height: 45rem;
     padding: 1.6rem;
-    /* 임시 히든 처리 */
-    overflow-x: auto;
-    overflow-y: hidden;
   }
 
   .habitrecord__table {
@@ -185,11 +211,11 @@
   }
 
   .habitrecord__table-value-frame {
-    width: 57.6rem;
+    width: 56rem;
 
     display: block;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
   }
 
   .habitrecord__empty-message {
@@ -202,8 +228,8 @@
     display: flex;
     width: 12.2rem;
     height: 6.4rem;
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     font-size: 1.4rem;
     line-height: 1.19357em;
   }
@@ -225,5 +251,7 @@
   .habitrecord__title {
     font-size: 1.8rem;
     line-height: 1.19333em;
+    position: sticky;
+    left: 0rem;
   }
 }
