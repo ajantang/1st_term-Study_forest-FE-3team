@@ -4,8 +4,7 @@ import HabitsListBody from "./HabitsListBody";
 import "./HabitsList.css";
 import { studyIdContext } from "../TodayHabitPage";
 
-function HabitsList({ patchList, pageRender, setPageRender, setLoding }) {
-  const [list, setList] = useState([]); // 서버에서 받아온 리스트 저장
+function HabitsList({ list, setList, patchList, pageRender, setPageRender, setLoding }) {
   const [first, setFirst] = useState(true); // 습관이 없을 시 무한 랜더 방지
   let studyId = useContext(studyIdContext);
 

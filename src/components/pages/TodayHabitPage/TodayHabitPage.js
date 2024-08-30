@@ -13,12 +13,13 @@ export const studyIdContext = createContext();
 function TodatHabitPage() {
   const [modalOn, setModalOn] = useState(false);
   const [pageRender, setPageRender] = useState(false);
-  const [loding, setLoding] = useState(false)
+  const [loding, setLoding] = useState(false);
+  const [list, setList] = useState([]);
   const { studyId } = useParams();
 
   useEffect(() => {
-    UpdateRecentlyViewed(studyId)
-  }, [studyId])
+    UpdateRecentlyViewed(studyId);
+  }, [studyId]);
 
   const patchListHandler = () => {
     if (modalOn) {
@@ -36,12 +37,15 @@ function TodatHabitPage() {
           <div className="todayHaibtPage__content border-box ">
             <CurrentTime />
             <HabitsList
+              list={list}
+              setList={setList}
               patchList={patchListHandler}
               pageRender={pageRender}
               setPageRender={setPageRender}
               setLoding={setLoding}
             />
             <ListModal
+              list={list}
               modalState={modalOn}
               patchList={patchListHandler}
               setPageRender={setPageRender}
