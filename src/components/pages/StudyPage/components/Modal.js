@@ -59,7 +59,8 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
 
   function afterEditStudyModalPass() {
     const path = `/study/${studyId}/modify`;
-    navigate(path);
+    // navigate(path);
+    navigate(path, { state: "modify" });
   }
 
   function afterGotoHabitModalPass() {
