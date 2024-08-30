@@ -1,6 +1,7 @@
 @font-face {
-  font-family: 'EF_jejudoldam';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+  font-family: "EF_jejudoldam";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2")
+    format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -47,7 +48,7 @@
   margin-top: 20px;
 }
 
-@media (max-width: 1279px) {
+@media (min-width: 744px) and (max-width: 1199px) {
   .header__container {
     padding: 0 24px;
   }
@@ -58,7 +59,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 375px) and (max-width: 743px) {
   .header__container {
     padding: 0 16px;
   }

@@ -56,8 +56,8 @@ const BackgroundSelector = forwardRef(({ classListIndex, onClick }, ref) => {
   const divRef = useRef(null);
 
   useImperativeHandle(ref, () => ({
-    cancelSelect: () => {
-      setIsSelected(false);
+    setSelect: (value) => {
+      setIsSelected(value);
     },
   }));
 
