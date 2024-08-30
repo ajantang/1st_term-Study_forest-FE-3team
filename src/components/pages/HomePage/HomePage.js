@@ -10,7 +10,7 @@ const HomePage = () => {
     <>
       <RecentlyView setLoding={setLoding}/>
       <StudyList />
-      {(loding ) && <LodingPage />}
+      {loding && <LodingPage />}
     </>
   );
 };

@@ -72,7 +72,11 @@ function HabitWeekRecord({
 
   return (
     <div className="flex-row">
-      <div className="bold habitrecord__table-habitname">{habitName}</div>
+      <div className="habitrecord__table-habitname sticky-left">
+        <div className="bold habitrecord__table-habitname_text">
+          {habitName}
+        </div>
+      </div>
       <div className="flex-row habitrecord__table-habitsuccesses">
         {weekRecord}
       </div>
@@ -127,13 +131,17 @@ function Dates() {
   const marks = recentOneWeek.map((date, index) => {
     const mark = `${date.date} (${date.day})`;
     return (
-      <div key={index} className="habitrecord__title-day">
+      <div key={index} className="habitrecord__title-day sticky-header">
         {mark}
       </div>
     );
   });
 
-  return <div className="flex-row habitrecord__title-days">{marks}</div>;
+  return (
+    <div className="habitrecord__header">
+      <div className="flex-row habitrecord__title-days">{marks}</div>
+    </div>
+  );
 }
 
 export function HabitRecord({ studyId, setLoding }) {
@@ -148,7 +156,7 @@ export function HabitRecord({ studyId, setLoding }) {
         setHabits(data.habits);
       })
       .catch((err) => {
-        /* 에러 처리 : 기획 필요필요 */
+        alert(err);
       })
       .finally(() => setLoding(false)); 
   }, []);
@@ -156,9 +164,11 @@ export function HabitRecord({ studyId, setLoding }) {
   return (
     <div className="study__habits habitrecord">
       <div className="extra-bold habitrecord__title">습관 기록표</div>
-      <div className="habitrecord__table">
-        <Dates />
-        <HabitWeekRecords totalCount={totalCount} habits={habits} />
+      <div>
+        <div className="habitrecord__table">
+          <Dates />
+          <HabitWeekRecords totalCount={totalCount} habits={habits} />
+        </div>
       </div>
     </div>
   );
