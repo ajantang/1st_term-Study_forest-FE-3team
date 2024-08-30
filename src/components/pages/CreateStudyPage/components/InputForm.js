@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useValidation from "../../../hooks/useValidation.js";
 import "./inputForm.css";
-import invisiblePassword from "../../../../assets/images/btn_visibility_off.png";
-import visiblePassword from "../../../../assets/images/btn_visibility_on.png";
+import visiblePassword from "../../../../assets/images/btn_visibility_off.svg";
+import invisiblePassword from "../../../../assets/images/btn_visibility_on.svg";
 import { createStudy } from "../../../../api/api.js";
 
 const BASE_BACKGROUND = "https://ifh.cc/g/zaNc6p.jpg";
@@ -11,8 +11,8 @@ const BASE_BACKGROUND = "https://ifh.cc/g/zaNc6p.jpg";
 const CreateStudy = () => {
   const [passwordType, setPasswordType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
-  const [toggleBtn, setToggleBtn] = useState(invisiblePassword);
-  const [confirmToggleBtn, setConfirmToggleBtn] = useState(invisiblePassword);
+  const [toggleBtn, setToggleBtn] = useState(visiblePassword);
+  const [confirmToggleBtn, setConfirmToggleBtn] = useState(visiblePassword);
   const [focusedBackground, setFocusedBackground] = useState(BASE_BACKGROUND);
   const {
     state: {
@@ -38,6 +38,8 @@ const CreateStudy = () => {
       validateConfirmPassword,
     },
   } = useValidation();
+  const nicknameInputRef = useRef(null);
+  const errorMessageRef = useRef(null);
 
   useEffect(() => {
     const selectedBtn = document.createElement("div");
@@ -71,20 +73,20 @@ const CreateStudy = () => {
   const togglePasswordVisibility = () => {
     if (passwordType === "password") {
       setPasswordType("text");
-      setToggleBtn(visiblePassword);
+      setToggleBtn(invisiblePassword);
     } else {
       setPasswordType("password");
-      setToggleBtn(invisiblePassword);
+      setToggleBtn(visiblePassword);
     }
   };
 
   const toggleConfirmPasswordVisibility = () => {
     if (confirmPasswordType === "password") {
       setConfirmPasswordType("text");
-      setConfirmToggleBtn(visiblePassword);
+      setConfirmToggleBtn(invisiblePassword);
     } else {
       setConfirmPasswordType("password");
-      setConfirmToggleBtn(invisiblePassword);
+      setConfirmToggleBtn(visiblePassword);
     }
   };
 
@@ -95,8 +97,26 @@ const CreateStudy = () => {
         navigate(`/study/${id}`);
       })
       .catch((error) => {
-        alert("이미 사용 중인 닉네임입니다");
+        if (error.response && error.response.status === 409) {
+          window.scrollTo({ top: 0 });
+          if (nicknameInputRef.current) {
+            nicknameInputRef.current.focus();
+            nicknameInputRef.current.classList.add("duplicate");
+            errorMessageRef.current.style.display = "block";
+          }
+          alert("이미 사용 중인 닉네임입니다");
+        } else {
+          alert("잠시 후 다시 시도해주세요");
+        }
       });
+  };
+
+  const handleNicknameChange = (e) => {
+    setNickname(e.target.value);
+    if (nicknameInputRef.current.classList.contains("duplicate")) {
+      nicknameInputRef.current.classList.remove("duplicate");
+    }
+    errorMessageRef.current.style.display = "none";
   };
 
   const navigate = useNavigate();
@@ -118,11 +138,18 @@ const CreateStudy = () => {
               ? "invalid"
               : "valid"
           }`}
+          ref={nicknameInputRef}
           value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
+          onChange={handleNicknameChange}
           placeholder="닉네임을 입력해 주세요"
         />
         <span className="create-study__input-error">{validateNickname()}</span>
+        <span
+          className="create-study__input-error duplicate"
+          ref={errorMessageRef}
+        >
+          *이미 사용중인 닉네임입니다
+        </span>
       </div>
       <div className="create-study__form">
         <label className="font18 semi-bold create-study__label studyName">
@@ -200,12 +227,14 @@ const CreateStudy = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="비밀번호를 입력해주세요"
             />
-            <img
-              src={toggleBtn}
-              alt="togglePassword"
-              className="create-study__password-toggle-btn"
-              onClick={togglePasswordVisibility}
-            />
+            {password && (
+              <img
+                src={toggleBtn}
+                alt="togglePassword"
+                className="create-study__password-toggle-btn"
+                onClick={togglePasswordVisibility}
+              />
+            )}
           </div>
           <span className="create-study__input-error">
             {validatePassword()}
@@ -229,12 +258,14 @@ const CreateStudy = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="비밀번호를 다시 한 번 입력해주세요"
             />
-            <img
-              src={confirmToggleBtn}
-              alt="togglePassword"
-              className="create-study__password-toggle-btn"
-              onClick={toggleConfirmPasswordVisibility}
-            />
+            {confirmPassword && (
+              <img
+                src={confirmToggleBtn}
+                alt="togglePassword"
+                className="create-study__password-toggle-btn"
+                onClick={toggleConfirmPasswordVisibility}
+              />
+            )}
           </div>
           <span className="create-study__input-error">
             {validateConfirmPassword() || ""}

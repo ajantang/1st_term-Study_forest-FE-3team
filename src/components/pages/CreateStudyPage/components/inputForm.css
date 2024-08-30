@@ -119,7 +119,7 @@
 .selectedBtn {
   width: 32px;
   height: 32px;
-  background-image: url("../../../../assets/images/ic_bg_selected.png");
+  background-image: url("../../../../assets/images/ic_bg_selected.svg");
   background-size: cover;
   position: absolute;
   top: 50%;
@@ -133,6 +133,14 @@
 
 .create-study__input.invalid {
   outline: 1px solid #f50e0e;
+}
+
+.create-study__input.duplicate {
+  outline: 1px solid #f50e0e;
+}
+
+.create-study__input-error.duplicate {
+  display: none;
 }
 
 .create-study__input-error {
