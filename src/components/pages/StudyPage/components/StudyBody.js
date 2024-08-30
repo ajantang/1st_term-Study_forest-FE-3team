@@ -14,20 +14,20 @@ import {
 } from "../../../../constants/global";
 import { getStudyDetailInfo } from "../../../../api/api";
 
-import { ReactComponent as IC_facebook } from "../../../../assets/images/ic_facebook.svg";
-import { ReactComponent as IC_X } from "../../../../assets/images/ic_twitter.svg";
-import { ReactComponent as IC_youtube } from "../../../../assets/images/ic_youtube.svg";
-import { ReactComponent as IC_instagram } from "../../../../assets/images/ic_instagram.svg";
+import { ReactComponent as ICFacebook } from "../../../../assets/images/ic_facebook.svg";
+import { ReactComponent as ICX } from "../../../../assets/images/ic_twitter.svg";
+import { ReactComponent as ICYoutube } from "../../../../assets/images/ic_youtube.svg";
+import { ReactComponent as ICInstagram } from "../../../../assets/images/ic_instagram.svg";
 import { useParams } from "react-router-dom";
 
 export const studyIdContext = createContext();
 
 function ShareIcon({ shareIndex, onCloseShareBox }) {
   const SHARE_ICONS = [
-    { component: <IC_facebook />, url: "https://www.facebook.com" },
-    { component: <IC_X />, url: "https://x.com" },
-    { component: <IC_youtube />, url: "https://www.youtube.com" },
-    { component: <IC_instagram />, url: "https://www.instagram.com" },
+    { component: <ICFacebook />, url: "https://www.facebook.com" },
+    { component: <ICX />, url: "https://x.com" },
+    { component: <ICYoutube />, url: "https://www.youtube.com" },
+    { component: <ICInstagram />, url: "https://www.instagram.com" },
   ];
 
   const handleClickShareIcon = () => {

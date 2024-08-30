@@ -1,4 +1,4 @@
-function UpdateRecentlyViewed(studyId) {
+export function UpdateRecentlyViewed(studyId) {
   const recentlyViewed =
     JSON.parse(localStorage.getItem("recentlyViewed")) || [];
   const updatedRecentlyViewed = [
@@ -8,4 +8,16 @@ function UpdateRecentlyViewed(studyId) {
   localStorage.setItem("recentlyViewed", JSON.stringify(updatedRecentlyViewed));
 }
 
-export default UpdateRecentlyViewed;
+export function deleteRecentlyViewed(studyId) {
+  const recentlyViewed = JSON.parse(localStorage.getItem("recentlyViewed"));
+
+  if (recentlyViewed) {
+    return;
+  }
+
+  const updatedRecentlyViewed = [
+    ...recentlyViewed.filter((Id) => Id !== studyId),
+  ];
+
+  localStorage.setItem("recentlyViewed", JSON.stringify(updatedRecentlyViewed));
+}

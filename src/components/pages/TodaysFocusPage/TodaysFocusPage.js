@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Timer from "./components/Timer";
 import TodayButton from "../../UI/TodayButton";
 import "./todaysFocusPage.css";
-import UpdateRecentlyViewed from "../../../utils/UpdateRecentlyViewed";
+import { UpdateRecentlyViewed } from "../../../utils/UpdateRecentlyViewed";
 import LodingPage from "../../Layout/LodingPage";
 
 export const studyIdContext = createContext();

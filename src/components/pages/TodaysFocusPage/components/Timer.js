@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
-import { MOTION } from '../../../../constants/global';
+import { MOTION } from "../../../../constants/global";
 import { setStudyInfo } from "../../../../api/api.js";
 import { changeDigits, changeTime } from "../utils/changeTime.js";
 import { studyIdContext } from "../TodaysFocusPage.js";
 
-import "./timer.css"; 
+import "./timer.css";
 
 const T = 25 * 60;
 const M = "25";
@@ -67,12 +67,12 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   }
 
   const handlerBalnk = (e) => {
-    if(e.target.value === ""){
-      alert('숫자를 입력해주세요.');
-      setMinute(M)
-      setSecond(S)
+    if (e.target.value === "") {
+      alert("숫자를 입력해주세요.");
+      setMinute(M);
+      setSecond(S);
     }
-  }
+  };
 
   //INPUT값 받아와서 변환
   const timerMinute = (e) => {
@@ -87,7 +87,6 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
   const timerSecond = (e) => {
     let sec = e.target.value.replace(/[^0-9]/g, "");
     sec = changeDigits(sec);
-
 
     //60이상의 값 입력 시 분으로 자동 넘김
     if (sec >= 60) {
@@ -121,8 +120,8 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
     setIsDisableBtn(true);
     setIsDisableInput(true);
 
-     // 일시정지 버튼 동적 생성
-     setPauseTimer(
+    // 일시정지 버튼 동적 생성
+    setPauseTimer(
       <motion.button
         type="button"
         className="timer__controls__pause"
@@ -132,7 +131,6 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
         whileHover={MOTION.whileHover}
       />
     );
-
 
     // 초기화 버튼 동적 생성
     setClearTimer(
@@ -244,7 +242,7 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
     };
 
     updateinfo(studyId, totalPoint);
-  }, [totalPoint]);
+  }, [studyId, totalPoint]);
 
   return (
     <div className="timerset">
@@ -253,7 +251,9 @@ const Timer = ({ initialPoint, setPoint, setAlertGetPoint }) => {
         {changeTime(initialTime)}
       </div>
       <div className="timerset__control">
-        <div className={`timer extra-bold font150 ${changeCss("input", state)}`}>
+        <div
+          className={`timer extra-bold font150 ${changeCss("input", state)}`}
+        >
           {state === "over" ? "-" : ""}
           <input
             type="text"

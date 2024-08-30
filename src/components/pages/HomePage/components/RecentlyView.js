@@ -3,24 +3,22 @@ import "./recentlyView.css";
 import StudyCard from "./StudyCard.js";
 import { getStudyDetailInfo } from "../../../../api/api.js";
 
-const RecentlyView = ({setLoding}) => {
-  const [recentlyViewed, setRecentlyViewed] = useState([]);
+const RecentlyView = ({ setLoding }) => {
+  // const [recentlyViewed, setRecentlyViewed] = useState([]);
   const [studyData, setStudyData] = useState([]);
 
+  // 이거...코드 리뷰 좀 해야할듯 임시로 수정함
   useEffect(() => {
     const recentlyViewedStudy =
       JSON.parse(localStorage.getItem("recentlyViewed")) || [];
-    setRecentlyViewed(recentlyViewedStudy);
+    // setRecentlyViewed(recentlyViewedStudy);
 
     const handleStudyData = async () => {
-      setLoding(true)
+      setLoding(true);
       const studyData = [];
-      for (
-        let i = 0;
-        studyData.length < 3 && i < recentlyViewedStudy.length;
-        i++
-      ) {
+      for (let i = 0; i < recentlyViewedStudy.length; i++) {
         const id = recentlyViewedStudy[i];
+
         try {
           const response = await getStudyDetailInfo(id);
           studyData.push(response); // 유효한 데이터를 배열에 추가합니다.
@@ -34,9 +32,10 @@ const RecentlyView = ({setLoding}) => {
         }
       }
       setStudyData(studyData);
-      setLoding(false)
     };
-    handleStudyData();
+    handleStudyData().then((res) => {
+      setLoding(false);
+    });
   }, []);
 
   return (

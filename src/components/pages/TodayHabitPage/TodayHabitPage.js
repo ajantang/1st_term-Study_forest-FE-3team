@@ -5,7 +5,7 @@ import HabitsList from "./components/HabitsList";
 import ListModal from "./components/ListModal";
 import "./TodayHabitPage.css";
 import StudyTitle from "./components/StudyTitle";
-import UpdateRecentlyViewed from "../../../utils/UpdateRecentlyViewed";
+import { UpdateRecentlyViewed } from "../../../utils/UpdateRecentlyViewed";
 import LodingPage from "../../Layout/LodingPage";
 
 export const studyIdContext = createContext();
