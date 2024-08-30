@@ -1,24 +1,24 @@
 .study-list__container {
-  width: 1200px;
+  width: 120rem;
   height: auto;
-  min-height: 822px;
+
   background-color: white;
   margin: 0 auto;
-  border-radius: 12px;
-  margin-top: 40px;
-  padding: 40px;
-  font-size: 24px;
+  border-radius: 1.2rem;
+  margin-top: 4rem;
+  padding: 4rem;
+  font-size: 2.4rem;
   font-weight: 800;
   color: #414141;
-  line-height: 28.64px;
+  line-height: 2.864rem;
   box-sizing: border-box;
-  margin-bottom: 174px;
+  margin-bottom: 17.4rem;
 }
 
 .study-list__nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 24px;
+  margin-top: 2.4rem;
 }
 
 .study-list__nav__search-container {
@@ -27,43 +27,43 @@
 }
 
 .study-list__nav__search {
-  border: 1px solid #dddddd;
-  border-radius: 15px;
-  width: 335px;
-  height: 42px;
-  padding-left: 48px;
+  border: 0.1rem solid #dddddd;
+  border-radius: 1.5rem;
+  width: 33.5rem;
+  height: 4.2rem;
+  padding-left: 4.8rem;
   box-sizing: border-box;
-  line-height: 19.09px;
+  line-height: 1.909rem;
   font-weight: 400;
 }
 
 .study-list__nav__search-icon {
   position: absolute;
-  left: 20.94px;
-  top: 11.5px;
-  width: 18px;
-  height: 18px;
+  left: 2.094rem;
+  top: 11.5rem;
+  width: 1.8rem;
+  height: 1.8rem;
 }
 
 .study-list__nav__search::placeholder {
   color: #818181;
-  line-height: 19.09px;
+  line-height: 1.909rem;
   font-weight: 400;
 }
 
 /*드롭다운*/
 .study-list__nav__dropdown {
-  width: 180px;
-  height: 42px;
-  border: 1px solid #dddddd;
-  border-radius: 15px;
+  width: 18rem;
+  height: 4.2rem;
+  border: 0.1rem solid #dddddd;
+  border-radius: 1.5rem;
   color: #818181;
-  line-height: 19.09px;
+  line-height: 1.909rem;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 2rem;
   box-sizing: border-box;
 }
 
@@ -73,12 +73,12 @@
 }
 
 .study-list__nav__dropdown-btn {
-  width: 24px;
-  height: 24px;
+  width: 2.4rem;
+  height: 2.4rem;
   transition: transform 0.3s;
   position: absolute;
-  top: 7.5px;
-  right: 20px;
+  top: 0.75rem;
+  right: 2rem;
 }
 
 .study-list__nav__dropdown-btn.rotate {
@@ -86,21 +86,21 @@
 }
 
 .study-list__nav__dropdown-box {
-  border: 1px solid #dddddd;
-  border-radius: 15px;
+  border: 0.1rem solid #dddddd;
+  border-radius: 1.5rem;
   background-color: white;
-  width: 180px;
-  height: 166px;
+  width: 18rem;
+  height: 16.6rem;
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 50px;
+  top: 5rem;
   left: 0;
   z-index: 3;
 }
 
 .study-list__nav__dropdown-box__order {
-  height: 42px;
+  height: 4.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,54 +111,54 @@
 .study-list__nav__dropdown-box__order.recent,
 .study-list__nav__dropdown-box__order.oldest,
 .study-list__nav__dropdown-box__order.most-point {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 0.1rem solid #dddddd;
 }
 
 input:focus {
-  outline: 1px solid #99c08e;
+  outline: 0.1rem solid #99c08e;
 }
 
 .study-list__grid {
-  margin-top: 24px;
+  margin-top: 2.4rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 2.4rem;
 }
 
 .study-list__view-more {
-  width: 280px;
-  height: 53px;
-  border-radius: 20px;
-  border: 1px solid #dddddd;
-  margin: 60px auto 0;
+  width: 28rem;
+  height: 5.3rem;
+  border-radius: 2rem;
+  border: 0.1rem solid #dddddd;
+  margin: 6rem auto 0;
   color: #578246;
-  line-height: 19.09px;
+  line-height: 1.909rem;
   font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 1.6rem;
   box-sizing: border-box;
   cursor: pointer;
 }
 
 .study-list__no-list {
-  font-size: 20px;
-  line-height: 23.87px;
+  font-size: 2rem;
+  line-height: 2.387rem;
   font-weight: 500;
   color: #818181;
-  margin: 331px auto 0;
+  margin: 33.1rem auto 33.2rem;
   width: max-content;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
   .study-list__container {
-    width: 697px;
+    width: 69.7rem;
     height: auto;
-    min-height: 623px;
-    margin-top: 24px;
-    padding: 24px 24px 40px 24px;
-    margin-bottom: 211px;
+    min-height: 62.3rem;
+    margin-top: 2.4rem;
+    padding: 2.4rem 2.4rem 4rem 2.4rem;
+    margin-bottom: 21.1rem;
   }
 
   .study-list__grid {
@@ -166,32 +166,27 @@ input:focus {
   }
 
   .study-list__no-list {
-    margin: 165px auto 299px;
+    margin: 16.5rem auto 29.9rem;
   }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
   .study-list__container {
-    width: 344px;
+    width: 34.4rem;
     height: auto;
-    min-height: 405px;
-    margin-top: 16px;
-    padding: 16px 16px 20px 16px;
-    margin-bottom: 34px;
-    font-size: 16px;
-    line-height: 19.09px;
-  }
-
-  .background {
-    width: 148px;
-    height: 148px;
+    min-height: 40.5rem;
+    margin-top: 1.6rem;
+    padding: 1.6rem 1.6rem 2rem 1.6rem;
+    margin-bottom: 3.4rem;
+    font-size: 1.6rem;
+    line-height: 1.909rem;
   }
 
   .study-list__grid {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 12px;
+    gap: 1.6rem;
+    margin-top: 1.2rem;
   }
 
   .study-list__nav {
@@ -200,19 +195,19 @@ input:focus {
   }
 
   .study-list__nav__search {
-    width: 312px;
-    height: 42px;
+    width: 31.2rem;
+    height: 4.2rem;
   }
 
   .study-list__nav__dropdown {
-    margin-top: 12px;
+    margin-top: 1.2rem;
   }
 
   .study-list__view-more {
-    margin-top: 30px;
+    margin-top: 3rem;
   }
 
   .study-list__no-list {
-    margin: 140px auto 193px;
+    margin: 14rem auto 19.3rem;
   }
 }
