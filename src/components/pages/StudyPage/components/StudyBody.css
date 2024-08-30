@@ -35,9 +35,29 @@
   cursor: pointer;
 }
 
+.study__topbar-btn:hover {
+  font-weight: 800;
+  /* color: var(--jelly-bean-blue); */
+}
+
+.study__topbar-btn:active {
+  font-weight: 700;
+  color: var(--dark-sea-green);
+}
+
 .study__topbar-btn-delete {
   color: var(--gray);
   cursor: pointer;
+}
+
+.study__topbar-btn-delete:hover {
+  font-weight: 800;
+  /* color: var(--venetian-red); */
+}
+
+.study__topbar-btn-delete:active {
+  font-weight: 700;
+  color: var(--venetian-red);
 }
 
 .study__middlebar {
