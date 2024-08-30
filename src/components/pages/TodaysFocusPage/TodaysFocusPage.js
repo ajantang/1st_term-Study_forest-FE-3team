@@ -15,7 +15,7 @@ const TodaysFocusPage = () => {
   const [nickname, setNickname] = useState("");
   const [studyName, setStudyName] = useState("");
   const [alertGetPoint, setAlertGetPoint] = useState("");
-  const [loding, setLoding] = useState(false)
+  const [loding, setLoding] = useState(false);
 
   const { studyId } = useParams();
 
@@ -38,16 +38,16 @@ const TodaysFocusPage = () => {
 
   useEffect(() => {
     const getInfo = async (studyId) => {
-      setLoding(true)
+      setLoding(true);
       const pointField = await getStudyDetailInfo(studyId);
       setNickname(pointField.nickname);
       setStudyName(pointField.studyName);
       setPoint(pointField.point);
-      setLoding(false)
+      setLoding(false);
     };
 
     getInfo(studyId);
-  }, [point, studyId]);
+  }, [studyId]);
 
   useEffect(() => {
     UpdateRecentlyViewed(studyId);

@@ -172,6 +172,7 @@
 /* ===== Mobile-width : 375px ~ 743px ====== */
 @media (min-width: 375px) and (max-width: 743px) {
   .modify-study__main {
+    width: 40rem;
     padding-top: 2rem;
   }
 

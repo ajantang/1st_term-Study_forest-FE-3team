@@ -25,19 +25,19 @@ const BACKGROUND_PINK = {
 };
 const BACKGROUND_CLOCK = {
   class: "background-selector__clock",
-  imageUrl: "https://ifh.cc/g/m4hJV4.jpg",
+  imageUrl: "https://ifh.cc/g/2FTkFV.jpg",
 };
 const BACKGROUND_LEAF1 = {
   class: "background-selector__leaf1",
-  imageUrl: "https://ifh.cc/g/73YYHS.jpg",
+  imageUrl: "https://ifh.cc/g/lGtvVW.jpg",
 };
 const BACKGROUND_BOOKS = {
   class: "background-selector__books",
-  imageUrl: "https://ifh.cc/g/44BxpL.jpg",
+  imageUrl: "https://ifh.cc/g/QpynPa.jpg",
 };
 const BACKGROUND_LEAF2 = {
   class: "background-selector__leef2",
-  imageUrl: "https://ifh.cc/g/k9Gd8J.jpg",
+  imageUrl: "https://ifh.cc/g/SZ6vAB.jpg",
 };
 
 const backgroundClassList = [

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { motion } from 'framer-motion';
-import { MOTION } from '../../../../constants/global'
+import { motion } from "framer-motion";
+import { MOTION } from "../../../../constants/global";
 
 import "./Modal.css";
 
@@ -95,8 +95,6 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
 
     authStudyPassword(studyId, inputValue)
       .then((data) => {
-        console.log(data);
-
         if (data.result === true) {
           afterModalPass[modalType]();
         } else {

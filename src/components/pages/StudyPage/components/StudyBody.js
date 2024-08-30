@@ -1,5 +1,4 @@
 import { useState, useEffect, createContext } from "react";
-import { motion } from 'framer-motion';
 
 import Emojis from "../../../UI/Emojis";
 import StudyPoint from "../../../UI/StudyPoint";
@@ -19,6 +18,7 @@ import { ReactComponent as IC_facebook } from "../../../../assets/images/ic_face
 import { ReactComponent as IC_X } from "../../../../assets/images/ic_twitter.svg";
 import { ReactComponent as IC_youtube } from "../../../../assets/images/ic_youtube.svg";
 import { ReactComponent as IC_instagram } from "../../../../assets/images/ic_instagram.svg";
+import { useParams } from "react-router-dom";
 
 export const studyIdContext = createContext();
 
@@ -52,10 +52,7 @@ function ShareBox({ onCloseShareBox }) {
   return <div className="flex-row share-box">{icons}</div>;
 }
 
-export function StudyBody({
-  studyId = "8523e4cc-0985-4c20-b8b2-2d86e4fe56d5",
-  setLoding
-}) {
+export function StudyBody({ setLoding }) {
   const [nickname, setNickname] = useState("닉네임");
   const [studyName, setStudyName] = useState("스터디 이름");
   const [description, setDescription] = useState("스터디 설명");
@@ -67,6 +64,7 @@ export function StudyBody({
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const { studyId } = useParams();
   const handleShareStudy = () => {
     setShowShareBox(!showShareBox);
   };
@@ -135,7 +133,7 @@ export function StudyBody({
                       onClick={handleShareStudy}
                     >
                       공유하기
-                      </p>
+                    </p>
                     {showShareBox ? (
                       <ShareBox onCloseShareBox={handleShareStudy} />
                     ) : undefined}
@@ -178,7 +176,7 @@ export function StudyBody({
             </div>
             <StudyPoint point={studyPoint} />
           </div>
-          <HabitRecord studyId={studyId} setLoding={setLoding}/>
+          <HabitRecord studyId={studyId} setLoding={setLoding} />
         </section>
         <Modal
           studyName={studyName}

@@ -12,6 +12,7 @@
   background-color: white;
   cursor: pointer;
   gap: 0.4rem;
+  text-wrap: nowrap;
 }
 
 /* ===== Mobile-width : 375px ~ 743px ====== */
