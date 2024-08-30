@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CurrentTime from "./components/CurrentTime";
 import HabitsList from "./components/HabitsList";
@@ -14,7 +14,9 @@ function TodatHabitPage() {
   const [pageRender, setPageRender] = useState(false);
   const { studyId } = useParams();
 
-  UpdateRecentlyViewed(studyId)
+  useEffect(() => {
+    UpdateRecentlyViewed(studyId)
+  }, [studyId])
 
   const patchListHandler = () => {
     if (modalOn) {
