@@ -5,17 +5,24 @@ import { useNavigate, useParams } from "react-router-dom";
 import Timer from "./components/Timer";
 import TodayButton from "../../UI/TodayButton";
 import "./todaysFocusPage.css";
+import UpdateRecentlyViewed from "../../../utils/UpdateRecentlyViewed";
 
 export const studyIdContext = createContext();
 
 const TodaysFocusPage = () => {
   const [point, setPoint] = useState("");
+  const [nickname, setNickname] = useState("");
   const [studyName, setStudyName] = useState("");
   const [alertGetPoint, setAlertGetPoint] = useState("");
 
   const { studyId } = useParams();
 
   const navigate = useNavigate();
+
+  const handleGotoStudy = () => {
+    const path = `/study/${studyId}`;
+    navigate(path);
+  };
 
   const handleGotoHabit = () => {
     const path = `/study/${studyId}/todayHabit`;
@@ -30,12 +37,17 @@ const TodaysFocusPage = () => {
   useEffect(() => {
     const getInfo = async (studyId) => {
       const pointField = await getStudyDetailInfo(studyId);
+      setNickname(pointField.nickname);
       setStudyName(pointField.studyName);
       setPoint(pointField.point);
     };
 
     getInfo(studyId);
   }, [point, studyId]);
+
+  useEffect(() => {
+    UpdateRecentlyViewed(studyId)
+  }, [studyId])
 
   return (
     <>
@@ -44,7 +56,7 @@ const TodaysFocusPage = () => {
           <div className="content__container">
             <div className="content__container__top">
               <div className="content__container__top__title extra-bold font32">
-                <span>{studyName}</span>
+                <span onClick={handleGotoStudy}>{nickname}의 {studyName}</span>
                 <div className="flex-row content__container__top__title_btn">
                   <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
                   <TodayButton onClick={handleGotoHome}>홈</TodayButton>

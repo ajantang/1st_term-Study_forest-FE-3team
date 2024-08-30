@@ -15,9 +15,7 @@ function PrivateRoute() {
   const navigate = useNavigate();
 
   let modalType;
-
-  console.log(page);
-
+  
   switch (page) {
     case "todayHabit": {
       modalType = MODAL_GOTO_HABIT;

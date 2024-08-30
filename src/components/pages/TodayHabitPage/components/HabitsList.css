@@ -19,6 +19,7 @@
   width: 13rem;
   height: 2.9rem;
   color: var(--arsenic);
+  text-align: center;
   position: relative;
 }
 
@@ -34,7 +35,7 @@
 
 .habitsList__list-text {
   width: 112rem;
-  height: 52rem;
+  height: 54rem;
   justify-content: center;
   align-items: center;
 }
@@ -48,7 +49,7 @@
 
 .habitsList__list-ol {
   width: 40rem;
-  height: 52rem;
+  height: 54rem;
   gap: 2rem;
   list-style-type: none;
   overflow: scroll;
@@ -101,7 +102,7 @@
 
   .habitsList__list-text {
     width: 28rem;
-    height: 47rem;
+    height: 48rem;
   }
 
   .habitsList__noList-text {
@@ -113,7 +114,7 @@
 
   .habitsList__list-ol {
     width: 28rem;
-    height: 47rem;
+    height: 48rem;
     gap: 1.2rem;
   }
 }
