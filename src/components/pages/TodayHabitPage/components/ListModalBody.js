@@ -94,10 +94,11 @@ const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx, listClass, setLis
       if (value !== habit.name && !hideDelete) {
         try {
           const data = await setHabitName(habitId, value);
-          setPatchInput(false);
           return data;
         } catch (e) {
           alert('잠시 후 다시 시도해주세요');
+        } finally {
+          setPatchInput(false);
         }
       }
       return null;

@@ -144,9 +144,9 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
       if (filterValus[0]) {
         setPostRock(true);
 
-        const promises = childRefs.current
-          .filter((ref) => ref !== null)
-          .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 동직
+        // const promises = childRefs.current
+        //   .filter((ref) => ref !== null)
+        //   .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 동작
 
         for (const habit of filterValus) {
           // 순차적으로 post
@@ -164,6 +164,10 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
             return await setHabitDelete(habitId);
           }
         });
+
+        const promises = childRefs.current
+        .filter((ref) => ref !== null)
+        .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 동작
 
         if (value) {
           // input에 값이 존재할 시
@@ -198,9 +202,9 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
         // input에만 값이 있을 때
         setPostRock(true);
 
-        const promises = childRefs.current
-          .filter((ref) => ref !== null)
-          .map((ref) => ref.sendRequest());
+        // const promises = childRefs.current
+        //   .filter((ref) => ref !== null)
+        //   .map((ref) => ref.sendRequest());
 
         const postResult = await createHabit(studyId, value);
 
@@ -210,6 +214,11 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
             return await setHabitDelete(habitId);
           }
         });
+
+        const promises = childRefs.current
+          .filter((ref) => ref !== null)
+          .map((ref) => ref.sendRequest());
+
         try {
           await Promise.all([...promises, ...deletePromis, postResult]);
         } catch (e) {
@@ -231,9 +240,9 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
       } else {
         setPostRock(true);
 
-        const promises = childRefs.current
-          .filter((ref) => ref !== null)
-          .map((ref) => ref.sendRequest());
+        // const promises = childRefs.current
+        //   .filter((ref) => ref !== null)
+        //   .map((ref) => ref.sendRequest());
 
         const deletePromis = deletedIdx.map(async (idx) => {
           if (idx || idx === 0) {
@@ -241,6 +250,11 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
             return await setHabitDelete(habitId);
           }
         });
+
+        const promises = childRefs.current
+          .filter((ref) => ref !== null)
+          .map((ref) => ref.sendRequest());
+
         try {
           const resultArrey = await Promise.all([...promises, ...deletePromis]);
           const result = resultArrey.filter(
