@@ -150,7 +150,7 @@ export function HabitRecord({ studyId, setLoding }) {
       .catch((err) => {
         /* 에러 처리 : 기획 필요필요 */
       })
-      .finally(() => setLoding(false)); //----
+      .finally(() => setLoding(false)); 
   }, []);
 
   return (

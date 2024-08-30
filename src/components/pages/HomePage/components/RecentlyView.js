@@ -12,7 +12,7 @@ const RecentlyView = ({setLoding}) => {
     setRecentlyViewed(recentlyViewedStudy);
 
     const handleStudyData = async () => {
-      setLoding(true) //--------------
+      setLoding(true)
       const studyData = [];
       for (let i = 0; studyData.length < 3 && i < recentlyViewedStudy.length; i++) {
         const id = recentlyViewedStudy[i];
@@ -28,7 +28,7 @@ const RecentlyView = ({setLoding}) => {
         }
       }
       setStudyData(studyData);
-      setLoding(false) //------------
+      setLoding(false)
     };
     handleStudyData();
   }, []);
