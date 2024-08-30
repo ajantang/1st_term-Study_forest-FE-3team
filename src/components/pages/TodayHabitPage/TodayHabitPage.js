@@ -6,12 +6,14 @@ import ListModal from "./components/ListModal";
 import "./TodayHabitPage.css";
 import StudyTitle from "./components/StudyTitle";
 import UpdateRecentlyViewed from "../../../utils/UpdateRecentlyViewed";
+import LodingPage from "../../Layout/LodingPage";
 
 export const studyIdContext = createContext();
 
 function TodatHabitPage() {
   const [modalOn, setModalOn] = useState(false);
   const [pageRender, setPageRender] = useState(false);
+  const [loding, setLoding] = useState(false)
   const { studyId } = useParams();
 
   useEffect(() => {
@@ -37,6 +39,7 @@ function TodatHabitPage() {
               patchList={patchListHandler}
               pageRender={pageRender}
               setPageRender={setPageRender}
+              setLoding={setLoding}
             />
             <ListModal
               modalState={modalOn}
@@ -46,6 +49,7 @@ function TodatHabitPage() {
           </div>
         </div>
       </div>
+      {loding && <LodingPage />}
     </studyIdContext.Provider>
   );
 }

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
 import './recentlyView.css';
 import StudyCard from './StudyCard.js';
-
 import { getStudyDetailInfo } from '../../../../api/api.js';
 
-const RecentlyView = () => {
+const RecentlyView = ({setLoding}) => {
   const [recentlyViewed, setRecentlyViewed] = useState([]);
   const [studyData, setStudyData] = useState([]);
 
@@ -14,6 +12,7 @@ const RecentlyView = () => {
     setRecentlyViewed(recentlyViewedStudy);
 
     const handleStudyData = async () => {
+      setLoding(true) //--------------
       const studyData = [];
       for (let i = 0; studyData.length < 3 && i < recentlyViewedStudy.length; i++) {
         const id = recentlyViewedStudy[i];
@@ -29,6 +28,7 @@ const RecentlyView = () => {
         }
       }
       setStudyData(studyData);
+      setLoding(false) //------------
     };
     handleStudyData();
   }, []);

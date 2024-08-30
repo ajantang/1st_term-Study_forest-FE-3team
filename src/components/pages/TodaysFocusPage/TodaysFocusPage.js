@@ -6,6 +6,7 @@ import Timer from "./components/Timer";
 import TodayButton from "../../UI/TodayButton";
 import "./todaysFocusPage.css";
 import UpdateRecentlyViewed from "../../../utils/UpdateRecentlyViewed";
+import LodingPage from "../../Layout/LodingPage";
 
 export const studyIdContext = createContext();
 
@@ -14,6 +15,7 @@ const TodaysFocusPage = () => {
   const [nickname, setNickname] = useState("");
   const [studyName, setStudyName] = useState("");
   const [alertGetPoint, setAlertGetPoint] = useState("");
+  const [loding, setLoding] = useState(false)
 
   const { studyId } = useParams();
 
@@ -26,7 +28,7 @@ const TodaysFocusPage = () => {
 
   const handleGotoHabit = () => {
     const path = `/study/${studyId}/todayHabit`;
-    navigate(path, { state: 'focus' });
+    navigate(path, { state: "focus" });
   };
 
   const handleGotoHome = () => {
@@ -36,18 +38,20 @@ const TodaysFocusPage = () => {
 
   useEffect(() => {
     const getInfo = async (studyId) => {
+      setLoding(true)
       const pointField = await getStudyDetailInfo(studyId);
       setNickname(pointField.nickname);
       setStudyName(pointField.studyName);
       setPoint(pointField.point);
+      setLoding(false)
     };
 
     getInfo(studyId);
   }, [point, studyId]);
 
   useEffect(() => {
-    UpdateRecentlyViewed(studyId)
-  }, [studyId])
+    UpdateRecentlyViewed(studyId);
+  }, [studyId]);
 
   return (
     <>
@@ -56,9 +60,13 @@ const TodaysFocusPage = () => {
           <div className="content__container">
             <div className="content__container__top">
               <div className="content__container__top__title extra-bold font32">
-                <span onClick={handleGotoStudy}>{nickname}의 {studyName}</span>
+                <span onClick={handleGotoStudy}>
+                  {nickname}의 {studyName}
+                </span>
                 <div className="flex-row content__container__top__title_btn">
-                  <TodayButton onClick={handleGotoHabit}>오늘의 습관</TodayButton>
+                  <TodayButton onClick={handleGotoHabit}>
+                    오늘의 습관
+                  </TodayButton>
                   <TodayButton onClick={handleGotoHome}>홈</TodayButton>
                 </div>
               </div>
@@ -83,9 +91,10 @@ const TodaysFocusPage = () => {
           </div>
           <div className="content__alert">{alertGetPoint}</div>
         </div>
-      </studyIdContext.Provider >
+        {loding && <LodingPage />}
+      </studyIdContext.Provider>
     </>
   );
-}
+};
 
 export default TodaysFocusPage;

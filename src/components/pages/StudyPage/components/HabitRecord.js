@@ -136,11 +136,12 @@ function Dates() {
   return <div className="flex-row habitrecord__title-days">{marks}</div>;
 }
 
-export function HabitRecord({ studyId }) {
+export function HabitRecord({ studyId, setLoding }) {
   const [habits, setHabits] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
+    setLoding(true);
     gethabitData(studyId)
       .then((data) => {
         setTotalCount(data.totalHabit);
@@ -148,7 +149,8 @@ export function HabitRecord({ studyId }) {
       })
       .catch((err) => {
         /* 에러 처리 : 기획 필요필요 */
-      });
+      })
+      .finally(() => setLoding(false)); //----
   }, []);
 
   return (

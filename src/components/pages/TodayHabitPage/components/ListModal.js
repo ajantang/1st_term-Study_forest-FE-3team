@@ -51,7 +51,7 @@ function ListModal({ modalState, patchList, setPageRender }) {
       }
     };
 
-    if (!list[0] && modalState) {
+    if (!list[0]) {
       // 첫 렌더링 시
       getList();
     } else if (reRender) {

@@ -4,7 +4,7 @@ import HabitsListBody from "./HabitsListBody";
 import "./HabitsList.css";
 import { studyIdContext } from "../TodayHabitPage";
 
-function HabitsList({ patchList, pageRender, setPageRender }) {
+function HabitsList({ patchList, pageRender, setPageRender, setLoding }) {
   const [list, setList] = useState([]); // 서버에서 받아온 리스트 저장
   const [first, setFirst] = useState(true); // 습관이 없을 시 무한 랜더 방지
   let studyId = useContext(studyIdContext);
@@ -13,8 +13,10 @@ function HabitsList({ patchList, pageRender, setPageRender }) {
     // API 호출 함수
     const getList = async () => {
       try {
+        setLoding(true)
         const data = await gethabitList(studyId);
         setList(data.habits);
+        setLoding(false)
       } catch (e) {
         alert("해당 스터디를 찾을 수 없습니다");
       }
@@ -27,6 +29,7 @@ function HabitsList({ patchList, pageRender, setPageRender }) {
     } else if (pageRender) {
       // 모달창에서 변경사항이 있을때
       getList();
+      setLoding(false)
       setPageRender(false);
     }
   }, [studyId, list, pageRender, setPageRender, first]);
