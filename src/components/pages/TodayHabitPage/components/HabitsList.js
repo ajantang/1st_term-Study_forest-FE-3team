@@ -5,18 +5,18 @@ import "./HabitsList.css";
 import { studyIdContext } from "../TodayHabitPage";
 
 function HabitsList({ patchList, pageRender, setPageRender }) {
-  const [list, setList] = useState([]);     // 서버에서 받아온 리스트 저장
+  const [list, setList] = useState([]); // 서버에서 받아온 리스트 저장
   const [first, setFirst] = useState(true); // 습관이 없을 시 무한 랜더 방지
   let studyId = useContext(studyIdContext);
 
   useEffect(() => {
     // API 호출 함수
     const getList = async () => {
-      try{
+      try {
         const data = await gethabitList(studyId);
         setList(data.habits);
-      } catch(e) {
-        alert('해당 스터디를 찾을 수 없습니다')
+      } catch (e) {
+        alert("해당 스터디를 찾을 수 없습니다");
       }
     };
 

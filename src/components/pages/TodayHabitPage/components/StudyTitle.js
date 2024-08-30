@@ -19,10 +19,10 @@ function StudyTitle({ buttonName }) {
   function navigateHandler() {
     if (buttonName === "오늘의 집중") {
       const path = `/study/${studyId}/todaysFocus`;
-      navigate(path, { state: 'focus' });
+      navigate(path, { state: "focus" });
     } else if (buttonName === "오늘의 습관") {
       const path = `/study/${studyId}/todayHabit`;
-      navigate(path, { state: 'habit' });
+      navigate(path, { state: "habit" });
     }
   }
 
@@ -30,10 +30,15 @@ function StudyTitle({ buttonName }) {
     navigate("/");
   }
 
+  function studyNavigateHandler() {
+    const path = `/study/${studyId}`
+    navigate(path)
+  }
+
   return (
     <div>
       <div className="StudyTitle__body flex-row border-box">
-        <p className="StudyTitle__studyName font32 extra-bold border-box">
+        <p className="StudyTitle__studyName font32 extra-bold border-box" onClick={studyNavigateHandler}>
           {studyName}
         </p>
         <div className="StudyTitle__TodayButton flex-row font16 medium border-box">

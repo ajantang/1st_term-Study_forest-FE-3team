@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function useValidateInput(validate) {
   const [value, setValue] = useState("");
@@ -9,6 +9,10 @@ export function useValidateInput(validate) {
     setValue(newValue);
     setIsValid(validate(newValue));
   };
+
+  useEffect(() => {
+    setIsValid(validate(value));
+  }, [value, validate]);
 
   return {
     value,
