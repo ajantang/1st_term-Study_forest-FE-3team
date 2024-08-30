@@ -86,6 +86,35 @@
   margin-bottom: 4rem;
 }
 
+.share-box__anchor {
+  position: relative;
+}
+
+.share-box__icon {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+  background-color: var(--dark-sea-green);
+  justify-content: center;
+  align-items: center;
+}
+
+.share-box {
+  position: absolute;
+  top: 110%;
+  left: -130%;
+  width: 19.2rem;
+  height: 6.2rem;
+  box-sizing: border-box;
+  border: 0.1rem solid;
+  border-radius: 2em;
+  border-color: var(--gainsboro);
+  justify-content: center;
+  background-color: white;
+  align-items: center;
+  gap: 0.8rem;
+}
+
 /* ===== Tablet - width : 744px ~ 1199px ===== */
 @media (min-width: 744px) and (max-width: 1199px) {
   .study__main {
@@ -218,5 +247,9 @@
   .study__habits {
     margin-top: 1.6rem;
     margin-bottom: 1.6rem;
+  }
+
+  .share-box {
+    left: -170%;
   }
 }

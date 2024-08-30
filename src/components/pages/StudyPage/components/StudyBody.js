@@ -14,7 +14,41 @@ import {
 } from "../../../../constants/global";
 import { getStudyDetailInfo } from "../../../../api/api";
 
+import { ReactComponent as IC_facebook } from "../../../../assets/images/ic_facebook.svg";
+import { ReactComponent as IC_X } from "../../../../assets/images/ic_twitter.svg";
+import { ReactComponent as IC_youtube } from "../../../../assets/images/ic_youtube.svg";
+import { ReactComponent as IC_instagram } from "../../../../assets/images/ic_instagram.svg";
+
 export const studyIdContext = createContext();
+
+function ShareIcon({ shareIndex }) {
+  const SHARE_ICONS = [
+    { component: <IC_facebook />, url: "https://www.facebook.com" },
+    { component: <IC_X />, url: "https://x.com" },
+    { component: <IC_youtube />, url: "https://www.youtube.com" },
+    { component: <IC_instagram />, url: "https://www.instagram.com" },
+  ];
+
+  const handleClickShareIcon = () => {
+    navigator.clipboard.writeText(document.location.href);
+    window.open(SHARE_ICONS[shareIndex].url, "_blank", "noreferrer");
+  };
+
+  return (
+    <div className="flex-row share-box__icon" onClick={handleClickShareIcon}>
+      {SHARE_ICONS[shareIndex].component}
+    </div>
+  );
+}
+
+function ShareBox() {
+  const shareList = [0, 1, 2, 3];
+  const icons = shareList.map((item) => {
+    return <ShareIcon shareIndex={item} />;
+  });
+
+  return <div className="flex-row share-box">{icons}</div>;
+}
 
 export function StudyBody({
   studyId = "8523e4cc-0985-4c20-b8b2-2d86e4fe56d5",
@@ -25,13 +59,13 @@ export function StudyBody({
   const [studyPoint, setStudyPoint] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState(-1);
+  const [showShareBox, setShowShareBox] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   const handleShareStudy = () => {
-    navigator.clipboard.writeText(document.location.href);
-    alert("주소를 복사했습니다");
+    setShowShareBox(!showShareBox);
   };
 
   const handleDeleteStudy = () => {
@@ -92,12 +126,15 @@ export function StudyBody({
               </div>
               <div className="study__topbar-gp-btn-frame">
                 <div className="flex-row study__topbar-gp-btn">
-                  <p
-                    className="font16 medium study__topbar-btn"
-                    onClick={handleShareStudy}
-                  >
-                    공유하기
-                  </p>
+                  <div className="share-box__anchor">
+                    <p
+                      className="font16 medium study__topbar-btn "
+                      onClick={handleShareStudy}
+                    >
+                      공유하기
+                    </p>
+                    {showShareBox ? ShareBox() : undefined}
+                  </div>
                   <p>|</p>
                   <p
                     className="font16 medium study__topbar-btn"
