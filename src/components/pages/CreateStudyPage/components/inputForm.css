@@ -1,23 +1,23 @@
 .create-study {
-  width: 696px;
+  width: 69.6rem;
   height: auto;
-  margin: 40px auto 107px;
+  margin: 4rem auto 10.7rem;
   background-color: white;
-  padding: 24px 24px 40px;
-  border-radius: 20px;
+  padding: 2.4rem 2.4rem 4rem;
+  border-radius: 2rem;
   box-sizing: border-box;
 }
 
 .create-study__title {
   max-width: 64.8rem;
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 1.8rem;
   color: #414141;
 }
 
 .create-study__form {
   margin: 0 auto;
-  margin-top: 24px;
+  margin-top: 2.4rem;
   max-width: 64.8rem;
 }
 
@@ -27,7 +27,7 @@
 
 .create-study__input.description {
   box-sizing: border-box;
-  height: 98px;
+  height: 9.8rem;
   vertical-align: top;
   -ms-overflow-style: none;
   resize: none;
@@ -35,7 +35,7 @@
 }
 
 .description:focus {
-  outline: 1px solid #99c08e;
+  outline: 0.1rem solid #99c08e;
 }
 
 .create-study__input.description::-webkit-scrollbar {
@@ -45,14 +45,14 @@
 .create-study__input {
   box-sizing: border-box;
   width: 100%;
-  height: 48px;
-  border: 1px solid #dddddd;
-  border-radius: 15px;
-  margin-top: 16px;
-  font-size: 16px;
+  height: 4.8rem;
+  border: 0.1rem solid #dddddd;
+  border-radius: 1.5rem;
+  margin-top: 1.6rem;
+  font-size: 1.6rem;
   padding-left: 1.5rem;
-  margin-bottom: 8px;
-  line-height: 19.09px;
+  margin-bottom: 0.8rem;
+  line-height: 1.909rem;
 }
 
 .create-study__input::placeholder {
@@ -62,15 +62,15 @@
 .create-study__grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 24px;
+  gap: 1.6rem;
+  margin-top: 2.4rem;
 }
 
 .background {
-  width: 150px;
-  height: 150px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
+  width: 15rem;
+  height: 15rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 1.6rem;
   padding: 0;
   position: relative;
   cursor: pointer;
@@ -117,8 +117,8 @@
 }
 
 .selectedBtn {
-  width: 32px;
-  height: 32px;
+  width: 3.2rem;
+  height: 3.2rem;
   background-image: url("../../../../assets/images/ic_bg_selected.svg");
   background-size: cover;
   position: absolute;
@@ -128,15 +128,15 @@
 }
 
 .create-study__input.valid {
-  outline: 1px solid #99c08e;
+  outline: 0.1rem solid #99c08e;
 }
 
 .create-study__input.invalid {
-  outline: 1px solid #f50e0e;
+  outline: 0.1rem solid #f50e0e;
 }
 
 .create-study__input.duplicate {
-  outline: 1px solid #f50e0e;
+  outline: 0.1rem solid #f50e0e;
 }
 
 .create-study__input-error.duplicate {
@@ -145,9 +145,9 @@
 
 .create-study__input-error {
   color: #f50e0e;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 400;
-  line-height: 16.71px;
+  line-height: 1.671rem;
 }
 
 .create-study__password-container {
@@ -161,11 +161,11 @@
 }
 
 .create-study__password-toggle-btn {
-  width: 24px;
-  height: 24px;
+  width: 2.4rem;
+  height: 2.4rem;
   position: absolute;
-  right: 12px;
-  top: 27px;
+  right: 1.2rem;
+  top: 2.7rem;
   cursor: pointer;
 }
 
@@ -188,40 +188,40 @@
 .create-study__create-btn {
   border: none;
   width: 100%;
-  height: 58px;
-  border-radius: 16px;
+  height: 5.8rem;
+  border-radius: 1.6rem;
   color: WHITE;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 400;
-  line-height: 27.65px;
+  line-height: 2.765rem;
   font-family: EF_jejudoldam;
 }
 
 @media (min-width: 744px) and (max-width: 1199px) {
   .create-study {
-    margin: 20px auto 197px;
+    margin: 2rem auto 19.7rem;
   }
 }
 
 @media (min-width: 375px) and (max-width: 743px) {
   .create-study {
-    width: 344px;
-    margin: 40px auto 171px;
-    padding: 16px 16px 20px;
+    width: 34.4rem;
+    margin: 4rem auto 17.1rem;
+    padding: 1.6rem 1.6rem 2rem;
   }
 
   .background {
-    width: 148px;
-    height: 148px;
+    width: 14.8rem;
+    height: 14.8rem;
   }
 
   .create-study__grid-container {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 24px;
+    gap: 1.6rem;
+    margin-top: 2.4rem;
   }
 
   .create-study__input {
-    font-size: 15px;
+    font-size: 1.5rem;
   }
 }
