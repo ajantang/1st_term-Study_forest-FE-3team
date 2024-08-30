@@ -1,34 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import "./recentlyView.css";
+import StudyCard from "./StudyCard.js";
+import { getStudyDetailInfo } from "../../../../api/api.js";
 
-import './recentlyView.css';
-import StudyCard from './StudyCard.js';
-
-import { getStudyDetailInfo } from '../../../../api/api.js';
-
-const RecentlyView = () => {
+const RecentlyView = ({setLoding}) => {
   const [recentlyViewed, setRecentlyViewed] = useState([]);
   const [studyData, setStudyData] = useState([]);
 
   useEffect(() => {
-    const recentlyViewedStudy = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+    const recentlyViewedStudy =
+      JSON.parse(localStorage.getItem("recentlyViewed")) || [];
     setRecentlyViewed(recentlyViewedStudy);
 
     const handleStudyData = async () => {
+      setLoding(true)
       const studyData = [];
-      for (let i = 0; studyData.length < 3 && i < recentlyViewedStudy.length; i++) {
+      for (
+        let i = 0;
+        studyData.length < 3 && i < recentlyViewedStudy.length;
+        i++
+      ) {
         const id = recentlyViewedStudy[i];
         try {
           const response = await getStudyDetailInfo(id);
-          console.log('getStudyData');
           studyData.push(response); // 유효한 데이터를 배열에 추가합니다.
         } catch (error) {
-          console.log(`Not exist: ${id}`);
           recentlyViewedStudy.splice(i, 1); // 삭제된 id를 배열에서 제거합니다.
-          localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewedStudy)); // 로컬 스토리지 업데이트
+          localStorage.setItem(
+            "recentlyViewed",
+            JSON.stringify(recentlyViewedStudy)
+          ); // 로컬 스토리지 업데이트
           i--; // 배열에서 요소를 제거했으므로 인덱스를 조정합니다.
         }
       }
       setStudyData(studyData);
+      setLoding(false)
     };
     handleStudyData();
   }, []);

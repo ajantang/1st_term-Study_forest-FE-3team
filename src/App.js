@@ -22,8 +22,8 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="todayHabit" element={<TodatHabitPage />} />
               <Route path="todaysFocus" element={<TodaysFocusPage />} />
+              <Route path="modify" element={<ModifyPage />} />
             </Route>
-            <Route path="modify" element={<ModifyPage />} />
           </Route>
         </Route>
       </Routes>
