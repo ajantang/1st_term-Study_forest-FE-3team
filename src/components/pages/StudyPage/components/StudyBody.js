@@ -114,7 +114,7 @@ export function StudyBody({ setLoding }) {
       .catch((err) => {
         alert(err);
       });
-  }, []);
+  }, [studyId]);
 
   return (
     <main className="study__main">

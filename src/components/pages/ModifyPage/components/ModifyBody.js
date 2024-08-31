@@ -244,7 +244,7 @@ export function ModifyBody({ studyId }) {
     if (backgroundSelectorRefs.current[backgroundIndex]) {
       backgroundSelectorRefs.current[backgroundIndex].setSelect(true);
     }
-  }, []);
+  }, [studyId]);
 
   return (
     <main className="modify-study__main">
