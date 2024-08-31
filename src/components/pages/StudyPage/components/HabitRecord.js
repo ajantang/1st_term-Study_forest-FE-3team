@@ -163,6 +163,7 @@ export function HabitRecord({ studyId, setLoading }) {
         alert(err);
       })
       .finally(() => setLoading(false));
+    // eslint-disable-next-line
   }, [studyId]);
 
   return (

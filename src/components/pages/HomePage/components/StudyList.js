@@ -6,6 +6,7 @@ import StudyCard from "./StudyCard";
 import { getStudyInfo } from "../../../../api/api";
 import useDebounce from "../../../hooks/useDebounce";
 
+// eslint-disable-next-line
 const StudyList = ({}) => {
   const [studyCards, setStudyCards] = useState([]);
   const [pageSize, setPageSize] = useState(6);

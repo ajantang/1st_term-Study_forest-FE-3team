@@ -36,6 +36,7 @@ const RecentlyView = ({ setLoding }) => {
     handleStudyData().then((res) => {
       setLoding(false);
     });
+    // eslint-disable-next-line
   }, []);
 
   return (

@@ -244,6 +244,7 @@ export function ModifyBody({ studyId }) {
     if (backgroundSelectorRefs.current[backgroundIndex]) {
       backgroundSelectorRefs.current[backgroundIndex].setSelect(true);
     }
+    // eslint-disable-next-line
   }, [studyId]);
 
   return (
