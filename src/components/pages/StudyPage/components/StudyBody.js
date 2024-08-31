@@ -52,7 +52,7 @@ function ShareBox({ onCloseShareBox }) {
   return <div className="flex-row share-box">{icons}</div>;
 }
 
-export function StudyBody({ setLoding }) {
+export function StudyBody({ setLoading }) {
   const [nickname, setNickname] = useState("닉네임");
   const [studyName, setStudyName] = useState("스터디 이름");
   const [description, setDescription] = useState("스터디 설명");
@@ -176,7 +176,7 @@ export function StudyBody({ setLoding }) {
             </div>
             <StudyPoint point={studyPoint} />
           </div>
-          <HabitRecord studyId={studyId} setLoding={setLoding} />
+          <HabitRecord studyId={studyId} setLoading={setLoading} />
         </section>
         <Modal
           studyName={studyName}

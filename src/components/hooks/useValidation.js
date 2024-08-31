@@ -62,6 +62,7 @@ const useValidation = () => {
       !validatePassword() &&
       !validateConfirmPassword();
     setIsFormValid(isValid);
+    // eslint-disable-next-line
   }, [nickname, studyName, description, password, confirmPassword]);
 
   return {

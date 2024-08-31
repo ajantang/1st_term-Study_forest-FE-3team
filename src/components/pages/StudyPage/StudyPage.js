@@ -5,7 +5,7 @@ import { UpdateRecentlyViewed } from "../../../utils/UpdateRecentlyViewed";
 import LodingPage from "../../Layout/LodingPage";
 
 export function StudyPage() {
-  const [loding, setLoding] = useState(false); //-------
+  const [loding, setLoading] = useState(false); //-------
   const { studyId } = useParams();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export function StudyPage() {
 
   return (
     <>
-      <StudyBody studyId={studyId} setLoding={setLoding} />
+      <StudyBody studyId={studyId} setLoading={setLoading} />
       {loding && <LodingPage />}
     </>
   );
