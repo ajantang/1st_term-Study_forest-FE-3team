@@ -62,6 +62,7 @@
   transform: translateY(-50%);
   border: none;
   background-image: url("../../../../assets/images/btn_visibility_on.svg");
+  cursor: pointer;
 }
 
 .modal__password-input-visible-off {
@@ -73,38 +74,31 @@
   transform: translateY(-50%);
   border: none;
   background-image: url("../../../../assets/images/btn_visibility_off.svg");
+  cursor: pointer;
+}
+
+.modal__btn {
+  margin-top: 4rem;
+  width: 60rem;
+  height: 5.8rem;
+  border-radius: 1.6rem;
+  cursor: pointer;
 }
 
 .modal__btn-confirm {
-  margin-top: 4rem;
-  width: 60rem;
-  height: 5.8rem;
   background-image: url("../../../../assets/images/btn_confirm.svg");
-  border-radius: 1.6rem;
 }
 
 .modal__btn-edit {
-  margin-top: 4rem;
-  width: 60rem;
-  height: 5.8rem;
   background-image: url("../../../../assets/images/btn_toEdit.svg");
-  border-radius: 1.6rem;
 }
 
 .modal__btn-habit {
-  margin-top: 4rem;
-  width: 60rem;
-  height: 5.8rem;
   background-image: url("../../../../assets/images/btn_toHabit.svg");
-  border-radius: 1.6rem;
 }
 
 .modal__btn-concentration {
-  margin-top: 4rem;
-  width: 60rem;
-  height: 5.8rem;
   background-image: url("../../../../assets/images/btn_toConcentration.svg");
-  border-radius: 1.6rem;
 }
 
 .modal__warning {
@@ -176,31 +170,27 @@
     width: 31.2rem;
   }
 
-  .modal__btn-confirm {
+  .modal__btn {
     margin-top: 2.4rem;
     width: 31.2rem;
     height: 5.8rem;
+    border-radius: 1.6rem;
+    cursor: pointer;
+  }
+
+  .modal__btn-confirm {
     background-image: url("../../../../assets/images/btn_confirm_s.svg");
   }
 
   .modal__btn-edit {
-    margin-top: 2.4rem;
-    width: 31.2rem;
-    height: 5.8rem;
     background-image: url("../../../../assets/images/btn_toEdit_s.svg");
   }
 
   .modal__btn-habit {
-    margin-top: 2.4rem;
-    width: 31.2rem;
-    height: 5.8rem;
     background-image: url("../../../../assets/images/btn_toHabit_s.svg");
   }
 
   .modal__btn-concentration {
-    margin-top: 2.4rem;
-    width: 31.2rem;
-    height: 5.8rem;
     background-image: url("../../../../assets/images/btn_toConcentration_s.svg");
   }
 

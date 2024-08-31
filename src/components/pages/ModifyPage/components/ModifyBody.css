@@ -123,6 +123,7 @@
   transform: translateY(-50%);
   border: none;
   background-image: url("../../../../assets/images/btn_visibility_off.svg");
+  cursor: pointer;
 }
 
 .modify-study__password-input-visible-on {
@@ -134,6 +135,7 @@
   transform: translateY(-50%);
   border: none;
   background-image: url("../../../../assets/images/btn_visibility_on.svg");
+  cursor: pointer;
 }
 
 .modify-study__btn-modify {
@@ -145,6 +147,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  cursor: pointer;
 }
 
 .modify-study__btn-modify-disable {
@@ -156,6 +159,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  cursor: not-allowed;
 }
 
 /* ===== Tablet - width : 744px ~ 1199px ===== */

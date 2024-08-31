@@ -40,10 +40,10 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   //const { login, logout } = useAuth();
 
   const buttonClass = [
-    "modal__btn-confirm",
-    "modal__btn-edit",
-    "modal__btn-habit",
-    "modal__btn-concentration",
+    "modal__btn modal__btn-confirm",
+    "modal__btn modal__btn-edit",
+    "modal__btn modal__btn-habit",
+    "modal__btn modal__btn-concentration",
   ];
 
   /** 스터디 삭제 modal 창 통과 후 로직 : DELETE API 사용 & 홈페이지로 이동 */
