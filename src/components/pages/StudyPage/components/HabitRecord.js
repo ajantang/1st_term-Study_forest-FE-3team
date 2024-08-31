@@ -162,8 +162,8 @@ export function HabitRecord({ studyId, setLoding }) {
       .catch((err) => {
         alert(err);
       })
-      .finally(() => setLoding(false)); 
-  }, []);
+      .finally(() => setLoding(false));
+  }, [studyId]);
 
   return (
     <div className="study__habits habitrecord">
