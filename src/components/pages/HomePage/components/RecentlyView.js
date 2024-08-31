@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./recentlyView.css";
 import StudyCard from "./StudyCard.js";
 import { getStudyDetailInfo } from "../../../../api/api.js";
+import { deleteRecentlyViewed } from "../../../../utils/UpdateRecentlyViewed.js";
 
 const RecentlyView = ({ setLoding }) => {
   // const [recentlyViewed, setRecentlyViewed] = useState([]);
@@ -16,18 +17,19 @@ const RecentlyView = ({ setLoding }) => {
     const handleStudyData = async () => {
       setLoding(true);
       const studyData = [];
-      for (let i = 0; i < recentlyViewedStudy.length; i++) {
-        const id = recentlyViewedStudy[i];
+      for (
+        let i = 0;
+        i < recentlyViewedStudy.length && studyData.length < 3;
+        i++
+      ) {
+        const studyId = recentlyViewedStudy[i];
 
         try {
-          const response = await getStudyDetailInfo(id);
+          const response = await getStudyDetailInfo(studyId);
           studyData.push(response); // 유효한 데이터를 배열에 추가합니다.
         } catch (error) {
-          recentlyViewedStudy.splice(i, 1); // 삭제된 id를 배열에서 제거합니다.
-          localStorage.setItem(
-            "recentlyViewed",
-            JSON.stringify(recentlyViewedStudy)
-          ); // 로컬 스토리지 업데이트
+          recentlyViewedStudy.splice(i, 1); // 삭제된 studyId를 배열에서 제거합니다.
+          deleteRecentlyViewed(studyId);
           i--; // 배열에서 요소를 제거했으므로 인덱스를 조정합니다.
         }
       }

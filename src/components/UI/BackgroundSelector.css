@@ -7,7 +7,6 @@
   border-radius: 0.88888em;
   align-items: center;
   justify-content: center;
-  filter: brightness(180%);
 }
 
 .background-selector__green {
@@ -28,21 +27,25 @@
 
 .background-selector__clock {
   /* background-image: url("https://ifh.cc/g/m4hJV4.jpg"); */
+  filter: brightness(180%);
   background-position: 72% 50%;
 }
 
 .background-selector__leaf1 {
   /* background-image: url("https://ifh.cc/g/73YYHS.jpg"); */
+  filter: brightness(180%);
   background-position: 72% 50%;
 }
 
 .background-selector__books {
   /* background-image: url("https://ifh.cc/g/44BxpL.jpg"); */
+  filter: brightness(180%);
   background-position: 72% 50%;
 }
 
 .background-selector__leef2 {
   /* background-image: url("https://ifh.cc/g/k9Gd8J.jpg"); */
+  filter: brightness(180%);
   background-position: 24% 20%;
 }
 
