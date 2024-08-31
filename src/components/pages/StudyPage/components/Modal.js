@@ -10,7 +10,7 @@ import "./Modal.css";
 //import { studyIdContext } from "./StudyBody";
 //import { useAuth } from "../../../../AuthContext";
 //import { authStudyPassword, deleteStudyInfo } from "../../../../api/api";
-import { Loading } from "../../../UI/Loading";
+// import { Loading } from "../../../UI/Loading";
 
 import { authStudyPassword, deleteStudyInfo } from "../../../../api/api";
 
@@ -23,7 +23,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   const [toggleVisibleClass, setToggleVisibleClass] = useState(
     "modal__password-input-visible-off"
   );
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const dialogRef = useRef(null);
   const navigate = useNavigate();
@@ -92,7 +92,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
       return;
     }
 
-    setLoading(true);
+    // setLoading(true);
 
     authStudyPassword(studyId, inputValue)
       .then((data) => {
@@ -102,14 +102,14 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
           setIsIncorrectPasswordWarnOpen(true);
         }
 
-        setLoading(false);
+        // setLoading(false);
       })
       .catch((err) => {
         /* 에러 처리 : 기획 필요 */
-        setLoading(false);
+        // setLoading(false);
       })
       .finally(() => {
-        setLoading(false);
+        // setLoading(false);
       });
   };
 
@@ -208,7 +208,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
       </div>
       {incorrectPasswordWarn()}
       {wrongPasswordLengthWarn()}
-      {loading ? <Loading /> : undefined}
+      {/* {loading ? <Loading /> : undefined} */}
     </dialog>
   );
 }
