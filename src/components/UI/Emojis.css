@@ -42,6 +42,7 @@
   padding-right: 0.8rem;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  cursor: pointer;
 }
 
 .emojis__btn-extra-clicked {
@@ -55,6 +56,7 @@
   padding-right: 0.8rem;
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
+  cursor: pointer;
 }
 
 .emojis__extra {
@@ -79,6 +81,7 @@
   height: 100%;
   background-image: url("../../assets/images/btn_add_emoji.svg");
   border-radius: 5rem;
+  cursor: pointer;
 }
 
 .emojis__btn-add-anchor {
