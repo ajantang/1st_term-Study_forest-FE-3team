@@ -4,7 +4,14 @@ import HabitsListBody from "./HabitsListBody";
 import "./HabitsList.css";
 import { studyIdContext } from "../TodayHabitPage";
 
-function HabitsList({ list, setList, patchList, pageRender, setPageRender, setLoding }) {
+function HabitsList({
+  list,
+  setList,
+  patchList,
+  pageRender,
+  setPageRender,
+  setLoding,
+}) {
   const [first, setFirst] = useState(true); // 습관이 없을 시 무한 랜더 방지
   let studyId = useContext(studyIdContext);
 
@@ -12,10 +19,10 @@ function HabitsList({ list, setList, patchList, pageRender, setPageRender, setLo
     // API 호출 함수
     const getList = async () => {
       try {
-        setLoding(true)
+        setLoding(true);
         const data = await gethabitList(studyId);
         setList(data.habits);
-        setLoding(false)
+        setLoding(false);
       } catch (e) {
         alert("해당 스터디를 찾을 수 없습니다");
       }
@@ -28,10 +35,10 @@ function HabitsList({ list, setList, patchList, pageRender, setPageRender, setLo
     } else if (pageRender) {
       // 모달창에서 변경사항이 있을때
       getList();
-      setLoding(false)
+      setLoding(false);
       setPageRender(false);
     }
-  }, [studyId, list, pageRender, setPageRender, first]);
+  }, [studyId, list, pageRender, setPageRender, first, setList, setLoding]);
 
   return (
     <div className="habitsList__body flex-col border-box">

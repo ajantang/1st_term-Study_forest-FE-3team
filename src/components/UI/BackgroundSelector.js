@@ -73,7 +73,7 @@ const BackgroundSelector = forwardRef(({ classListIndex, onClick }, ref) => {
       const backgroundImageUrl = `url(${backgroundClassList[classListIndex].imageUrl})`;
       divRef.current.style.backgroundImage = backgroundImageUrl;
     }
-  }, []);
+  }, [classListIndex]);
 
   const returnTags = (
     <div

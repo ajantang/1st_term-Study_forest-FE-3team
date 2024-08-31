@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 const useValidation = () => {
   const [nickname, setNickname] = useState("");
@@ -62,6 +62,7 @@ const useValidation = () => {
       !validatePassword() &&
       !validateConfirmPassword();
     setIsFormValid(isValid);
+    // eslint-disable-next-line
   }, [nickname, studyName, description, password, confirmPassword]);
 
   return {

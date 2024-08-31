@@ -7,8 +7,8 @@ import ListModalPost from "./ListModalPost";
 import "./ListModal.css";
 import { studyIdContext } from "../TodayHabitPage";
 
-import { motion } from 'framer-motion';
-import { MOTION } from '../../../../constants/global';
+import { motion } from "framer-motion";
+import { MOTION } from "../../../../constants/global";
 
 function ListModal({ list, modalState, patchList, setPageRender }) {
   const [habitIds, setHabitIds] = useState([]); // 서버에서 받아온 습관 id들 저장
@@ -50,7 +50,7 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
     }
 
     setValue("");
-  }, [list]);
+  }, [list, listClass]);
 
   // value와 input 값 일치 함수
   const changeValueHandler = (e) => {
@@ -169,8 +169,8 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
         });
 
         const promises = childRefs.current
-        .filter((ref) => ref !== null)
-        .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 동작
+          .filter((ref) => ref !== null)
+          .map((ref) => ref.sendRequest()); // 이름 수정 있을 시 동작
 
         if (value) {
           // input에 값이 존재할 시

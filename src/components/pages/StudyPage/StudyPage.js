@@ -1,20 +1,20 @@
 import { useParams } from "react-router-dom";
 import StudyBody from "./components/StudyBody";
 import { useEffect, useState } from "react";
-import UpdateRecentlyViewed from "../../../utils/UpdateRecentlyViewed";
+import { UpdateRecentlyViewed } from "../../../utils/UpdateRecentlyViewed";
 import LodingPage from "../../Layout/LodingPage";
 
 export function StudyPage() {
-  const [loding, setLoding] = useState(false) //-------
+  const [loding, setLoading] = useState(false); //-------
   const { studyId } = useParams();
 
   useEffect(() => {
-    UpdateRecentlyViewed(studyId)
-  }, [studyId])
-  
+    UpdateRecentlyViewed(studyId);
+  }, [studyId]);
+
   return (
     <>
-      <StudyBody studyId={studyId} setLoding={setLoding}/>
+      <StudyBody studyId={studyId} setLoading={setLoading} />
       {loding && <LodingPage />}
     </>
   );

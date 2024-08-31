@@ -148,12 +148,12 @@ function Dates({ totalCount }) {
   }
 }
 
-export function HabitRecord({ studyId, setLoding }) {
+export function HabitRecord({ studyId, setLoading }) {
   const [habits, setHabits] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
-    setLoding(true);
+    setLoading(true);
     gethabitData(studyId)
       .then((data) => {
         setTotalCount(data.totalHabit);
@@ -162,8 +162,9 @@ export function HabitRecord({ studyId, setLoding }) {
       .catch((err) => {
         alert(err);
       })
-      .finally(() => setLoding(false)); 
-  }, []);
+      .finally(() => setLoading(false));
+    // eslint-disable-next-line
+  }, [studyId]);
 
   return (
     <div className="study__habits habitrecord">
