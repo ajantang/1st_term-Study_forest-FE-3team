@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Modal from "../components/pages/StudyPage/components/Modal";
 
 import {
-  MODAL_CONFIRM,
+  MODAL_EDIT_STUDY,
   MODAL_GOTO_HABIT,
   MODAL_GOTO_CONCENTRATION,
 } from "../constants/global";
@@ -26,11 +26,11 @@ function PrivateRoute() {
       break;
     }
     case "modify": {
-      modalType = MODAL_CONFIRM;
+      modalType = MODAL_EDIT_STUDY;
       break;
     }
     default:
-      modalType = MODAL_CONFIRM;
+      modalType = MODAL_GOTO_HABIT;
   }
 
   const closeModal = () => {
