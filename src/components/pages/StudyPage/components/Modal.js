@@ -35,6 +35,7 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   ];
 
   // let studyId = useContext(studyIdContext);
+  // eslint-disable-next-line
   const { studyId } = useParams();
   //const { login, logout } = useAuth();
 
