@@ -30,7 +30,7 @@ function PrivateRoute() {
       break;
     }
     default:
-      modalType = MODAL_CONFIRM;
+      modalType = MODAL_GOTO_HABIT;
   }
 
   const closeModal = () => {
