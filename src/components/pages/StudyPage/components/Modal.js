@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { useState, useRef, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -35,7 +36,6 @@ export function Modal({ studyName, isOpen, onClose, modalType }) {
   ];
 
   // let studyId = useContext(studyIdContext);
-  // eslint-disable-next-line
   const { studyId } = useParams();
   //const { login, logout } = useAuth();
 
