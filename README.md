@@ -1,6 +1,6 @@
 {3팀}
 ==========
-([팀 협업 문서 링크 게시](https://))
+([팀 협업 문서 링크 게시](https://study-forest.netlify.app/))
 
 팀장
 
@@ -34,7 +34,7 @@ Database: PostgreSQL
 
 ### 박성현
 
-- (자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
+![image](https://github.com/user-attachments/assets/2e457631-434e-4112-a45f-bfbce7aa1df1)
 
 - 홈, 생성 페이지
 
@@ -52,7 +52,7 @@ Database: PostgreSQL
 
 ### 이진우
 
-- (자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
+![image](https://github.com/user-attachments/assets/75aeb754-ee02-427e-9f0a-cac1ca7398bb)
 
 - 스터디 상세 페이지
 
@@ -65,6 +65,7 @@ Database: PostgreSQL
 - 반응형 레이아웃 구현
 
 ### 송영섭
+![image](https://github.com/user-attachments/assets/6cd8814c-5f86-4a2e-a4af-f4ff5eefbc63)
 
 - (자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
 
@@ -79,6 +80,7 @@ Database: PostgreSQL
 - 반응형 레이아웃 구현
 
 ### 이율리
+![image](https://github.com/user-attachments/assets/2c9c4a96-5b25-425e-ad2c-0dbae39f5e09)
 
 - (자신이 개발한 기능에 대한 사진이나 gif 파일 첨부)
 
