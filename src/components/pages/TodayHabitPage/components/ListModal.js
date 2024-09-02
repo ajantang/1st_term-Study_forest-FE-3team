@@ -21,7 +21,8 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
   const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
   const [rockButton, setRockButton] = useState(false); // 습관 생성 시 에러 방지
   const [postRock, setPostRock] = useState(false); // 수정 완료 버튼 중복 클릭 시 중복 작동 방지
-  const [hideDelete, setHideDelete] = useState([]) // 삭제 예정 시 프론트에서 지우기 위한 값
+  const [hideDelete, setHideDelete] = useState([]); // 삭제 예정 시 프론트에서 지우기 위한 값
+  const [effectTrue, setEffectTrue] = useState(false);
   const [olListHeight, setOlListHeight] = useState(
     "ListModal__list-ol list__ol-572 flex-col border-box" // ol태그 클래스 저장
   );
@@ -43,23 +44,29 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
     });
     setHabitIds(Ids);
 
-    // 습관 갯수에 따른 li 클래스 저장
-    if (!listClass[0]) {
-      list.map(() => {
-        return setListClass((preListClass) => [...preListClass, "li-use"]);
-      });
-    }
-
-    // 습관 삭제 예정 li boolin 저장
-    if (!(hideDelete[0] === false || hideDelete[0] === true)) {
-      list.map(() => {
-        return setHideDelete((preListClass) => [...preListClass, false]);
-      });
-    }
-
+    setEffectTrue(true);
 
     setValue("");
   }, [list]);
+
+  useEffect(() => {
+    if (effectTrue) {
+      // 습관 갯수에 따른 li 클래스 저장
+      if (!listClass[0]) {
+        list.map(() => {
+          return setListClass((preListClass) => [...preListClass, "li-use"]);
+        });
+      }
+
+      // 습관 삭제 예정 li boolin 저장
+      if (!(hideDelete[0] === false || hideDelete[0] === true)) {
+        list.map(() => {
+          return setHideDelete((preListClass) => [...preListClass, false]);
+        });
+      }
+    }
+    setEffectTrue(false);
+  }, [effectTrue]);
 
   // value와 input 값 일치 함수
   const changeValueHandler = (e) => {
@@ -166,6 +173,7 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
             await createHabit(studyId, habit);
           } catch (e) {
             alert("잠시 후 다시 시도해주세요");
+            setEffectTrue(true);
           }
         }
 
@@ -188,6 +196,7 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
             await Promise.all([...promises, ...deletePromis, postResult]);
           } catch (e) {
             alert("잠시 후 다시 시도해주세요");
+            setEffectTrue(true);
           }
         } else {
           // input에 값이 없을 시
@@ -195,6 +204,7 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
             await Promise.all([...promises, ...deletePromis]);
           } catch (e) {
             alert("잠시 후 다시 시도해주세요");
+            setEffectTrue(true);
           }
         }
 
@@ -205,7 +215,7 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
         setPageRender(true);
         setPostInput(false);
         setListClass([]);
-        setHideDelete([])
+        setHideDelete([]);
         setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
         setRockButtonBody([]);
         setRockButtonPost([]);
@@ -236,6 +246,7 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
           await Promise.all([...promises, ...deletePromis, postResult]);
         } catch (e) {
           alert("잠시 후 다시 시도해주세요");
+          setEffectTrue(true);
         }
 
         setValue("");
@@ -245,7 +256,7 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
         setPageRender(true);
         setPostInput(false);
         setListClass([]);
-        setHideDelete([])
+        setHideDelete([]);
         setOlListHeight("ListModal__list-ol list__ol-572 flex-col border-box");
         setRockButtonBody([]);
         setRockButtonPost([]);
@@ -281,10 +292,11 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
             setDeletedIdx([]);
             setPageRender(true);
             setListClass([]);
-            setHideDelete([])
+            setHideDelete([]);
           }
         } catch (e) {
           alert("잠시 후 다시 시도해주세요");
+          setEffectTrue(true);
         }
         setPostInput(false);
         setRockButtonBody([]);
@@ -308,7 +320,9 @@ function ListModal({ list, modalState, patchList, setPageRender }) {
     setRockButtonBody([]);
     setRockButtonPost([]);
     setListClass([]);
-    setHideDelete([])
+    setHideDelete([]);
+    setEffectTrue(true);
+    setHabitIds([]);
     patchList();
   };
 
