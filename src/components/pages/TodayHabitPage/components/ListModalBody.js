@@ -5,10 +5,9 @@ import './ListModalBody.css';
 
 import { motion } from 'framer-motion';
 
-const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx, listClass, setListClass, rockButtonBody, setRockButtonBody }, ref) => {
+const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx, listClass, setListClass, rockButtonBody, setRockButtonBody, hideDelete, setHideDelete }, ref) => {
   const [value, setValue] = useState(habit.name); // 습관 이름 저장
   const [patchInput, setPatchInput] = useState(false); // 습관 수정 input 공개 여부
-  const [hideDelete, setHideDelete] = useState(false); // 삭제 예정 시 프론트에서 지우기 위한 값
   const [checkLength0, setCheckLength0] = useState(false); // 문자 길이가 0일때 에러 메세지 공개 여부
   const [checkLength30, setCheckLength30] = useState(false); // 문자 길이가 30을 넘을때 에러 메세지 공개 여부
   const [checkInputClass, setCheckInputClass] = useState('ListModalBody__text ListModalBody__text-align font16 bold border-box'); // 습관 수정 인풋 css
@@ -19,7 +18,10 @@ const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx, listClass, setLis
   // 삭제 함수
   const deleteHabitHandler = () => {
     setDeletedIdx((preDeleted) => [...preDeleted, idx]);
-    setHideDelete(true);
+    const hideDeleted = [...hideDelete]
+    hideDeleted[idx] = true
+    console.log(hideDeleted)
+    setHideDelete(hideDeleted);
 
     const ListClasses = [...listClass];
     ListClasses[idx] = 'li-delete';
@@ -109,7 +111,7 @@ const ListModalBody = forwardRef(({ habit, idx, setDeletedIdx, listClass, setLis
 
   return (
     <>
-      {hideDelete || (
+      {hideDelete[idx] || (
         <div className="ListModalBody__list-body flex-row border-box">
           {!patchInput && (
             <div className="ListModalBody__text ListModalBody__flex-align flex-row font16 bold border-box" onClick={patchClick}>
